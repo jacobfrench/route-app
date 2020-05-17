@@ -1,0 +1,44 @@
+server:
+    address: 127.0.0.1
+    port: 8081
+
+spring:
+    datasource:
+        password: password123
+        url: jdbc:postgresql://127.0.0.1:5432/testdb
+        username: postgres
+        driver-class-name: org.postgresql.Driver
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: create
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                temp:
+                    use_jdbc_metadata_defaults: false
+        database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    mail:
+        host: in-v3.mailjet.com
+        port: 587
+        username: 508e63a951400805d42cfc1f046a41dd
+        password: 71135bb6cee06b8fdc65e213cb3b045a
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    connectiontimeout: 5000
+                    timeout: 5000
+                    writetimeout: 5000
+                    starttls:
+                        required: true
+                        enable: true
+security:
+    oauth2:
+        resource:
+            token-info-uri: http://127.0.0.1:8080/oauth/check_token
+        client:
+            client-id: resource-server
+            client-secret: secret
+            authorized-grant-types:
+            - password

@@ -1,0 +1,31 @@
+
+#server.address=45.33.39.105
+server.address=127.0.0.1 
+spring.datasource.password=password123
+
+server.port=8081
+spring.datasource.url=jdbc:postgresql://localhost:5432/testdb
+spring.datasource.username=postgres
+
+
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+
+spring.jpa.show-sql = true
+
+spring.jpa.hibernate.ddl-auto=create-drop
+
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+# Disable feature detection by this undocumented parameter. 
+# Check the org.hibernate.engine.jdbc.internal.JdbcServiceImpl.configure method for more details.
+spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults = false
+
+# Because detection is disabled you have to set correct dialect by hand.
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQL9Dialect
+
+# OAuth2 Config
+security.oauth2.resource.token-info-uri=http://localhost:8080/oauth/check_token
+security.oauth2.client.client-id=resource-server
+security.oauth2.client.client-secret=secret
+security.oauth2.client.authorized-grant-types=password

@@ -1,0 +1,20 @@
+server:
+    address: 127.0.0.1  
+    # address: 192.168.1.100      # raspberry pi
+
+spring:
+    datasource:
+        url: jdbc:postgresql://127.0.0.1:5432/testdb
+        username: postgres
+        driver-class-name: org.postgresql.Driver
+        password: password123
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: create
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                temp:
+                    use_jdbc_metadata_defaults: false
+        database-platform: org.hibernate.dialect.PostgreSQL9Dialect
