@@ -1,16 +1,18 @@
 package com.project.resourceserver.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
+@Table(name = "employee")
 public class Employee {
 
   @Id
@@ -28,8 +30,9 @@ public class Employee {
   @Column(name = "title")
   private String title;
 
-  @OneToMany
-  private List<Route> routes;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "emoployer_id", referencedColumnName = "id")
+  private Company employer;
 
   public Employee() {
 
@@ -45,7 +48,7 @@ public class Employee {
   /**
    * @param id the id to set
    */
-  public void setId(String id) {
+  public void setId(final String id) {
     this.id = id;
   }
 
@@ -59,7 +62,7 @@ public class Employee {
   /**
    * @param employeeId the employeeId to set
    */
-  public void setEmployeeId(String employeeId) {
+  public void setEmployeeId(final String employeeId) {
     this.employeeId = employeeId;
   }
 
@@ -73,7 +76,7 @@ public class Employee {
   /**
    * @param name the name to set
    */
-  public void setName(String name) {
+  public void setName(final String name) {
     this.name = name;
   }
 
@@ -87,22 +90,22 @@ public class Employee {
   /**
    * @param title the title to set
    */
-  public void setTitle(String title) {
+  public void setTitle(final String title) {
     this.title = title;
   }
 
   /**
-   * @return List<Route> return the routes
+   * @return Company return the employer
    */
-  public List<Route> getRoutes() {
-    return routes;
+  public Company getEmployer() {
+    return employer;
   }
 
   /**
-   * @param routes the routes to set
+   * @param employer the employer to set
    */
-  public void setRoutes(List<Route> routes) {
-    this.routes = routes;
+  public void setEmployer(Company employer) {
+    this.employer = employer;
   }
 
 }

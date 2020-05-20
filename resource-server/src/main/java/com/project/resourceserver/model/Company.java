@@ -1,12 +1,16 @@
 package com.project.resourceserver.model;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -40,11 +44,19 @@ public class Company {
   @Column(name = "industry")
   private String industry;
 
-  @OneToMany
-  private List<Route> routes;
+  @OneToOne(fetch = FetchType.LAZY)
+  private Account account;
 
-  @OneToMany
-  private List<Employee> employees;
+  @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private Set<Route> routes;
+
+  @OneToMany(mappedBy = "employer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private Set<Employee> employees;
+
+  public Company() {
+    routes = new HashSet<>();
+    employees = new HashSet<>();
+  }
 
   /**
    * @return String return the id
@@ -159,31 +171,45 @@ public class Company {
   }
 
   /**
-   * @return List<Route> return the routes
+   * @return Set<Route> return the routes
    */
-  public List<Route> getRoutes() {
+  public Set<Route> getRoutes() {
     return routes;
   }
 
   /**
    * @param routes the routes to set
    */
-  public void setRoutes(List<Route> routes) {
+  public void setRoutes(Set<Route> routes) {
     this.routes = routes;
   }
 
   /**
-   * @return List<Employee> return the employees
+   * @return Set<Employee> return the employees
    */
-  public List<Employee> getEmployees() {
+  public Set<Employee> getEmployees() {
     return employees;
   }
 
   /**
    * @param employees the employees to set
    */
-  public void setEmployees(List<Employee> employees) {
+  public void setEmployees(Set<Employee> employees) {
     this.employees = employees;
+  }
+
+  /**
+   * @return Account return the account
+   */
+  public Account getAccount() {
+    return account;
+  }
+
+  /**
+   * @param account the account to set
+   */
+  public void setAccount(Account account) {
+    this.account = account;
   }
 
 }

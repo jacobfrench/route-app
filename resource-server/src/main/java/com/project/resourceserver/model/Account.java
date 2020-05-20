@@ -1,12 +1,12 @@
 package com.project.resourceserver.model;
 
-import java.util.List;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -28,8 +28,8 @@ public class Account {
     @Column(name = "verified")
     private boolean verified;
 
-    @OneToMany
-    private List<Company> companies;
+    @OneToOne(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Company company;
 
     public Account() {
         this.verified = false;
@@ -92,17 +92,17 @@ public class Account {
     }
 
     /**
-     * @return List<Company> return the companies
+     * @return Company return the company
      */
-    public List<Company> getCompanies() {
-        return companies;
+    public Company getCompany() {
+        return company;
     }
 
     /**
-     * @param companies the companies to set
+     * @param company the company to set
      */
-    public void setCompanies(List<Company> companies) {
-        this.companies = companies;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
 }
