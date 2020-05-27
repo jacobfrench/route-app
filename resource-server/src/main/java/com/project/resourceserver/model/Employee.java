@@ -1,5 +1,6 @@
 package com.project.resourceserver.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,7 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -32,7 +36,11 @@ public class Employee {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "emoployer_id", referencedColumnName = "id")
+  @JsonBackReference
   private Company employer;
+
+  @OneToOne(mappedBy = "technician", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private Schedule schedule;
 
   public Employee() {
 
@@ -106,6 +114,20 @@ public class Employee {
    */
   public void setEmployer(Company employer) {
     this.employer = employer;
+  }
+
+  /**
+   * @return Schedule return the schedule
+   */
+  public Schedule getSchedule() {
+    return schedule;
+  }
+
+  /**
+   * @param schedule the schedule to set
+   */
+  public void setSchedule(Schedule schedule) {
+    this.schedule = schedule;
   }
 
 }

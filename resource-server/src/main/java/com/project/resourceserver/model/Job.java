@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -28,6 +29,10 @@ public class Job {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private GeoProperty property;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "schedule_id", referencedColumnName = "id")
+    private Schedule schedule;
 
     /**
      * @return String return the id

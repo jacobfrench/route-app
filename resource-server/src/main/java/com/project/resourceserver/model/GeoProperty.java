@@ -2,6 +2,7 @@ package com.project.resourceserver.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -42,6 +43,10 @@ public class GeoProperty {
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private Customer owner;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "route_id", referencedColumnName = "id")
+    private Route route;
 
     /**
      * @return String return the id
@@ -167,6 +172,20 @@ public class GeoProperty {
      */
     public void setOwner(Customer owner) {
         this.owner = owner;
+    }
+
+    /**
+     * @return Route return the route
+     */
+    public Route getRoute() {
+        return route;
+    }
+
+    /**
+     * @param route the route to set
+     */
+    public void setRoute(Route route) {
+        this.route = route;
     }
 
 }

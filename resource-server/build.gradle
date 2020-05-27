@@ -26,6 +26,7 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	compile('org.springframework.boot:spring-boot-starter-mail')
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 }
 
 dependencyManagement {

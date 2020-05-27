@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -20,6 +23,7 @@ public class Account {
     private String id;
 
     @Column(name = "password")
+    @JsonIgnore
     private String password;
 
     @Column(name = "username")
@@ -29,6 +33,7 @@ public class Account {
     private boolean verified;
 
     @OneToOne(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Company company;
 
     public Account() {

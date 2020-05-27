@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -35,6 +38,9 @@ public class Company {
   @Column(name = "state")
   private String state;
 
+  @Column(name = "county")
+  private String county;
+
   @Column(name = "country")
   private String country;
 
@@ -45,12 +51,15 @@ public class Company {
   private String industry;
 
   @OneToOne(fetch = FetchType.LAZY)
+  @JsonBackReference
   private Account account;
 
   @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JsonManagedReference
   private Set<Route> routes;
 
   @OneToMany(mappedBy = "employer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JsonManagedReference
   private Set<Employee> employees;
 
   public Company() {
@@ -210,6 +219,20 @@ public class Company {
    */
   public void setAccount(Account account) {
     this.account = account;
+  }
+
+  /**
+   * @return String return the county
+   */
+  public String getCounty() {
+    return county;
+  }
+
+  /**
+   * @param county the county to set
+   */
+  public void setCounty(String county) {
+    this.county = county;
   }
 
 }

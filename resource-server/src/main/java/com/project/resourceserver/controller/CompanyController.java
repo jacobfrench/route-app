@@ -20,14 +20,14 @@ public class CompanyController {
     private AccountRepository accountRepository;
 
 
-    @PostMapping(value="/public/company/create/username={username}")
-    public ResponseEntity<String> registerUser(@PathVariable String username) {
+    @PostMapping(value="/public/company/create/email={email}")
+    public ResponseEntity<String> createNewCompany(@PathVariable String email) {
         HttpHeaders httpHeaders = new HttpHeaders();
-        Account existingAccount = accountRepository.findByUsername(username);
+        Account existingAccount = accountRepository.findByUsername(email);
         String returnMessage = "";
         
         if(existingAccount == null) {
-            return new ResponseEntity<>("Username not found.", httpHeaders, HttpStatus.OK);
+            return new ResponseEntity<>("Email not found.", httpHeaders, HttpStatus.OK);
         }
 
         
