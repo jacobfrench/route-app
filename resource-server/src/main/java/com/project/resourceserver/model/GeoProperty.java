@@ -7,10 +7,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
+@Table(name ="geo_property")
 public class GeoProperty {
 
     @Id
@@ -35,17 +39,19 @@ public class GeoProperty {
     private String zip;
 
     @Column(name = "lat")
-    private String lat;
+    private float lat;
 
     @Column(name = "lng")
-    private String lng;
+    private float lng;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
+    @JsonBackReference
     private Customer owner;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "route_id", referencedColumnName = "id")
+    @JsonBackReference
     private Route route;
 
     /**
@@ -135,28 +141,28 @@ public class GeoProperty {
     /**
      * @return String return the lat
      */
-    public String getLat() {
+    public float getLat() {
         return lat;
     }
 
     /**
      * @param lat the lat to set
      */
-    public void setLat(String lat) {
+    public void setLat(float lat) {
         this.lat = lat;
     }
 
     /**
      * @return String return the lng
      */
-    public String getLng() {
+    public float getLng() {
         return lng;
     }
 
     /**
      * @param lng the lng to set
      */
-    public void setLng(String lng) {
+    public void setLng(float lng) {
         this.lng = lng;
     }
 

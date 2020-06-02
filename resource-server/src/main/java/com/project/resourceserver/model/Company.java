@@ -62,6 +62,13 @@ public class Company {
   @JsonManagedReference
   private Set<Employee> employees;
 
+  @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JsonManagedReference
+  private Set<Customer> customers;
+
+  @OneToMany
+  private Set<GeoProperty> geoProperties;
+
   public Company() {
     routes = new HashSet<>();
     employees = new HashSet<>();
@@ -233,6 +240,42 @@ public class Company {
    */
   public void setCounty(String county) {
     this.county = county;
+  }
+
+  /**
+   * @return Set<Customer> return the customers
+   */
+  public Set<Customer> getCustomers() {
+    return customers;
+  }
+
+  /**
+   * @param customers the customers to set
+   */
+  public void setCustomers(Set<Customer> customers) {
+    this.customers = customers;
+  }
+
+  /**
+   * @return Set<GeoProperty> return the geoProperties
+   */
+  public Set<GeoProperty> getGeoProperties() {
+    return geoProperties;
+  }
+
+  /**
+   * @param geoProperties the geoProperties to set
+   */
+  public void setGeoProperties(Set<GeoProperty> geoProperties) {
+    this.geoProperties = geoProperties;
+  }
+
+  public void addGeoProperty(GeoProperty geoProperty) {
+    this.geoProperties.add(geoProperty);
+  }
+
+  public void addCustomer(Customer customer) {
+    this.customers.add(customer);
   }
 
 }

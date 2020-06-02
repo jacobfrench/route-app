@@ -1,5 +1,6 @@
 package com.project.resourceserver.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -35,6 +36,10 @@ public class Route {
 
   @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Set<GeoProperty> geoProperties;
+
+  public Route() {
+    geoProperties = new HashSet<>();
+  }
 
   /**
    * @return String return the id
@@ -90,6 +95,10 @@ public class Route {
    */
   public void setGeoProperties(Set<GeoProperty> geoProperties) {
     this.geoProperties = geoProperties;
+  }
+
+  public void addGeoProperty(GeoProperty geoProperty) {
+    this.geoProperties.add(geoProperty);
   }
 
 }

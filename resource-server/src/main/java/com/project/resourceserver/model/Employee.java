@@ -34,6 +34,9 @@ public class Employee {
   @Column(name = "title")
   private String title;
 
+  @Column(name = "authorized")
+  private boolean authorized;
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "emoployer_id", referencedColumnName = "id")
   @JsonBackReference
@@ -128,6 +131,20 @@ public class Employee {
    */
   public void setSchedule(Schedule schedule) {
     this.schedule = schedule;
+  }
+
+  /**
+   * @return boolean return the authorized
+   */
+  public boolean isAuthorized() {
+    return authorized;
+  }
+
+  /**
+   * @param authorized the authorized to set
+   */
+  public void setAuthorized(boolean authorized) {
+    this.authorized = authorized;
   }
 
 }

@@ -1,5 +1,7 @@
 package com.project.resourceserver.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,11 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 public class Account {
 
@@ -36,8 +38,13 @@ public class Account {
     @JsonManagedReference
     private Company company;
 
+    @Column(name = "scheduled_date_time")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDateTime signUpDate;
+
     public Account() {
         this.verified = false;
+        this.signUpDate = LocalDateTime.now();
     }
 
     /**

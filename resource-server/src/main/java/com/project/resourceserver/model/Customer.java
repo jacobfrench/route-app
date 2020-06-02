@@ -1,9 +1,14 @@
 package com.project.resourceserver.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -35,6 +40,11 @@ public class Customer {
 
     @OneToMany(mappedBy = "owner")
     private Set<GeoProperty> ownedProperties;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
+    @JsonBackReference
+    private Company company;
 
     public Customer() {
         ownedProperties = new HashSet<>();
@@ -122,6 +132,20 @@ public class Customer {
      */
     public void setOwnedProperties(Set<GeoProperty> ownedProperties) {
         this.ownedProperties = ownedProperties;
+    }
+
+    /**
+     * @return Company return the company
+     */
+    public Company getCompany() {
+        return company;
+    }
+
+    /**
+     * @param company the company to set
+     */
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
 }

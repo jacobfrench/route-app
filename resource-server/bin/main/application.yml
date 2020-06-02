@@ -5,7 +5,8 @@ server:
 spring:
     datasource:
         password: password123
-        url: jdbc:postgresql://127.0.0.1:5432/testdb
+        # url: jdbc:postgresql://127.0.0.1:5432/testdb
+        url: jdbc:postgresql://192.168.0.100:5432/testdb
         username: postgres
         driver-class-name: org.postgresql.Driver
     jpa:
@@ -36,7 +37,8 @@ spring:
 security:
     oauth2:
         resource:
-            token-info-uri: http://127.0.0.1:8080/oauth/check_token
+            # token-info-uri: http://127.0.0.1:8080/oauth/check_token
+            token-info-uri: http://192.168.0.100:8080/oauth/check_token
         client:
             client-id: resource-server
             client-secret: secret

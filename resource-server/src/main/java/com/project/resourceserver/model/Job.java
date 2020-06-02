@@ -27,6 +27,10 @@ public class Job {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime scheduledDateTime;
 
+    @Column(name = "time_completed")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime timeCompleted;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private GeoProperty property;
 
@@ -74,6 +78,21 @@ public class Job {
      */
     public void setScheduledDateTime(LocalDateTime scheduledDateTime) {
         this.scheduledDateTime = scheduledDateTime;
+    }
+
+
+    /**
+     * @return LocalDateTime return the timeCompleted
+     */
+    public LocalDateTime getTimeCompleted() {
+        return timeCompleted;
+    }
+
+    /**
+     * @param timeCompleted the timeCompleted to set
+     */
+    public void setTimeCompleted(LocalDateTime timeCompleted) {
+        this.timeCompleted = timeCompleted;
     }
 
 }
