@@ -83,7 +83,6 @@ public class ResourceServerApplication implements CommandLineRunner{
 		route1.setCompany(company);
 		routeRepository.save(route1);
 
-		
 		GeoProperty geoProperty = new GeoProperty();
 		geoProperty.setStreet("6000 Burke Way");
 		geoProperty.setCity("Bakersfield");
@@ -95,6 +94,7 @@ public class ResourceServerApplication implements CommandLineRunner{
 		geoProperty.setRoute(route1);
 		geoProperty.setOwner(customer);
 		geoPropertyRepository.save(geoProperty);
+		
 
 
 		Route route2 = new Route();

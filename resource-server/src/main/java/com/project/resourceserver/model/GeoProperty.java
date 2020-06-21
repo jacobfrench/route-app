@@ -35,7 +35,7 @@ public class GeoProperty {
     @Column(name = "country")
     private String country;
 
-    @Column(name = "zip")
+    @Column(name = "zip", length = 5)
     private String zip;
 
     @Column(name = "lat")
