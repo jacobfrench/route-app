@@ -33,7 +33,7 @@ class Register extends Component {
                      <CardBody>
                         <h2 className="white py-4">Register</h2>
                         <Form className="pt-2">
-                           <FormGroup>
+                           {/* <FormGroup>
                               <Col md="12">
                                  <Input
                                     type="text"
@@ -44,7 +44,7 @@ class Register extends Component {
                                     required
                                  />
                               </Col>
-                           </FormGroup>
+                           </FormGroup> */}
                            <FormGroup>
                               <Col md="12">
                                  <Input
@@ -66,6 +66,18 @@ class Register extends Component {
                                     name="inputPass"
                                     id="inputPass"
                                     placeholder="Password"
+                                    required
+                                 />
+                              </Col>
+                           </FormGroup>
+                           <FormGroup>
+                              <Col md="12">
+                                 <Input
+                                    type="password"
+                                    className="form-control"
+                                    name="inputPassConfirm"
+                                    id="inputPassConfirm"
+                                    placeholder="Confirm Password"
                                     required
                                  />
                               </Col>
