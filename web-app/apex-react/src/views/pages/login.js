@@ -35,7 +35,7 @@ class Login extends Component {
 
 
   handleSubmit(event) {
-   // alert('An essay was submitted: ' + this.state.email);
+   alert('An essay was submitted: ' + "somechit@gmail.com");
    console.log(";ljsdflkjsdflkj");
    event.preventDefault();
  }
@@ -48,7 +48,7 @@ class Login extends Component {
                   <Card className="gradient-indigo-blue text-center width-400">
                      <CardBody>
                         <h2 className="white py-4">Login</h2>
-                        <Form className="pt-2">
+                        <Form className="pt-2" onSubmit={this.handleSubmit}>
                            <FormGroup>
                               <Col md="12">
                                  <Input
@@ -71,6 +71,7 @@ class Login extends Component {
                                     id="inputPass"
                                     placeholder="Password"
                                     required
+                                    onSubmit={this.handleSubmit}
                                  />
                               </Col>
                            </FormGroup>
@@ -95,7 +96,7 @@ class Login extends Component {
                            </FormGroup>
                            <FormGroup>
                               <Col md="12">
-                                 <Button type="submit" color="danger" block className="btn-pink btn-raised">
+                                 <Button type="submit" color="danger" block className="btn-pink btn-raised" onClick={this.handleSubmit}>
                                     Submit
                                  </Button>
                                  <Button type="button" color="secondary" block className="btn-raised">

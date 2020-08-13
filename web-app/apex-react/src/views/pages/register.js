@@ -24,6 +24,11 @@ class Register extends Component {
       }));
    };
 
+   handleSubmitRegistration(event) {
+      alert("lkjsdflkjsdflkjsdflkjsdflkj");
+      event.preventDefault();
+   }
+
    render() {
       return (
          <div className="container">
@@ -103,7 +108,7 @@ class Register extends Component {
                            </FormGroup>
                            <FormGroup>
                               <Col md="12">
-                                 <Button type="submit" color="danger" block className="btn-pink btn-raised">
+                                 <Button type="submit" color="danger" block className="btn-pink btn-raised" onClick={this.handleSubmitRegistration}>
                                     Submit
                                  </Button>
                                  <Button type="button" color="secondary" block className="btn-raised">

@@ -38,7 +38,7 @@ public class Account {
     @JsonManagedReference
     private Company company;
 
-    @Column(name = "scheduled_date_time")
+    @Column(name = "signup_date_time")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime signUpDate;
 

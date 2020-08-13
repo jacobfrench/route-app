@@ -6,8 +6,6 @@ class LandingPage extends Component {
       return (
          <Fragment>
              <a href="http://localhost:3000/pages/login">Login</a>
-             
-
          </Fragment>
       );
    }
