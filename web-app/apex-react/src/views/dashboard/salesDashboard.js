@@ -34,7 +34,7 @@ class SalesDashboard extends Component {
                      text="New Projects"
                      iconSide="right"
                   >
-                     <Icon.Briefcase size={56} strokeWidth="1.3" color="#fff" />
+                    <Icon.Briefcase size={56} strokeWidth="1.3" color="#fff" />
                   </MinimalStatisticsBG>
                </Col>
                <Col sm="12" md="3">

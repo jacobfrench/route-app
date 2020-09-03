@@ -22,7 +22,7 @@ class Login extends Component {
 
       this.state = {
          isChecked: true,
-         email: "",
+         email: "email",
          password: ""
       };
    }
@@ -34,10 +34,10 @@ class Login extends Component {
    };
 
 
-  handleSubmit(event) {
-   alert('An essay was submitted: ' + "somechit@gmail.com");
-   console.log(";ljsdflkjsdflkj");
-   event.preventDefault();
+  handleSubmit = (event) => {
+   alert('An essay was submitted: ' + this.state.email);
+   // console.log(this.state.email);
+   // event.preventDefault();
  }
 
    render() {
@@ -48,7 +48,7 @@ class Login extends Component {
                   <Card className="gradient-indigo-blue text-center width-400">
                      <CardBody>
                         <h2 className="white py-4">Login</h2>
-                        <Form className="pt-2" onSubmit={this.handleSubmit}>
+                        <Form className="pt-2" onSubmit={() => this.handleSubmit} action={"localhost:8081/resource/public/"}>
                            <FormGroup>
                               <Col md="12">
                                  <Input
@@ -58,6 +58,7 @@ class Login extends Component {
                                     id="inputEmail"
                                     placeholder="Email"
                                     required
+                                    onChange={(text) => this.setState({email: text})}
                                  />
                               </Col>
                            </FormGroup>
@@ -71,7 +72,7 @@ class Login extends Component {
                                     id="inputPass"
                                     placeholder="Password"
                                     required
-                                    onSubmit={this.handleSubmit}
+                                    // onSubmit={this.handleSubmit}
                                  />
                               </Col>
                            </FormGroup>

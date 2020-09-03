@@ -164,6 +164,15 @@ class Router extends Component {
             )}
           />
           <MainLayoutRoutes
+                  exact
+                  path="/lazy-dashboard"
+                  render={matchprops => (
+                     <Suspense fallback={<Spinner />}>
+                        <LazyEcommerceDashboard {...matchprops} />
+                     </Suspense>
+                  )}
+               />
+          <MainLayoutRoutes
             exact
             path="/analytics-dashboard"
             render={(matchprops) => (
