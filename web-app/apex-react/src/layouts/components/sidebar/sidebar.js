@@ -77,7 +77,7 @@ class Sidebar extends Component {
                   </PerfectScrollbar>
 
                   {/* {this.props.img === '' ? ( */}
-                  {templateConfig.sidebar.backgroundImage ? (
+                  {/* {templateConfig.sidebar.backgroundImage ? (
                     (this.props.imgurl === '') ? 
                         <div 
                         className="sidebar-background"
@@ -98,7 +98,7 @@ class Sidebar extends Component {
                         style={{ backgroundImage: "url('" + this.props.imgurl + "')" }}>
                         </div>
                   )
-                }
+                } */}
                </div>
             )}
          </FoldedContentConsumer>

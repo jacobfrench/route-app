@@ -14,6 +14,7 @@ import {
    CardFooter
 } from "reactstrap";
 
+import login from '../../api';
 
 
 class Login extends Component {
@@ -36,7 +37,7 @@ class Login extends Component {
 
   handleSubmit = (event) => {
    alert('An essay was submitted: ' + this.state.email);
-   // console.log(this.state.email);
+   console.log(this.state.email);
    // event.preventDefault();
  }
 

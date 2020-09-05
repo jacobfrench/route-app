@@ -1,5 +1,7 @@
 package com.project.resourceserver.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -36,6 +39,10 @@ public class Employee {
 
   @Column(name = "authorized")
   private boolean authorized;
+
+  @Column(name = "hire_date")
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private LocalDateTime hireDate;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "emoployer_id", referencedColumnName = "id")
@@ -145,6 +152,20 @@ public class Employee {
    */
   public void setAuthorized(boolean authorized) {
     this.authorized = authorized;
+  }
+
+  /**
+   * @return LocalDateTime return the hireDate
+   */
+  public LocalDateTime getHireDate() {
+    return hireDate;
+  }
+
+  /**
+   * @param hireDate the hireDate to set
+   */
+  public void setHireDate(LocalDateTime hireDate) {
+    this.hireDate = hireDate;
   }
 
 }

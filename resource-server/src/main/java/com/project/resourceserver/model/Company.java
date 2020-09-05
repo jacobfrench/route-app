@@ -50,6 +50,24 @@ public class Company {
   @Column(name = "industry")
   private String industry;
 
+  @Column(name = "website")
+  private String website;
+
+  @Column(name = "timezone")
+  private String timezone;
+
+  @Column(name = "currency")
+  private String currency;
+
+  @Column(name = "businessLicense")
+  private String businessLicense;
+
+  @Column(name = "operatingHoursOpen")
+  private String operatingHoursOpen;
+
+  @Column(name = "operatingHoursClose")
+  private String operatingHoursClose;
+
   @OneToOne(fetch = FetchType.LAZY)
   @JsonBackReference
   private Account account;
@@ -276,6 +294,90 @@ public class Company {
 
   public void addCustomer(Customer customer) {
     this.customers.add(customer);
+  }
+
+  /**
+   * @return String return the website
+   */
+  public String getWebsite() {
+    return website;
+  }
+
+  /**
+   * @param website the website to set
+   */
+  public void setWebsite(String website) {
+    this.website = website;
+  }
+
+  /**
+   * @return String return the timezone
+   */
+  public String getTimezone() {
+    return timezone;
+  }
+
+  /**
+   * @param timezone the timezone to set
+   */
+  public void setTimezone(String timezone) {
+    this.timezone = timezone;
+  }
+
+  /**
+   * @return String return the currency
+   */
+  public String getCurrency() {
+    return currency;
+  }
+
+  /**
+   * @param currency the currency to set
+   */
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
+
+  /**
+   * @return String return the businessLicense
+   */
+  public String getBusinessLicense() {
+    return businessLicense;
+  }
+
+  /**
+   * @param businessLicense the businessLicense to set
+   */
+  public void setBusinessLicense(String businessLicense) {
+    this.businessLicense = businessLicense;
+  }
+
+  /**
+   * @return String return the operatingHoursOpen
+   */
+  public String getOperatingHoursOpen() {
+    return operatingHoursOpen;
+  }
+
+  /**
+   * @param operatingHoursOpen the operatingHoursOpen to set
+   */
+  public void setOperatingHoursOpen(String operatingHoursOpen) {
+    this.operatingHoursOpen = operatingHoursOpen;
+  }
+
+  /**
+   * @return String return the operatingHoursClose
+   */
+  public String getOperatingHoursClose() {
+    return operatingHoursClose;
+  }
+
+  /**
+   * @param operatingHoursClose the operatingHoursClose to set
+   */
+  public void setOperatingHoursClose(String operatingHoursClose) {
+    this.operatingHoursClose = operatingHoursClose;
   }
 
 }
