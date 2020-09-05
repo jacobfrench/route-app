@@ -26,7 +26,15 @@ public class Invoice {
 
     @Column(name = "scheduled_date_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime completedDateTime;
+    private LocalDateTime scheduledTime;
+
+    @Column(name = "checkin_date_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime checkInTime;
+
+    @Column(name = "checkout_date_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime checkOutTime;
 
     @OneToOne(fetch = FetchType.LAZY)
     private Company company;
@@ -38,20 +46,6 @@ public class Invoice {
     private Job job;
 
     public Invoice() {
-    }
-
-    /**
-     * @return LocalDateTime return the completedDateTime
-     */
-    public LocalDateTime getCompletedDateTime() {
-        return completedDateTime;
-    }
-
-    /**
-     * @param completedDateTime the completedDateTime to set
-     */
-    public void setCompletedDateTime(LocalDateTime completedDateTime) {
-        this.completedDateTime = completedDateTime;
     }
 
     /**
@@ -108,6 +102,48 @@ public class Invoice {
      */
     public void setJob(Job job) {
         this.job = job;
+    }
+
+    /**
+     * @return LocalDateTime return the scheduledTime
+     */
+    public LocalDateTime getScheduledTime() {
+        return scheduledTime;
+    }
+
+    /**
+     * @param scheduledTime the scheduledTime to set
+     */
+    public void setScheduledTime(LocalDateTime scheduledTime) {
+        this.scheduledTime = scheduledTime;
+    }
+
+    /**
+     * @return LocalDateTime return the checkInTime
+     */
+    public LocalDateTime getCheckInTime() {
+        return checkInTime;
+    }
+
+    /**
+     * @param checkInTime the checkInTime to set
+     */
+    public void setCheckInTime(LocalDateTime checkInTime) {
+        this.checkInTime = checkInTime;
+    }
+
+    /**
+     * @return LocalDateTime return the checkOutTime
+     */
+    public LocalDateTime getCheckOutTime() {
+        return checkOutTime;
+    }
+
+    /**
+     * @param checkOutTime the checkOutTime to set
+     */
+    public void setCheckOutTime(LocalDateTime checkOutTime) {
+        this.checkOutTime = checkOutTime;
     }
 
 }
