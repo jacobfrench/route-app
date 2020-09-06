@@ -2,6 +2,8 @@ package com.project.resourceserver.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,8 +11,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "service")
-public class Service {
+@Table(name = "service_type")
+public class ServiceType {
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -18,17 +20,32 @@ public class Service {
     @Column(name = "id", length = 36)
     private String id;
 
-    @Column(name = "name")
+    @Column(name = "name", length = 50)
     private String name;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "cost")
+    @Column(name = "cost", length = 10)
     private String cost;
 
-    @Column(name = "applied_taxes")
+    @Column(name = "applied_taxes", length = 5)
     private String appliedTaxes;
+
+    @Column(name = "always_confirm")
+    private boolean alwaysConfirm;
+
+    @Column(name = "color_code", length = 7)
+    private String colorCodeHex;
+
+    // Note: this enum is of type ORDINAL. If any entries need to be added at a later date,
+    // append them to the end of the current enum. !!! DO NOT reorder this enum once in production !!!
+    public enum Repeat {
+        NONE, DAILY, WEEKLY, MONTHLY, QUARTERLY, YEARLY
+    };
+
+    @Enumerated(EnumType.ORDINAL)
+    private Repeat repeat;
 
     /**
      * @return String return the id
@@ -98,6 +115,48 @@ public class Service {
      */
     public void setAppliedTaxes(String appliedTaxes) {
         this.appliedTaxes = appliedTaxes;
+    }
+
+    /**
+     * @return boolean return the alwaysConfirm
+     */
+    public boolean isAlwaysConfirm() {
+        return alwaysConfirm;
+    }
+
+    /**
+     * @param alwaysConfirm the alwaysConfirm to set
+     */
+    public void setAlwaysConfirm(boolean alwaysConfirm) {
+        this.alwaysConfirm = alwaysConfirm;
+    }
+
+    /**
+     * @return String return the colorCodeHex
+     */
+    public String getColorCodeHex() {
+        return colorCodeHex;
+    }
+
+    /**
+     * @param colorCodeHex the colorCodeHex to set
+     */
+    public void setColorCodeHex(String colorCodeHex) {
+        this.colorCodeHex = colorCodeHex;
+    }
+
+    /**
+     * @return Repeat return the repeat
+     */
+    public Repeat getRepeat() {
+        return repeat;
+    }
+
+    /**
+     * @param repeat the repeat to set
+     */
+    public void setRepeat(Repeat repeat) {
+        this.repeat = repeat;
     }
 
 }

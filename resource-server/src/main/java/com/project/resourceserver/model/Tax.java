@@ -9,8 +9,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "tag")
-public class Tag {
+@Table(name = "tax")
+public class Tax {
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -18,11 +18,13 @@ public class Tag {
     @Column(name = "id", length = 36)
     private String id;
 
-    @Column(name = "label", length = 20)
-    private String label;
+    @Column(name = "tax_name")
+    private String taxName;
 
-    @Column(name = "type", length = 20)
-    private String type;
+    @Column(name = "rate")
+    private double rate;
+
+    public Tax() {}
 
     /**
      * @return String return the id
@@ -39,31 +41,31 @@ public class Tag {
     }
 
     /**
-     * @return String return the label
+     * @return String return the taxName
      */
-    public String getLabel() {
-        return label;
+    public String getTaxName() {
+        return taxName;
     }
 
     /**
-     * @param label the label to set
+     * @param taxName the taxName to set
      */
-    public void setLabel(String label) {
-        this.label = label;
+    public void setTaxName(String taxName) {
+        this.taxName = taxName;
     }
 
     /**
-     * @return String return the type
+     * @return double return the rate
      */
-    public String getType() {
-        return type;
+    public double getRate() {
+        return rate;
     }
 
     /**
-     * @param type the type to set
+     * @param rate the rate to set
      */
-    public void setType(String type) {
-        this.type = type;
+    public void setRate(double rate) {
+        this.rate = rate;
     }
 
 }
