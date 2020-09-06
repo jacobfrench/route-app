@@ -40,9 +40,16 @@ public class Employee {
   @Column(name = "authorized")
   private boolean authorized;
 
+  @Column(name = "password")
+  private String password;
+
   @Column(name = "hire_date")
   @JsonFormat(pattern = "yyyy-MM-dd")
   private LocalDateTime hireDate;
+
+  @Column(name = "last_login")
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private LocalDateTime lastLogin;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "emoployer_id", referencedColumnName = "id")
@@ -52,9 +59,7 @@ public class Employee {
   @OneToOne(mappedBy = "technician", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Schedule schedule;
 
-  public Employee() {
-
-  }
+  public Employee() {}
 
   /**
    * @return String return the id
@@ -166,6 +171,34 @@ public class Employee {
    */
   public void setHireDate(LocalDateTime hireDate) {
     this.hireDate = hireDate;
+  }
+
+  /**
+   * @return LocalDateTime return the lastLogin
+   */
+  public LocalDateTime getLastLogin() {
+    return lastLogin;
+  }
+
+  /**
+   * @param lastLogin the lastLogin to set
+   */
+  public void setLastLogin(LocalDateTime lastLogin) {
+    this.lastLogin = lastLogin;
+  }
+
+  /**
+   * @return String return the password
+   */
+  public String getPassword() {
+    return password;
+  }
+
+  /**
+   * @param password the password to set
+   */
+  public void setPassword(String password) {
+    this.password = password;
   }
 
 }
