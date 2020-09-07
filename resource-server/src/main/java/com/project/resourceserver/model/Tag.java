@@ -21,7 +21,7 @@ public class Tag {
     @Column(name = "label", length = 20)
     private String label;
 
-    @Column(name = "type", length = 20)
+    @Column(name = "type", length = 20)5
     private String type;
 
     /**

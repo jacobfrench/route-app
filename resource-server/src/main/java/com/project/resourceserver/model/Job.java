@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -30,6 +32,13 @@ public class Job {
     @Column(name = "time_completed")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime timeCompleted;
+
+    // Note: this enum is of type ORDINAL. If any entries need to be added at a later date,
+    // append them to the end of the current enum. !!! DO NOT reorder this enum once in production !!!
+    public enum Status {ACTIVE, COMPLETED, CANCELED};
+
+    @Enumerated(EnumType.ORDINAL)
+    private Status status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private GeoProperty property;
@@ -80,7 +89,6 @@ public class Job {
         this.scheduledDateTime = scheduledDateTime;
     }
 
-
     /**
      * @return LocalDateTime return the timeCompleted
      */
@@ -93,6 +101,20 @@ public class Job {
      */
     public void setTimeCompleted(LocalDateTime timeCompleted) {
         this.timeCompleted = timeCompleted;
+    }
+
+    /**
+     * @return Status return the status
+     */
+    public Status getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
 }
