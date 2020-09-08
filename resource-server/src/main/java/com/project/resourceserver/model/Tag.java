@@ -2,6 +2,8 @@ package com.project.resourceserver.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -21,8 +23,12 @@ public class Tag {
     @Column(name = "label", length = 20)
     private String label;
 
-    @Column(name = "type", length = 20)5
-    private String type;
+    public enum Type {
+        GEO_PROPERTY
+    };
+
+    @Enumerated(EnumType.ORDINAL)
+    private Type type;
 
     /**
      * @return String return the id
@@ -53,16 +59,16 @@ public class Tag {
     }
 
     /**
-     * @return String return the type
+     * @return Type return the type
      */
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
     /**
      * @param type the type to set
      */
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

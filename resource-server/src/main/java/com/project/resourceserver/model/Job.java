@@ -1,6 +1,7 @@
 package com.project.resourceserver.model;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -46,6 +48,9 @@ public class Job {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "schedule_id", referencedColumnName = "id")
     private Schedule schedule;
+
+    @ManyToMany
+    Set<Tag> tags;
 
     /**
      * @return String return the id
@@ -115,6 +120,14 @@ public class Job {
      */
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Set<Tag> getTags() {
+        return this.tags;
+    }
+
+    public void addTag(Tag tag) {
+        this.tags.add(tag);
     }
 
 }

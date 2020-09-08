@@ -31,8 +31,11 @@ public class Employee {
   @Column(name = "employee_id")
   private String employeeId;
 
-  @Column(name = "name")
-  private String name;
+  @Column(name = "fname")
+  private String fname;
+
+  @Column(name = "lname")
+  private String lname;
 
   @Column(name = "title")
   private String title;
@@ -87,20 +90,6 @@ public class Employee {
    */
   public void setEmployeeId(final String employeeId) {
     this.employeeId = employeeId;
-  }
-
-  /**
-   * @return String return the name
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * @param name the name to set
-   */
-  public void setName(final String name) {
-    this.name = name;
   }
 
   /**
@@ -199,6 +188,34 @@ public class Employee {
    */
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  /**
+   * @return String return the fname
+   */
+  public String getFname() {
+    return fname;
+  }
+
+  /**
+   * @param fname the fname to set
+   */
+  public void setFname(String fname) {
+    this.fname = fname;
+  }
+
+  /**
+   * @return String return the lname
+   */
+  public String getLname() {
+    return lname;
+  }
+
+  /**
+   * @param lname the lname to set
+   */
+  public void setLname(String lname) {
+    this.lname = lname;
   }
 
 }
