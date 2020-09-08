@@ -52,12 +52,12 @@ public class GeoProperty {
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
-    @JsonBackReference
+    @JsonBackReference("geo_property-owner")
     private Customer owner;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "route_id", referencedColumnName = "id")
-    @JsonBackReference
+    @JsonBackReference("geo_property-route")
     private Route route;
 
     @ManyToMany

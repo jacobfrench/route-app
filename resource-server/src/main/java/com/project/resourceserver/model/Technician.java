@@ -9,7 +9,8 @@ import javax.persistence.OneToMany;
 @Entity
 public class Technician extends Employee {
 
-    public Technician() {}
+    public Technician() {
+    }
 
     @Column(name = "license_num")
     private String licenseNum;

@@ -69,19 +69,19 @@ public class Company {
   private String operatingHoursClose;
 
   @OneToOne(fetch = FetchType.LAZY)
-  @JsonBackReference
+  @JsonBackReference("account-company")
   private Account account;
 
   @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JsonManagedReference
+  @JsonManagedReference("company-routes")
   private Set<Route> routes;
 
   @OneToMany(mappedBy = "employer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JsonManagedReference
+  @JsonManagedReference("company-employer")
   private Set<Employee> employees;
 
   @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JsonManagedReference
+  @JsonManagedReference("company-customers")
   private Set<Customer> customers;
 
   @OneToMany

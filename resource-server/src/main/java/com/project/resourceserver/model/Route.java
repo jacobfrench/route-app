@@ -31,7 +31,7 @@ public class Route {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "company_id", referencedColumnName = "id")
-  @JsonBackReference
+  @JsonBackReference("company-routes")
   private Company company;
 
   @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

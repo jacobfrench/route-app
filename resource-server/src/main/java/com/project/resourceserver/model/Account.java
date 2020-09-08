@@ -36,7 +36,7 @@ public class Account {
     private boolean verified;
 
     @OneToOne(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonManagedReference("account-company")
     private Company company;
 
     @Column(name = "signup_date_time")
