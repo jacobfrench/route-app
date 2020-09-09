@@ -10,10 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
+@Table(name = "schedule")
 public class Schedule {
 
     @Id
@@ -26,6 +30,7 @@ public class Schedule {
     private Set<Job> currentJobs;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference("technician-schedule")
     private Technician technician;
 
     /**
@@ -54,6 +59,20 @@ public class Schedule {
      */
     public void setCurrentJobs(Set<Job> currentJobs) {
         this.currentJobs = currentJobs;
+    }
+
+    /**
+     * @return Technician return the technician
+     */
+    public Technician getTechnician() {
+        return technician;
+    }
+
+    /**
+     * @param technician the technician to set
+     */
+    public void setTechnician(Technician technician) {
+        this.technician = technician;
     }
 
 }

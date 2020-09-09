@@ -56,10 +56,8 @@ public class Employee {
   @JsonBackReference("company-employer")
   private Company employer;
 
-  @OneToOne(mappedBy = "technician", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Schedule schedule;
-
-  public Employee() {}
+  public Employee() {
+  }
 
   /**
    * @return String return the id
@@ -129,20 +127,6 @@ public class Employee {
    */
   public void setEmployer(Company employer) {
     this.employer = employer;
-  }
-
-  /**
-   * @return Schedule return the schedule
-   */
-  public Schedule getSchedule() {
-    return schedule;
-  }
-
-  /**
-   * @param schedule the schedule to set
-   */
-  public void setSchedule(Schedule schedule) {
-    this.schedule = schedule;
   }
 
   /**
