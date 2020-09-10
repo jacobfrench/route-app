@@ -14,12 +14,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "geo_property")
+@JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class GeoProperty {
 
     @Id

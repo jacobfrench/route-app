@@ -9,9 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 
 @Entity
+@JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Technician extends Employee {
 
     public Technician() {}
@@ -23,7 +26,7 @@ public class Technician extends Employee {
     private List<Route> routes;
 
     @OneToOne(mappedBy = "technician", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonBackReference("technician-schedule")
+    @JsonManagedReference("technician-schedule")
     private Schedule schedule;
 
     /**

@@ -13,12 +13,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
+@Table(name = "job")
+@JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Job {
 
     @Id
@@ -37,7 +43,7 @@ public class Job {
 
     // Note: this enum is of type ORDINAL. If any entries need to be added at a later date,
     // append them to the end of the current enum. !!! DO NOT reorder this enum once in production !!!
-    public enum Status {ACTIVE, COMPLETED, CANCELED};
+    public enum Status {CREATED, ACTIVE, COMPLETED, CANCELED};
 
     @Enumerated(EnumType.ORDINAL)
     private Status status;
@@ -45,9 +51,9 @@ public class Job {
     @ManyToOne(fetch = FetchType.LAZY)
     private GeoProperty property;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "schedule_id", referencedColumnName = "id")
-    private Schedule schedule;
+    // @ManyToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "schedule_id", referencedColumnName = "id")
+    // private Schedule schedule;
 
     @ManyToMany
     Set<Tag> tags;
@@ -129,5 +135,10 @@ public class Job {
     public void addTag(Tag tag) {
         this.tags.add(tag);
     }
+
+    // public void setSchedule(Schedule schedule) {
+    //     this.schedule = schedule;
+    // }
+
 
 }

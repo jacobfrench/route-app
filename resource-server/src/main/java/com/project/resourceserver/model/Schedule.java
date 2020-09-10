@@ -1,5 +1,6 @@
 package com.project.resourceserver.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,12 +13,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "schedule")
+@JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Schedule {
 
     @Id
@@ -26,12 +30,22 @@ public class Schedule {
     @Column(name = "id", length = 36)
     private String id;
 
-    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Job> currentJobs;
+    // @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Job> jobs;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JsonManagedReference("technician-schedule")
+    @JsonBackReference("technician-schedule")
     private Technician technician;
+
+    public Schedule() {
+        jobs = new HashSet<>();
+    }
+
+
+    public void addJob(Job job) {
+        this.jobs.add(job);
+    }
 
     /**
      * @return String return the id
@@ -48,17 +62,17 @@ public class Schedule {
     }
 
     /**
-     * @return Set<Job> return the currentJobs
+     * @return Set<Job> return the jobs
      */
-    public Set<Job> getCurrentJobs() {
-        return currentJobs;
+    public Set<Job> getJobs() {
+        return jobs;
     }
 
     /**
-     * @param currentJobs the currentJobs to set
+     * @param jobs the jobs to set
      */
-    public void setCurrentJobs(Set<Job> currentJobs) {
-        this.currentJobs = currentJobs;
+    public void setJobs(Set<Job> jobs) {
+        this.jobs = jobs;
     }
 
     /**

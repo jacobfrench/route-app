@@ -1,7 +1,9 @@
 package com.project.resourceserver.controller;
 
+import com.project.resourceserver.model.Job;
 import com.project.resourceserver.model.Schedule;
 import com.project.resourceserver.repository.ScheduleRepository;
+import com.project.resourceserver.service.ScheduleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +23,9 @@ public class ScheduleController {
 
     @Autowired
     private ScheduleRepository scheduleRepository;
+
+    @Autowired
+    private ScheduleService scheduleService;
 
     @PostMapping(value="/schedule/add")
     public ResponseEntity<Schedule> createNewSchedule(@RequestBody Schedule schedule) {
@@ -32,11 +38,15 @@ public class ScheduleController {
             return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
     }
 
-    @GetMapping("/schedule/get/id/{scheduleId}")
+    @GetMapping(value="/schedule/get/id/{scheduleId}")
     public ResponseEntity<Schedule> getScheduleById(@PathVariable String scheduleId) {
         Schedule schedule = this.scheduleRepository.findById(scheduleId).get();
         HttpHeaders httpHeaders = new HttpHeaders();
         return new ResponseEntity<>(schedule, httpHeaders, HttpStatus.OK);
     }
     
+    @PutMapping(value="/technician/{technicianId}/geo_property/{geoPropertyId}")
+    public ResponseEntity<String> addJobToSchedule(@PathVariable String technicianId, @PathVariable String geoPropertyId, @RequestBody Job job) {
+        return scheduleService.addJobToSchedule(technicianId, geoPropertyId, job);
+    }
 }
