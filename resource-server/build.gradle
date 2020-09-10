@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.project'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
@@ -27,6 +27,8 @@ dependencies {
 	}
 	compile('org.springframework.boot:spring-boot-starter-mail')
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.11.2'
+
 }
 
 dependencyManagement {

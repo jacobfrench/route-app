@@ -45,7 +45,7 @@ public class ScheduleService {
         Schedule schedule = technician.getSchedule();
 
         // Create Job
-        // job.setProperty(geoProperty);
+        job.setProperty(geoProperty);
         // job.setSchedule(schedule);
         job = this.jobRepository.save(job);
 
