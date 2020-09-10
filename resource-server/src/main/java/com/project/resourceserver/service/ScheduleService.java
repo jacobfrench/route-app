@@ -45,7 +45,7 @@ public class ScheduleService {
         Schedule schedule = technician.getSchedule();
 
         // Create Job
-        job.setProperty(geoProperty);
+        // job.setProperty(geoProperty);
         // job.setSchedule(schedule);
         job = this.jobRepository.save(job);
 
@@ -54,7 +54,7 @@ public class ScheduleService {
 
         // Save Schedule
         this.scheduleRepository.save(schedule);
-        this.technicianRepository.save(technician);
+        // this.technicianRepository.save(technician);
 
         return new ResponseEntity<>("SUCCCESS!", httpHeaders, HttpStatus.CREATED);
     }
