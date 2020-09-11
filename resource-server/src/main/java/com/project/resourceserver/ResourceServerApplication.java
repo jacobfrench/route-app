@@ -1,5 +1,8 @@
 package com.project.resourceserver;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.project.resourceserver.model.Account;
 import com.project.resourceserver.model.Company;
 import com.project.resourceserver.model.Customer;
@@ -95,8 +98,6 @@ public class ResourceServerApplication implements CommandLineRunner{
 		geoProperty.setOwner(customer);
 		geoPropertyRepository.save(geoProperty);
 		
-
-
 		Route route2 = new Route();
 		route2.setName("Route 2 - Oildale");
 		route2.setCompany(company);

@@ -10,21 +10,19 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "job")
-@JsonAutoDetect(fieldVisibility = Visibility.ANY)
+@JsonIgnoreProperties(value={"hibernateLazyInitializer", "$$_hibernate_interceptor"})
 public class Job {
 
     @Id

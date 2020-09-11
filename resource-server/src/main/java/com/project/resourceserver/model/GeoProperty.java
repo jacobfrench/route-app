@@ -3,6 +3,7 @@ package com.project.resourceserver.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,15 +15,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "geo_property")
-@JsonAutoDetect(fieldVisibility = Visibility.ANY)
+@JsonIgnoreProperties(value={"hibernateLazyInitializer"})
 public class GeoProperty {
 
     @Id
@@ -62,7 +62,7 @@ public class GeoProperty {
     @JsonBackReference("geo_property-route")
     private Route route;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     Set<Tag> tags;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -214,6 +214,14 @@ public class GeoProperty {
 
     public Set<Tag> getTags() {
         return this.tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public void removeTags() {
+        this.tags = new HashSet<>();
     }
 
     public void addTag(Tag tag) {
