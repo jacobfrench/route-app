@@ -60,7 +60,7 @@ public class GeoPropertyController {
         if(geoProperty != null)
             return new ResponseEntity<>(geoProperty, httpHeaders, HttpStatus.CREATED);
         else
-            return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
+            return new ResponseEntity<>(null, httpHeaders, HttpStatus.ACCEPTED);
     }
 
     // PUT ****************************************************************************************

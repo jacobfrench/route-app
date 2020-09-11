@@ -1,7 +1,9 @@
 package com.project.resourceserver.controller;
 
+import com.project.resourceserver.model.Company;
 import com.project.resourceserver.model.Schedule;
 import com.project.resourceserver.model.Technician;
+import com.project.resourceserver.repository.CompanyRepository;
 import com.project.resourceserver.repository.ScheduleRepository;
 import com.project.resourceserver.repository.TechnicianRepository;
 
@@ -27,6 +29,9 @@ public class TechnicianController {
 
     @Autowired
     private ScheduleRepository scheduleRepository;
+
+    @Autowired
+    private CompanyRepository companyRepository;
 
     public TechnicianController(){}
 
@@ -62,15 +67,17 @@ public class TechnicianController {
 
     // POST ***************************************************************************************
 
-    @PostMapping(value="/technician")
-    public ResponseEntity<Technician> createNewTechnician(@RequestBody Technician technician) {
+    @PostMapping(value="/company/{companyId}/technician")
+    public ResponseEntity<Technician> createNewTechnician(@RequestBody Technician technician, @PathVariable String companyId) {
         HttpHeaders httpHeaders = new HttpHeaders();
         Schedule newSchedule = this.scheduleRepository.save(new Schedule());
-
+        Company company = this.companyRepository.findById(companyId).get();
         newSchedule.setTechnician(technician);
         technician.setSchedule(newSchedule);
+        technician.setEmployer(company);
 
         Technician newTechnician = this.technicianRepository.save(technician);
+        
 
         if(newTechnician != null)
             return new ResponseEntity<>(newTechnician, httpHeaders, HttpStatus.ACCEPTED);
