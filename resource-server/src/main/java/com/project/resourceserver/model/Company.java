@@ -87,9 +87,13 @@ public class Company {
   @OneToMany
   private Set<GeoProperty> geoProperties;
 
+  @OneToMany
+  private Set<Tag> tags;
+
   public Company() {
     routes = new HashSet<>();
     employees = new HashSet<>();
+    tags = new HashSet<>();
   }
 
   /**
@@ -382,6 +386,24 @@ public class Company {
 
   public void addEmployee(Employee employee) {
     this.employees.add(employee);
+  }
+
+  /**
+   * @return Set<Tag> return the tags
+   */
+  public Set<Tag> getTags() {
+    return tags;
+  }
+
+  /**
+   * @param tags the tags to set
+   */
+  public void setTags(Set<Tag> tags) {
+    this.tags = tags;
+  }
+
+  public void addTag(Tag tag) {
+    this.tags.add(tag);
   }
 
 }
