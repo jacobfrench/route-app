@@ -90,6 +90,12 @@ public class Company {
   @OneToMany
   private Set<Tag> tags;
 
+  @OneToMany
+  private Set<ServiceType> serviceTypes;
+
+  @OneToMany
+  private Set<Tax> taxes;
+
   public Company() {
     routes = new HashSet<>();
     employees = new HashSet<>();
@@ -404,6 +410,42 @@ public class Company {
 
   public void addTag(Tag tag) {
     this.tags.add(tag);
+  }
+
+  /**
+   * @return Set<ServiceType> return the serviceTypes
+   */
+  public Set<ServiceType> getServiceTypes() {
+    return serviceTypes;
+  }
+
+  /**
+   * @param serviceTypes the serviceTypes to set
+   */
+  public void setServiceTypes(Set<ServiceType> serviceTypes) {
+    this.serviceTypes = serviceTypes;
+  }
+
+  public void addNewServiceType(ServiceType serviceType) {
+    this.serviceTypes.add(serviceType);
+  }
+
+  /**
+   * @return Set<Tax> return the taxes
+   */
+  public Set<Tax> getTaxes() {
+    return taxes;
+  }
+
+  /**
+   * @param taxes the taxes to set
+   */
+  public void setTaxes(Set<Tax> taxes) {
+    this.taxes = taxes;
+  }
+
+  public void addNewTax(Tax tax) {
+    this.taxes.add(tax);
   }
 
 }

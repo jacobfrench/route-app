@@ -41,7 +41,7 @@ public class ServiceType {
     // Note: this enum is of type ORDINAL. If any entries need to be added at a later date,
     // append them to the end of the current enum. !!! DO NOT reorder this enum once in production !!!
     public enum Repeat {
-        NONE, DAILY, WEEKLY, MONTHLY, QUARTERLY, YEARLY
+        NONE, DAILY, WEEKLY, MONTHLY, BIMONTHLY, QUARTERLY, YEARLY
     };
 
     @Enumerated(EnumType.ORDINAL)

@@ -69,7 +69,6 @@ public class GeoPropertyService {
                 
         }
 
-
         geoProperty = this.geoPropertyRepository.save(geoProperty);
         company.addGeoProperty(geoProperty);
         this.companyRepository.save(company);
