@@ -26,11 +26,11 @@ public class Customer {
     @Column(name = "id", length = 36)
     private String id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "fname")
+    private String fname;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "name")
+    private String lname;
 
     @Column(name = "primary_phone")
     private String primaryPhone;
@@ -65,31 +65,31 @@ public class Customer {
     }
 
     /**
-     * @return String return the firstName
+     * @return String return the fname
      */
     public String getFirstName() {
-        return firstName;
+        return fname;
     }
 
     /**
-     * @param firstName the firstName to set
+     * @param fname the fname to set
      */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String fname) {
+        this.fname = fname;
     }
 
     /**
-     * @return String return the lastName
+     * @return String return the lname
      */
     public String getLastName() {
-        return lastName;
+        return lname;
     }
 
     /**
-     * @param lastName the lastName to set
+     * @param lname the lname to set
      */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String lname) {
+        this.lname = lname;
     }
 
     /**
