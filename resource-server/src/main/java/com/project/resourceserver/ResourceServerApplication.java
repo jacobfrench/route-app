@@ -1,8 +1,5 @@
 package com.project.resourceserver;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.project.resourceserver.model.Account;
 import com.project.resourceserver.model.Company;
 import com.project.resourceserver.model.Customer;
@@ -53,7 +50,7 @@ public class ResourceServerApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
+		
 		Account account = new Account();
 		account.setUsername("jakefrench84@gmail.com");
 		account.setPassword(passwordEncoder.encode("password"));

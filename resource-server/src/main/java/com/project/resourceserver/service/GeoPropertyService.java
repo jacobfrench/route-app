@@ -6,6 +6,7 @@ import java.util.Set;
 import com.project.resourceserver.model.Company;
 import com.project.resourceserver.model.Customer;
 import com.project.resourceserver.model.GeoProperty;
+import com.project.resourceserver.model.ServiceType;
 import com.project.resourceserver.model.Tag;
 import com.project.resourceserver.repository.CompanyRepository;
 import com.project.resourceserver.repository.CustomerRepository;
@@ -33,11 +34,12 @@ public class GeoPropertyService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public ResponseEntity<GeoProperty> addNewGeoProperty(String companyId, String customerId, GeoProperty geoProperty) {
+    public ResponseEntity<GeoProperty> addNewGeoProperty(String companyId, String customerId, String serviceTypeId, GeoProperty geoProperty) {
         HttpHeaders httpHeaders = new HttpHeaders();
         Customer customer = customerRepository.findById(customerId).get();
         geoProperty.setOwner(customer);
 
+        //Do not add duplicate tags to the database.
         Set<Tag> tags = new HashSet<>();
         for(Tag tag : geoProperty.getTags()) {
             Tag foundTag = this.tagRepository.findByLabel(tag.getLabel());
@@ -50,6 +52,7 @@ public class GeoPropertyService {
 
         geoProperty.removeTags();
         geoProperty.setTags(tags);
+
 
         Company company = this.companyRepository.findById(companyId).get();
         Set<Tag> companyTags = company.getTags();
@@ -67,6 +70,15 @@ public class GeoPropertyService {
             if(!tagFound)
                 company.addTag(gt);
                 
+        }
+
+        // Add a ServiceType to the new GeoProperty
+        Set<ServiceType> serviceTypes = company.getServiceTypes();
+        for(ServiceType st : serviceTypes){
+            if(st.getId().equals(serviceTypeId)){
+                geoProperty.setServiceType(st);
+                break;
+            }
         }
 
         geoProperty = this.geoPropertyRepository.save(geoProperty);

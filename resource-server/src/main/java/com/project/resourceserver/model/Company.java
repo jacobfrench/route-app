@@ -96,10 +96,15 @@ public class Company {
   @OneToMany
   private Set<Tax> taxes;
 
+  @OneToMany
+  private Set<Material> materials;
+
   public Company() {
     routes = new HashSet<>();
     employees = new HashSet<>();
     tags = new HashSet<>();
+    taxes = new HashSet<>();
+    materials = new HashSet<>();
   }
 
   /**
@@ -446,6 +451,24 @@ public class Company {
 
   public void addNewTax(Tax tax) {
     this.taxes.add(tax);
+  }
+
+  /**
+   * @return Set<Material> return the materials
+   */
+  public Set<Material> getMaterials() {
+    return materials;
+  }
+
+  /**
+   * @param materials the materials to set
+   */
+  public void setMaterials(Set<Material> materials) {
+    this.materials = materials;
+  }
+
+  public void addNewMaterial(Material material) {
+    materials.add(material);
   }
 
 }

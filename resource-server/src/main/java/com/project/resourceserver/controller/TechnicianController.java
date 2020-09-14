@@ -7,10 +7,13 @@ import com.project.resourceserver.repository.CompanyRepository;
 import com.project.resourceserver.repository.ScheduleRepository;
 import com.project.resourceserver.repository.TechnicianRepository;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,8 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/resource/public")
+@RequestMapping(value = "/resource/private")
 public class TechnicianController {
+    private static Logger logger = LogManager.getLogger(TechnicianController.class);
 
 
     @Autowired 
@@ -33,10 +37,13 @@ public class TechnicianController {
     @Autowired
     private CompanyRepository companyRepository;
 
+    // private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     public TechnicianController(){}
 
     public TechnicianController(TechnicianRepository technicianRepository) {
         this.technicianRepository = technicianRepository;
+        
     }
 
     // GET ****************************************************************************************
@@ -68,7 +75,7 @@ public class TechnicianController {
     // POST ***************************************************************************************
 
     @PostMapping(value="/company/{companyId}/technician")
-    public ResponseEntity<Technician> createNewTechnician(@RequestBody Technician technician, @PathVariable String companyId) {
+    public ResponseEntity<Boolean> createNewTechnician(@RequestBody Technician technician, @PathVariable String companyId) {
         HttpHeaders httpHeaders = new HttpHeaders();
         Schedule newSchedule = this.scheduleRepository.save(new Schedule());
         Company company = this.companyRepository.findById(companyId).get();
@@ -76,13 +83,18 @@ public class TechnicianController {
         technician.setSchedule(newSchedule);
         technician.setEmployer(company);
 
+        // this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+        // String encryptedPassword = bCryptPasswordEncoder.encode(technician.getPassword());
+        // technician.setPassword(encryptedPassword);
+
         Technician newTechnician = this.technicianRepository.save(technician);
         
 
         if(newTechnician != null)
-            return new ResponseEntity<>(newTechnician, httpHeaders, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(true, httpHeaders, HttpStatus.ACCEPTED);
         else
-            return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
+            return new ResponseEntity<>(false, httpHeaders, HttpStatus.CREATED);
     }
 
 

@@ -25,9 +25,10 @@ public class GeoPropertyController {
     // GET ****************************************************************************************
     // POST ***************************************************************************************
 
-    @PostMapping(value="/company/{companyId}/customer/{customerId}/geo_property")
-    public ResponseEntity<GeoProperty> addNewGeoProperty(@PathVariable String companyId, @PathVariable String customerId, @RequestBody GeoProperty geoProperty) {
-        return geoPropertyService.addNewGeoProperty(companyId, customerId,  geoProperty);
+    @PostMapping(value="/company/{companyId}/customer/{customerId}/service_type/{serviceTypeId}/geo_property")
+    public ResponseEntity<GeoProperty> addNewGeoProperty(@PathVariable String companyId, @PathVariable String customerId, 
+                                                         @PathVariable String serviceTypeId, @RequestBody GeoProperty geoProperty) {
+        return geoPropertyService.addNewGeoProperty(companyId, customerId, serviceTypeId,  geoProperty);
     }
 
     // PUT ****************************************************************************************

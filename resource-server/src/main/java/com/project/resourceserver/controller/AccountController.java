@@ -57,6 +57,7 @@ public class AccountController {
 
         bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encryptedPassword = bCryptPasswordEncoder.encode(account.getPassword());
+        // String encryptedPassword = bCryptPasswordEncoder.encode("password");
         account.setPassword(encryptedPassword);
         accountRepository.save(account);
 

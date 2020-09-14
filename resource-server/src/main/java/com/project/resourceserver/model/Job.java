@@ -1,6 +1,7 @@
 package com.project.resourceserver.model;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -55,6 +56,14 @@ public class Job {
 
     @ManyToMany
     Set<Tag> tags;
+
+    @ManyToMany
+    Set<Tax> appliedTaxes;
+
+    public Job() {
+        this.tags = new HashSet<>();
+        this.appliedTaxes = new HashSet<>();
+    }
 
     /**
      * @return String return the id
@@ -134,9 +143,15 @@ public class Job {
         this.tags.add(tag);
     }
 
-    // public void setSchedule(Schedule schedule) {
-    //     this.schedule = schedule;
-    // }
+    public Set<Tax> getAppliedTaxes() {
+        return this.appliedTaxes;
+    }
+
+    public void addNewTax(Tax tax) {
+        this.appliedTaxes.add(tax);
+    }
+
+
 
 
 }
