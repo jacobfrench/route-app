@@ -1,5 +1,7 @@
 package com.project.resourceserver.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +11,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "tax")
-public class Tax {
-
+@Table(name = "discount")
+public class Discount {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -21,10 +22,10 @@ public class Tax {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "rate")
-    private double rate;
+    @Column(name = "amount")
+    private BigDecimal amount;
 
-    public Tax() {
+    public Discount() {
     }
 
     /**
@@ -42,17 +43,17 @@ public class Tax {
     }
 
     /**
-     * @return double return the rate
+     * @return BigDecimal return the amount
      */
-    public double getRate() {
-        return rate;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
     /**
-     * @param rate the rate to set
+     * @param amount the amount to set
      */
-    public void setRate(double rate) {
-        this.rate = rate;
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     /**
