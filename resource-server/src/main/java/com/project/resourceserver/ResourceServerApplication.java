@@ -84,11 +84,11 @@ public class ResourceServerApplication implements CommandLineRunner{
 		routeRepository.save(route1);
 
 		GeoProperty geoProperty = new GeoProperty();
-		geoProperty.setStreet("6000 Burke Way");
-		geoProperty.setCity("Bakersfield");
-		geoProperty.setState("CA");
-		geoProperty.setCountry("United States");
-		geoProperty.setZip("93309");
+		geoProperty.setPhysStreet("6000 Burke Way");
+		geoProperty.setPhysCity("Bakersfield");
+		geoProperty.setPhysState("CA");
+		geoProperty.setPhysCountry("United States");
+		geoProperty.setPhysZip("93309");
 		geoProperty.setLat(35.349540f);
 		geoProperty.setLng(-119.067870f);
 		geoProperty.setRoute(route1);
