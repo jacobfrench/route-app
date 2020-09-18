@@ -22,7 +22,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "geo_property")
-@JsonIgnoreProperties(value={"hibernateLazyInitializer"})
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer" })
 public class GeoProperty {
 
     @Id
@@ -31,26 +31,50 @@ public class GeoProperty {
     @Column(name = "id", length = 36)
     private String id;
 
-    @Column(name = "street", length = 25)
-    private String street;
+    @Column(name = "phys_street", length = 25)
+    private String physStreet;
 
-    @Column(name = "city", length = 17)
-    private String city;
+    @Column(name = "phys_city", length = 17)
+    private String physCity;
 
-    @Column(name = "state", length = 2)
-    private String state;
+    @Column(name = "phys_state", length = 2)
+    private String physState;
 
-    @Column(name = "country", length = 25)
-    private String country;
+    @Column(name = "phys_country", length = 25)
+    private String physCountry;
 
-    @Column(name = "zip", length = 5)
-    private String zip;
+    @Column(name = "phys_zip", length = 5)
+    private String physZip;
 
-    @Column(name = "lat")
+    @Column(name = "phys_lat")
     private float lat;
 
-    @Column(name = "lng")
+    @Column(name = "phys_lng")
     private float lng;
+
+    @Column(name = "bill_street", length = 25)
+    private String billStreet;
+
+    @Column(name = "bill_city", length = 17)
+    private String billCity;
+
+    @Column(name = "bill_state", length = 2)
+    private String billState;
+
+    @Column(name = "bill_country", length = 25)
+    private String billCountry;
+
+    @Column(name = "bill_zip", length = 5)
+    private String billZip;
+
+    @Column(name = "property_sq_ft")
+    private float propertySqFt;
+
+    @Column(name = "structure_sq_ft")
+    private float structureSqFt;
+
+    @Column(name = "linear_sq_ft")
+    private float linearSqFt;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
@@ -87,77 +111,77 @@ public class GeoProperty {
     }
 
     /**
-     * @return String return the street
+     * @return String return the physStreet
      */
-    public String getStreet() {
-        return street;
+    public String getPhysStreet() {
+        return physStreet;
     }
 
     /**
-     * @param street the street to set
+     * @param physStreet the physStreet to set
      */
-    public void setStreet(String street) {
-        this.street = street;
+    public void setPhysStreet(String physStreet) {
+        this.physStreet = physStreet;
     }
 
     /**
-     * @return String return the city
+     * @return String return the physCity
      */
-    public String getCity() {
-        return city;
+    public String getPhysCity() {
+        return physCity;
     }
 
     /**
-     * @param city the city to set
+     * @param physCity the physCity to set
      */
-    public void setCity(String city) {
-        this.city = city;
+    public void setPhysCity(String physCity) {
+        this.physCity = physCity;
     }
 
     /**
-     * @return String return the state
+     * @return String return the physState
      */
-    public String getState() {
-        return state;
+    public String getPhysState() {
+        return physState;
     }
 
     /**
-     * @param state the state to set
+     * @param physState the physState to set
      */
-    public void setState(String state) {
-        this.state = state;
+    public void setPhysState(String physState) {
+        this.physState = physState;
     }
 
     /**
-     * @return String return the country
+     * @return String return the physCountry
      */
-    public String getCountry() {
-        return country;
+    public String getPhysCountry() {
+        return physCountry;
     }
 
     /**
-     * @param country the country to set
+     * @param physCountry the physCountry to set
      */
-    public void setCountry(String country) {
-        this.country = country;
+    public void setPhysCountry(String physCountry) {
+        this.physCountry = physCountry;
     }
 
     /**
-     * @return String return the zip
+     * @return String return the physZip
      */
-    public String getZip() {
-        return zip;
+    public String getPhysZip() {
+        return physZip;
     }
 
     /**
-     * @param zip the zip to set
+     * @param physZip the physZip to set
      */
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setPhysZip(String physZip) {
+        this.physZip = physZip;
     }
 
     /**
-     * @return String return the lat
+     * @return float return the lat
      */
     public float getLat() {
         return lat;
@@ -171,7 +195,7 @@ public class GeoProperty {
     }
 
     /**
-     * @return String return the lng
+     * @return float return the lng
      */
     public float getLng() {
         return lng;
@@ -182,6 +206,118 @@ public class GeoProperty {
      */
     public void setLng(float lng) {
         this.lng = lng;
+    }
+
+    /**
+     * @return String return the billStreet
+     */
+    public String getBillStreet() {
+        return billStreet;
+    }
+
+    /**
+     * @param billStreet the billStreet to set
+     */
+    public void setBillStreet(String billStreet) {
+        this.billStreet = billStreet;
+    }
+
+    /**
+     * @return String return the billCity
+     */
+    public String getBillCity() {
+        return billCity;
+    }
+
+    /**
+     * @param billCity the billCity to set
+     */
+    public void setBillCity(String billCity) {
+        this.billCity = billCity;
+    }
+
+    /**
+     * @return String return the billState
+     */
+    public String getBillState() {
+        return billState;
+    }
+
+    /**
+     * @param billState the billState to set
+     */
+    public void setBillState(String billState) {
+        this.billState = billState;
+    }
+
+    /**
+     * @return String return the billCountry
+     */
+    public String getBillCountry() {
+        return billCountry;
+    }
+
+    /**
+     * @param billCountry the billCountry to set
+     */
+    public void setBillCountry(String billCountry) {
+        this.billCountry = billCountry;
+    }
+
+    /**
+     * @return String return the billZip
+     */
+    public String getBillZip() {
+        return billZip;
+    }
+
+    /**
+     * @param billZip the billZip to set
+     */
+    public void setBillZip(String billZip) {
+        this.billZip = billZip;
+    }
+
+    /**
+     * @return float return the propertySqFt
+     */
+    public float getPropertySqFt() {
+        return propertySqFt;
+    }
+
+    /**
+     * @param propertySqFt the propertySqFt to set
+     */
+    public void setPropertySqFt(float propertySqFt) {
+        this.propertySqFt = propertySqFt;
+    }
+
+    /**
+     * @return float return the structureSqFt
+     */
+    public float getStructureSqFt() {
+        return structureSqFt;
+    }
+
+    /**
+     * @param structureSqFt the structureSqFt to set
+     */
+    public void setStructureSqFt(float structureSqFt) {
+        this.structureSqFt = structureSqFt;
+    }
+
+    /**
+     * @return float return the linearSqFt
+     */
+    public float getLinearSqFt() {
+        return linearSqFt;
+    }
+
+    /**
+     * @param linearSqFt the linearSqFt to set
+     */
+    public void setLinearSqFt(float linearSqFt) {
+        this.linearSqFt = linearSqFt;
     }
 
     /**
@@ -210,22 +346,6 @@ public class GeoProperty {
      */
     public void setRoute(Route route) {
         this.route = route;
-    }
-
-    public Set<Tag> getTags() {
-        return this.tags;
-    }
-
-    public void setTags(Set<Tag> tags) {
-        this.tags = tags;
-    }
-
-    public void removeTags() {
-        this.tags = new HashSet<>();
-    }
-
-    public void addTag(Tag tag) {
-        this.tags.add(tag);
     }
 
     /**

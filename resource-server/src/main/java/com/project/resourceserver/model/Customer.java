@@ -35,8 +35,18 @@ public class Customer {
     @Column(name = "primary_phone")
     private String primaryPhone;
 
-    @Column(name = "secondary_phone")
-    private String secondaryPhone;
+    @Column(name = "alt_phone")
+    private String altPhone;
+
+    enum ContactPref {
+        TEXT, CALL
+    }
+
+    @Column(name = "primary_phone_pref")
+    private ContactPref primePref;
+
+    @Column(name = "alt_phone_pref")
+    private ContactPref altPref;
 
     @OneToMany(mappedBy = "owner")
     private Set<GeoProperty> ownedProperties;
@@ -67,28 +77,28 @@ public class Customer {
     /**
      * @return String return the fname
      */
-    public String getFirstName() {
+    public String getFname() {
         return fname;
     }
 
     /**
      * @param fname the fname to set
      */
-    public void setFirstName(String fname) {
+    public void setFname(String fname) {
         this.fname = fname;
     }
 
     /**
      * @return String return the lname
      */
-    public String getLastName() {
+    public String getLname() {
         return lname;
     }
 
     /**
      * @param lname the lname to set
      */
-    public void setLastName(String lname) {
+    public void setLname(String lname) {
         this.lname = lname;
     }
 
@@ -107,17 +117,45 @@ public class Customer {
     }
 
     /**
-     * @return String return the secondaryPhone
+     * @return String return the altPhone
      */
-    public String getSecondaryPhone() {
-        return secondaryPhone;
+    public String getAltPhone() {
+        return altPhone;
     }
 
     /**
-     * @param secondaryPhone the secondaryPhone to set
+     * @param altPhone the altPhone to set
      */
-    public void setSecondaryPhone(String secondaryPhone) {
-        this.secondaryPhone = secondaryPhone;
+    public void setAltPhone(String altPhone) {
+        this.altPhone = altPhone;
+    }
+
+    /**
+     * @return ContactPref return the primePref
+     */
+    public ContactPref getPrimePref() {
+        return primePref;
+    }
+
+    /**
+     * @param primePref the primePref to set
+     */
+    public void setPrimePref(ContactPref primePref) {
+        this.primePref = primePref;
+    }
+
+    /**
+     * @return ContactPref return the altPref
+     */
+    public ContactPref getAltPref() {
+        return altPref;
+    }
+
+    /**
+     * @param altPref the altPref to set
+     */
+    public void setAltPref(ContactPref altPref) {
+        this.altPref = altPref;
     }
 
     /**
@@ -146,6 +184,10 @@ public class Customer {
      */
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public void addOwnedProperty(GeoProperty geoProperty) {
+        this.ownedProperties.add(geoProperty);    
     }
 
 }

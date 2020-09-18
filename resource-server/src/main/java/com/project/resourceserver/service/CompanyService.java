@@ -55,20 +55,6 @@ public class CompanyService {
 
     }
 
-    // TODO: This is a patch example.
-    // @RequestMapping(value = "/manager/{id}", method = RequestMethod.PATCH)
-    // public @ResponseBody void saveManager(@PathVariable Long id, @RequestBody Map<Object, Object> fields) {
-    //     Manager manager = someServiceToLoadManager(id);
-    //     // Map key is field name, v is value
-    //     fields.forEach((k, v) -> {
-    //         // use reflection to get field k on manager and set it to value v
-    //         Field field = ReflectionUtils.findField(Manager.class, k);
-    //         field.setAccessible(true);
-    //         ReflectionUtils.setField(field, manager, v);
-    //     });
-    //     managerService.saveManager(manager);
-    // }
-
     public ResponseEntity<Company> update(String companyId, Map<Object, Object> fields) {
         HttpHeaders httpHeaders = new HttpHeaders();
         final Company existingCompany = companyRepository.findById(companyId).get();

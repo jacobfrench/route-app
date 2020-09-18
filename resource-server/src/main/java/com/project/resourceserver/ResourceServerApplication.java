@@ -72,8 +72,8 @@ public class ResourceServerApplication implements CommandLineRunner{
 		companyRepository.save(company);
 
 		Customer customer = new Customer();
-		customer.setFirstName("John");
-		customer.setLastName("Doe");
+		customer.setFname("John");
+		customer.setLname("Doe");
 		customer.setCompany(company);
 		customerRepository.save(customer);
 
