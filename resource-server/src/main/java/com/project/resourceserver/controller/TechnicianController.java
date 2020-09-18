@@ -6,6 +6,7 @@ import com.project.resourceserver.model.Technician;
 import com.project.resourceserver.repository.CompanyRepository;
 import com.project.resourceserver.repository.ScheduleRepository;
 import com.project.resourceserver.repository.TechnicianRepository;
+import com.project.resourceserver.service.TechnicianService;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,6 +33,9 @@ public class TechnicianController {
     private TechnicianRepository technicianRepository;
 
     @Autowired
+    private TechnicianService technicianService;
+
+    @Autowired
     private ScheduleRepository scheduleRepository;
 
     @Autowired
@@ -50,51 +54,20 @@ public class TechnicianController {
 
     @GetMapping(value="/technician/{technicianId}/schedule")
     public ResponseEntity<Schedule> getScheduleByTechnicianId(@PathVariable String technicianId) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        Technician technician = this.technicianRepository.findById(technicianId).get();
-
-        if(technician != null)
-            return new ResponseEntity<>(technician.getSchedule(), httpHeaders, HttpStatus.OK);
-        else
-            return new ResponseEntity<>(null, httpHeaders, HttpStatus.OK);
+        return technicianService.findScheduleByTechId(technicianId);
         
     }
 
     @GetMapping(value="/technician/{technicianId}")
     public ResponseEntity<Technician> getTechnicianById(@PathVariable String technicianId) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        Technician technician = this.technicianRepository.findById(technicianId).get();
-
-        if(technician != null)
-            return new ResponseEntity<>(technician, httpHeaders, HttpStatus.OK);
-        else
-            return new ResponseEntity<>(null, httpHeaders, HttpStatus.OK);
-        
+        return technicianService.findTechById(technicianId);   
     }
 
     // POST ***************************************************************************************
 
     @PostMapping(value="/company/{companyId}/technician")
-    public ResponseEntity<Boolean> createNewTechnician(@RequestBody Technician technician, @PathVariable String companyId) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        Schedule newSchedule = this.scheduleRepository.save(new Schedule());
-        Company company = this.companyRepository.findById(companyId).get();
-        newSchedule.setTechnician(technician);
-        technician.setSchedule(newSchedule);
-        technician.setEmployer(company);
-
-        // this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
-
-        // String encryptedPassword = bCryptPasswordEncoder.encode(technician.getPassword());
-        // technician.setPassword(encryptedPassword);
-
-        Technician newTechnician = this.technicianRepository.save(technician);
-        
-
-        if(newTechnician != null)
-            return new ResponseEntity<>(true, httpHeaders, HttpStatus.ACCEPTED);
-        else
-            return new ResponseEntity<>(false, httpHeaders, HttpStatus.CREATED);
+    public ResponseEntity<Technician> createNewTechnician(@RequestBody Technician technician, @PathVariable String companyId) {
+        return technicianService.insertNewTechnician(technician, companyId);
     }
 
 
@@ -102,16 +75,7 @@ public class TechnicianController {
 
     @PatchMapping(value="/technician/{technicianId}/schedule/{scheduleId}")
     public ResponseEntity<String> assignScheduleToTechnician(@PathVariable String technicianId, @PathVariable String scheduleId) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-
-        Technician technician = this.technicianRepository.findById(technicianId).get();
-        Schedule schedule = this.scheduleRepository.findById(scheduleId).get();
-
-        schedule.setTechnician(technician);
-
-        this.scheduleRepository.save(schedule);
-
-        return new ResponseEntity<>("SUCCESS!", httpHeaders, HttpStatus.CREATED);
+        return technicianService.assignShcedule(technicianId, scheduleId);
 
     }
     
