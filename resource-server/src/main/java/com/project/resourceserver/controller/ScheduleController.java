@@ -4,6 +4,7 @@ import com.project.resourceserver.model.Job;
 import com.project.resourceserver.model.Schedule;
 import com.project.resourceserver.repository.ScheduleRepository;
 import com.project.resourceserver.service.ScheduleService;
+import com.project.resourceserver.service.TechnicianService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -23,6 +24,8 @@ public class ScheduleController {
 
     @Autowired
     private ScheduleRepository scheduleRepository;
+
+    @Autowired TechnicianService technicianService;
 
     @Autowired
     private ScheduleService scheduleService;
@@ -48,5 +51,10 @@ public class ScheduleController {
     @PatchMapping(value="/technician/{technicianId}/geo_property/{geoPropertyId}")
     public ResponseEntity<String> addJobToSchedule(@PathVariable String technicianId, @PathVariable String geoPropertyId, @RequestBody Job job) {
         return scheduleService.addJobToSchedule(technicianId, geoPropertyId, job);
+    }
+
+    @GetMapping(value="/technician/{technicianId}/schedule")
+    public ResponseEntity<Schedule> getScheduleByTechnicianId(@PathVariable String technicianId) {
+        return technicianService.findScheduleByTechId(technicianId);
     }
 }

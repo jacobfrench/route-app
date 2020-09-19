@@ -85,6 +85,9 @@ public class Company {
   private Set<Customer> customers;
 
   @OneToMany
+  private Set<Schedule> schedule;
+
+  @OneToMany
   private Set<GeoProperty> geoProperties;
 
   @OneToMany
@@ -469,6 +472,20 @@ public class Company {
 
   public void addNewMaterial(Material material) {
     materials.add(material);
+  }
+
+  /**
+   * @return Set<Schedule> return the schedule
+   */
+  public Set<Schedule> getSchedule() {
+    return schedule;
+  }
+
+  /**
+   * @param schedule the schedule to set
+   */
+  public void setSchedule(Set<Schedule> schedule) {
+    this.schedule = schedule;
   }
 
 }

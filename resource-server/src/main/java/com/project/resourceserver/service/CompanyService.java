@@ -24,39 +24,28 @@ public class CompanyService {
     @Autowired
     private AccountRepository accountRepository;
 
-    public CompanyService() {
-    }
+    public CompanyService() {}
 
-    public ResponseEntity<String> addNewCompany(Company company, String email) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        Account existingAccount = accountRepository.findByUsername(email);
-        String returnMessage = "";
-
-        if (existingAccount == null) {
-            return new ResponseEntity<>("Email not found.", httpHeaders, HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>(returnMessage, httpHeaders, HttpStatus.OK);
-
-    }
-
-    public ResponseEntity<Company> findCompanyByemail(String email) {
-        HttpHeaders httpHeaders = new HttpHeaders();
+    public Company addNew(String email, Company company) {
         Account account = accountRepository.findByUsername(email);
+        
+        if(account.getCompany() != null) 
+            return company; // company id will return null
 
-        if (account == null) {
-            return new ResponseEntity<>(null, httpHeaders, HttpStatus.OK);
-        }
-
-        Company company = account.getCompany();
-
-        return new ResponseEntity<>(company, httpHeaders, HttpStatus.OK);
-
+        Company newCompany = companyRepository.save(company);
+        account.setCompany(newCompany);
+        accountRepository.save(account);
+        
+        return newCompany; 
     }
 
-    public ResponseEntity<Company> update(String companyId, Map<Object, Object> fields) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        final Company existingCompany = companyRepository.findById(companyId).get();
+    public Company findCompanyByEmail(String email) {
+        Account account = accountRepository.findByUsername(email);
+        return account.getCompany();
+    }
+
+    public Company update(String companyId, Map<Object, Object> fields) {
+        Company existingCompany = companyRepository.findById(companyId).get();
 
         fields.forEach((key, value) -> {
             Field field = ReflectionUtils.findField(Company.class, (String) key);
@@ -67,7 +56,11 @@ public class CompanyService {
 
         Company returnCompany = companyRepository.save(existingCompany);
 
-        return new ResponseEntity<>(returnCompany, httpHeaders, HttpStatus.OK);
+        return returnCompany;
+    }
+
+    public Company findById(String companyId) {
+        return companyRepository.findById(companyId).get();
     }
 
 }
