@@ -20,7 +20,7 @@ export const MENUITEMS = [
     //     ]
     // },
     {
-        title: 'Dashboard', icon: PieChart, type: 'link', path: '/support-ticket/supportTicket', active: true
+        title: 'Dashboard', icon: PieChart, type: 'link', path: '/sample/samplepage', active: true
     },
     {
         title: 'Customers', icon: User, type: 'link', path: '/support-ticket/supportTicket', active: false

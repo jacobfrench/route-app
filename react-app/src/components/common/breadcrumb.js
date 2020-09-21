@@ -26,9 +26,7 @@ const Breadcrumb = props => {
                                 </ol>
                             </div>
                         </div>
-                        {/* <!-- Bookmark Start--> */}
-                        <Bookmark />
-                        {/* <!-- Bookmark Ends--> */}
+                        <button class="btn btn-success" type="button">Add New  <i class="fa fa-plus"></i></button>
                     </div>
                 </div>
             </div>
