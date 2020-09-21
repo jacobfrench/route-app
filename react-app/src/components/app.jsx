@@ -17,12 +17,12 @@ const AppLayout = ({children}) => {
                     <div className="page-body-wrapper">
                         <Header />
                         <Sidebar />
-                        <RightSidebar />
+                        {/* <RightSidebar /> */}
                         <div className="page-body">
                             {children}
                         </div>
                         <Footer />
-                        <ThemeCustomizer />
+                        {/* <ThemeCustomizer /> */}
                     </div>
                 </div>
                 <ToastContainer />
