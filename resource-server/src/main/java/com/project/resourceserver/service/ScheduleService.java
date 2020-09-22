@@ -93,8 +93,6 @@ public class ScheduleService {
         
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
 
-        
-
     }
 
 }
