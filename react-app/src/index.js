@@ -13,15 +13,15 @@ import App from "./components/app";
 
 // Import custom Components 
 
-import Default from './components/dashboard/defaultCompo/default';
+// import Default from './components/dashboard/defaultCompo/default';
 import Ecommerce from './components/dashboard/ecommerce';
-import University from './components/dashboard/university';
-import CryptoComponent from './components/dashboard/crypto/cryptoComponent';
-import Project from './components/dashboard/project/project';
+// import University from './components/dashboard/university';
+// import CryptoComponent from './components/dashboard/crypto/cryptoComponent';
+// import Project from './components/dashboard/project/project';
 
 // sample page
 import Samplepage from './components/sample/samplepage';
-import SupportTicket from './components/support-ticket/supportTicket';
+import Customer from './components/customer/customer';
 
 //firebase Auth
 function Root() {
@@ -38,18 +38,18 @@ function Root() {
                             <Fragment>
                                 <App>
                                     {/* dashboard menu */}
-                                    <Route exact path={`${process.env.PUBLIC_URL}/`} component={Default} />
-                                    <Route exact path={`${process.env.PUBLIC_URL}/dashboard/default`} component={Default} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/`} component={Ecommerce} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/dashboard/ecommerce`} component={Ecommerce} />
                                     <Route path={`${process.env.PUBLIC_URL}/dashboard/ecommerce`} component={Ecommerce} />
-                                    <Route path={`${process.env.PUBLIC_URL}/dashboard/university`} component={University} />
-                                    <Route path={`${process.env.PUBLIC_URL}/dashboard/crypto`} component={CryptoComponent} />
-                                    <Route path={`${process.env.PUBLIC_URL}/dashboard/project`} component={Project} />
+                                    <Route path={`${process.env.PUBLIC_URL}/dashboard/university`} component={Ecommerce} />
+                                    <Route path={`${process.env.PUBLIC_URL}/dashboard/crypto`} component={Ecommerce} />
+                                    <Route path={`${process.env.PUBLIC_URL}/dashboard/project`} component={Ecommerce} />
 
                                     {/* Sample page */}
                                     <Route path={`${process.env.PUBLIC_URL}/sample/samplepage`} component={Samplepage} />
 
                                     {/* Pricing */}
-                                    <Route path={`${process.env.PUBLIC_URL}/support-ticket/supportTicket`} component={SupportTicket} />
+                                    <Route path={`${process.env.PUBLIC_URL}/customers`} component={Customer} />
 
                                 </App>
                             </Fragment>
