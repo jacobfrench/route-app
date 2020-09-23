@@ -20,6 +20,7 @@ const Customer = () => {
   const options = [
     { value: "aid", label: "Account ID" },
     { value: "name", label: "Name" },
+    { value: "email", label: "Email"},
     { value: "address", label: "Address" },
   ];
 
@@ -105,6 +106,19 @@ const Customer = () => {
             </Col>
           </Row>
         );
+      case "Email":
+        return (
+          <Row>
+            <Col>
+              <input
+                placeholder={"Email"}
+                class="form-control"
+                type="text"
+                onChange={(fname) => handleTextChanged(fname)}
+              />
+            </Col>
+          </Row>
+        );
       default:
         return null;
     }
@@ -156,14 +170,14 @@ const Customer = () => {
                   LOCATIONS
                 </NavLink>
               </NavItem>
-              <NavItem className="nav nav-tabs" id="myTab" role="tablist">
+              {/* <NavItem className="nav nav-tabs" id="myTab" role="tablist">
                 <NavLink
                   className={activeTab === "3" ? "active" : ""}
                   onClick={() => setActiveTab("3")}
                 >
                   PROFILE
                 </NavLink>
-              </NavItem>
+              </NavItem> */}
             </Nav>
             <TabContent activeTab={activeTab}>
               <TabPane tabId="1">
@@ -263,7 +277,7 @@ const Customer = () => {
                 </Button>
               </TabPane>
               <TabPane tabId="2">tab2 content</TabPane>
-              <TabPane tabId="3">tab3 content</TabPane>
+              {/* <TabPane tabId="3">tab3 content</TabPane> */}
             </TabContent>
           </div>
         </div>
