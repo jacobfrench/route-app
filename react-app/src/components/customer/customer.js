@@ -20,7 +20,7 @@ const Customer = () => {
   const options = [
     { value: "aid", label: "Account ID" },
     { value: "name", label: "Name" },
-    { value: "email", label: "Email"},
+    { value: "email", label: "Email" },
     { value: "address", label: "Address" },
   ];
 
@@ -130,7 +130,7 @@ const Customer = () => {
 
       <div className="container-fluid">
         <div className="col-sm-12">
-          <Container style={{ margin: 10, paddingLeft: 0 }}>
+          <Container style={{ margin: 10, marginLeft: 15, paddingLeft: 0 }}>
             <h6>Search By:</h6>
             <Row>
               <Col className={"col-sm-2"}>
@@ -150,9 +150,6 @@ const Customer = () => {
             </Row>
           </Container>
           <div className="col-sm-12">
-            {/* <div className="col-sm-12"> */}
-
-            {/* </div> */}
             <Nav tabs className="borderb-tab-primary">
               <NavItem className="nav nav-tabs" id="myTab" role="tablist">
                 <NavLink
@@ -170,111 +167,118 @@ const Customer = () => {
                   LOCATIONS
                 </NavLink>
               </NavItem>
-              {/* <NavItem className="nav nav-tabs" id="myTab" role="tablist">
-                <NavLink
-                  className={activeTab === "3" ? "active" : ""}
-                  onClick={() => setActiveTab("3")}
-                >
-                  PROFILE
-                </NavLink>
-              </NavItem> */}
             </Nav>
             <TabContent activeTab={activeTab}>
               <TabPane tabId="1">
-                <Row style={{ padding: 10 }}>
-                  <Col>
-                    <label class="form-label">Account ID</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="firstNameInput"
-                      placeholder={"Account ID"}
-                    />
-                  </Col>
-                  <Col>
-                    <label class="form-label">Email</label>
-                    <input
-                      placeholder={"Email"}
-                      class="form-control"
-                      type="text"
-                      onChange={(fname) => handleTextChanged(fname)}
-                    />
-                  </Col>
-                </Row>
-                <Row style={{ padding: 10 }}>
-                  <Col style={{ flex: 2 }}>
-                    <label class="form-label">First Name</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="firstNameInput"
-                      placeholder={"First Name"}
-                    />
-                  </Col>
-                  <Col style={{ flex: 0.25 }}>
-                    <label class="form-label">M.I.</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="midInitialInput"
-                      placeholder={"M.I."}
-                    />
-                  </Col>
-                  <Col style={{ flex: 2 }}>
-                    <label class="form-label">Last Name</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="lastNameInput"
-                      placeholder={"Last Name"}
-                    />
-                  </Col>
-                </Row>
-                <Row style={{ margin: 10 }}>
-                  <Row>
-                    <Col>
-                      <label class="form-label">Primary Phone</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        name="lastNameInput"
-                        placeholder={"(###)###-####"}
-                      />
-                    </Col>
-                  </Row>
-                  <Row style={{ marginLeft: 10 }}>
-                    <Col>
-                      <label class="form-label">Alt. Phone</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        name="lastNameInput"
-                        placeholder={"(###)###-####"}
-                      />
-                    </Col>
-                    <Col>
-                      <label class="form-label">Preferred</label>
-                      <br />
-                      <input
-                        style={{ margin: 10 }}
-                        type="radio"
-                        value="Female"
-                        name="gender"
-                      />{" "}
-                      Primary
-                      <input
-                        style={{ margin: 10 }}
-                        type="radio"
-                        value="Other"
-                        name="gender"
-                      />{" "}
-                      Alt.
-                    </Col>
-                  </Row>
-                </Row>
-                <Button style={{ marginLeft: 10, marginTop: 20, width: 150 }}>
-                  Save
-                </Button>
+                <div className="card" style={{marginTop: 10}}>
+                  <div className="card-header">
+                    <h5>Customer Info - Smith, John</h5>
+                  </div>
+                  <div className="card-body">
+                    <Row style={{ padding: 0 }}>
+                      <Col>
+                        <label class="form-label">Account ID</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          name="accountIdInput"
+                          placeholder={"Account ID"}
+                        />
+                      </Col>
+                      <Col>
+                        <label class="form-label">Email</label>
+                        <input
+                          placeholder={"Email"}
+                          class="form-control"
+                          type="text"
+                          name="emailInput"
+                          onChange={(fname) => handleTextChanged(fname)}
+                        />
+                      </Col>
+                    </Row>
+                    <Row style={{ paddingTop: 10 }}>
+                      <Col style={{ flex: 2 }}>
+                        <label class="form-label">First Name</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          name="firstNameInput"
+                          placeholder={"First Name"}
+                        />
+                      </Col>
+                      <Col style={{ flex: 0.2 }}>
+                        <label class="form-label">M.I.</label>
+                        <input
+                          maxLength="1"
+                          class="form-control"
+                          type="text"
+                          name="midInitialInput"
+                          placeholder={"M.I."}
+                        />
+                      </Col>
+                      <Col style={{ flex: 2 }}>
+                        <label class="form-label">Last Name</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          name="lastNameInput"
+                          placeholder={"Last Name"}
+                        />
+                      </Col>
+                    </Row>
+                    <Row style={{ marginLeft: 0, paddingTop:10 }}>
+                      <Row>
+                        <Col>
+                          <label class="form-label">Primary Phone</label>
+                          <input
+                            maxLength="10"
+                            class="form-control"
+                            type="text"
+                            name="primPhoneInput"
+                            placeholder={"(xxx) xxx-xxxx"}
+                          />
+                        </Col>
+                      </Row>
+                      <Row style={{ marginLeft: 10 }}>
+                        <Col>
+                          <label class="form-label">Alternate Phone</label>
+                          <input
+                            maxLength="10"
+                            class="form-control"
+                            type="text"
+                            name="altPhoneInput"
+                            placeholder={"(xxx) xxx-xxxx"}
+                          />
+                        </Col>
+                        <Col>
+                          <label class="form-label" style={{marginTop: 0}}>Preferred</label>
+                          <br />
+                          <div class="radio radio-primary">
+                            <input
+                              // style={{ margin: 10 }}
+                              type="radio"
+                              value="prim"
+                              name="primPrefRadio"
+                            />
+                            Primary
+                            <input
+                              style={{ marginLeft: 10 }}
+                              type="radio"
+                              value="alt"
+                              name="altPrefRadio"
+                            />
+                            Alt.
+                          </div>
+                        </Col>
+                      </Row>
+                    </Row>
+                    <Button
+                      style={{ marginTop: 20, width: 150 }}
+                    >
+                      Save
+                    </Button>
+                  </div>
+                </div>
               </TabPane>
               <TabPane tabId="2">tab2 content</TabPane>
               {/* <TabPane tabId="3">tab3 content</TabPane> */}
@@ -282,7 +286,6 @@ const Customer = () => {
           </div>
         </div>
       </div>
-
     </Fragment>
   );
 };
