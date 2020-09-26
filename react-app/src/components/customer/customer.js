@@ -280,8 +280,15 @@ const Customer = () => {
                   </div>
                 </div>
               </TabPane>
-              <TabPane tabId="2">tab2 content</TabPane>
-              {/* <TabPane tabId="3">tab3 content</TabPane> */}
+              <TabPane tabId="2">
+                <div className="card" style={{marginTop: 10}}>
+                  <div className="card-header">
+                    <h5>Locations - Smith, John</h5>
+                  </div>
+                    <div className="card-body">
+                    </div>
+                </div>
+              </TabPane>
             </TabContent>
           </div>
         </div>
