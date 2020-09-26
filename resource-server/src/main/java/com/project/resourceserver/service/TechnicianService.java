@@ -25,7 +25,7 @@ public class TechnicianService {
 
   public TechnicianService() {}
 
-  public ResponseEntity<Schedule> findScheduleByTechId(String technicianId) {
+  public ResponseEntity<Schedule> findScheduleByTechId(Long technicianId) {
     HttpHeaders httpHeaders = new HttpHeaders();
     Technician technician = this.technicianRepository.findById(technicianId).get();
 
@@ -35,11 +35,11 @@ public class TechnicianService {
     return new ResponseEntity<>(null, httpHeaders, HttpStatus.OK);
   }
 
-  public Technician findTechById(String technicianId) {
+  public Technician findTechById(Long technicianId) {
     return this.technicianRepository.findById(technicianId).get();
   }
 
-  public Technician insertNewTechnician(Technician technician, String companyId) {
+  public Technician insertNewTechnician(Technician technician, Long companyId) {
     Schedule newSchedule = this.scheduleRepository.save(new Schedule());
     Company company = this.companyRepository.findById(companyId).get();
     newSchedule.setTechnician(technician);

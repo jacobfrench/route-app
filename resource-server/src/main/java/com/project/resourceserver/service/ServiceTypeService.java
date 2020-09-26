@@ -24,7 +24,7 @@ public class ServiceTypeService {
 
     public ServiceTypeService(){}
 
-    public ResponseEntity<ServiceType> createNewServiceType(String companyId, ServiceType serviceType) {
+    public ResponseEntity<ServiceType> createNewServiceType(Long companyId, ServiceType serviceType) {
         HttpHeaders httpHeaders = new HttpHeaders();
         ServiceType newServiceType = this.serviceTypeRepository.save(serviceType);
         Company company = this.companyRepository.findById(companyId).get();

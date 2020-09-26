@@ -23,7 +23,7 @@ public class MaterialController {
     }
 
     @PostMapping("/company/{companyId}/material")
-    public ResponseEntity<Material> addNewMaterial(@PathVariable String companyId, @RequestBody Material material) {
+    public ResponseEntity<Material> addNewMaterial(@PathVariable Long companyId, @RequestBody Material material) {
         return materialService.addNewMaterial(companyId, material);
     }
     

@@ -44,7 +44,7 @@ public class CompanyService {
         return account.getCompany();
     }
 
-    public Company update(String companyId, Map<Object, Object> fields) {
+    public Company update(Long companyId, Map<Object, Object> fields) {
         Company existingCompany = companyRepository.findById(companyId).get();
 
         fields.forEach((key, value) -> {
@@ -59,7 +59,7 @@ public class CompanyService {
         return returnCompany;
     }
 
-    public Company findById(String companyId) {
+    public Company findById(Long companyId) {
         return companyRepository.findById(companyId).get();
     }
 

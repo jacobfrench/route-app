@@ -42,19 +42,19 @@ public class ScheduleController {
     }
 
     @GetMapping(value="/schedule/get/id/{scheduleId}")
-    public ResponseEntity<Schedule> getScheduleById(@PathVariable String scheduleId) {
+    public ResponseEntity<Schedule> getScheduleById(@PathVariable Long scheduleId) {
         Schedule schedule = this.scheduleRepository.findById(scheduleId).get();
         HttpHeaders httpHeaders = new HttpHeaders();
         return new ResponseEntity<>(schedule, httpHeaders, HttpStatus.OK);
     }
     
     @PatchMapping(value="/technician/{technicianId}/geo_property/{geoPropertyId}")
-    public ResponseEntity<String> addJobToSchedule(@PathVariable String technicianId, @PathVariable String geoPropertyId, @RequestBody Job job) {
+    public ResponseEntity<String> addJobToSchedule(@PathVariable Long technicianId, @PathVariable Long geoPropertyId, @RequestBody Job job) {
         return scheduleService.addJobToSchedule(technicianId, geoPropertyId, job);
     }
 
     @GetMapping(value="/technician/{technicianId}/schedule")
-    public ResponseEntity<Schedule> getScheduleByTechnicianId(@PathVariable String technicianId) {
+    public ResponseEntity<Schedule> getScheduleByTechnicianId(@PathVariable Long technicianId) {
         return technicianService.findScheduleByTechId(technicianId);
     }
 }

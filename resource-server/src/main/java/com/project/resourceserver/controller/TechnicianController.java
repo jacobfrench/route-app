@@ -40,7 +40,7 @@ public class TechnicianController {
     // GET ****************************************************************************************
 
     @GetMapping(value = "/technician/{technicianId}")
-    public ResponseEntity<Technician> getTechnicianById(@PathVariable String technicianId) {
+    public ResponseEntity<Technician> getTechnicianById(@PathVariable Long technicianId) {
         HttpHeaders httpHeaders = new HttpHeaders();
         Technician technician = this.technicianRepository.findById(technicianId).get();
 
@@ -53,7 +53,7 @@ public class TechnicianController {
 
     // POST ***************************************************************************************
     @PostMapping(value = "/company/{companyId}/technician")
-    public ResponseEntity<Technician> createNewTechnician(@RequestBody Technician technician, @PathVariable String companyId) {
+    public ResponseEntity<Technician> createNewTechnician(@RequestBody Technician technician, @PathVariable Long companyId) {
         HttpHeaders httpHeaders = new HttpHeaders();
 
         Technician newTechnician = technicianService.insertNewTechnician(technician, companyId);

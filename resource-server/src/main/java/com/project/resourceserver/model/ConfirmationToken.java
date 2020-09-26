@@ -7,22 +7,20 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 public class ConfirmationToken {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", length = 36)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "confirmation_token")
     private String confirmationToken;
@@ -34,26 +32,13 @@ public class ConfirmationToken {
     @JoinColumn(nullable = false, name = "account_id")
     private Account account;
 
-    public ConfirmationToken(){}
+    public ConfirmationToken() {
+    }
 
     public ConfirmationToken(Account account) {
         this.account = account;
         this.createdDate = new Date();
         confirmationToken = UUID.randomUUID().toString();
-    }
-
-    /**
-     * @return String return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
     }
 
     /**
@@ -96,6 +81,20 @@ public class ConfirmationToken {
      */
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    /**
+     * @return Long return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

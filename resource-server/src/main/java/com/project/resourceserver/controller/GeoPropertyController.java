@@ -26,8 +26,8 @@ public class GeoPropertyController {
     // POST ***************************************************************************************
 
     @PostMapping(value="/company/{companyId}/customer/{customerId}/service_type/{serviceTypeId}/geo_property")
-    public ResponseEntity<GeoProperty> addNewGeoProperty(@PathVariable String companyId, @PathVariable String customerId, 
-                                                         @PathVariable String serviceTypeId, @RequestBody GeoProperty geoProperty) {
+    public ResponseEntity<GeoProperty> addNewGeoProperty(@PathVariable Long companyId, @PathVariable Long customerId, 
+                                                         @PathVariable Long serviceTypeId, @RequestBody GeoProperty geoProperty) {
         return geoPropertyService.addNewGeoProperty(companyId, customerId, serviceTypeId,  geoProperty);
     }
 

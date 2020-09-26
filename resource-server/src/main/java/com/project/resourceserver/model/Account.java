@@ -7,23 +7,20 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Account {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", length = 36)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "password")
     private String password;
@@ -45,20 +42,6 @@ public class Account {
     public Account() {
         this.verified = false;
         this.signUpDate = LocalDateTime.now();
-    }
-
-    /**
-     * @return String return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
     }
 
     /**
@@ -115,6 +98,34 @@ public class Account {
      */
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    /**
+     * @return LocalDateTime return the signUpDate
+     */
+    public LocalDateTime getSignUpDate() {
+        return signUpDate;
+    }
+
+    /**
+     * @param signUpDate the signUpDate to set
+     */
+    public void setSignUpDate(LocalDateTime signUpDate) {
+        this.signUpDate = signUpDate;
+    }
+
+    /**
+     * @return Long return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

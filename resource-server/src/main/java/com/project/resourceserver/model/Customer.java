@@ -3,6 +3,7 @@ package com.project.resourceserver.model;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,16 +16,13 @@ import java.util.Set;
 
 import javax.persistence.Column;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 public class Customer {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", length = 36)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "fname")
     private String fname;
@@ -58,20 +56,6 @@ public class Customer {
 
     public Customer() {
         ownedProperties = new HashSet<>();
-    }
-
-    /**
-     * @return String return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
     }
 
     /**
@@ -187,7 +171,21 @@ public class Customer {
     }
 
     public void addOwnedProperty(GeoProperty geoProperty) {
-        this.ownedProperties.add(geoProperty);    
+        this.ownedProperties.add(geoProperty);
+    }
+
+    /**
+     * @return Long return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

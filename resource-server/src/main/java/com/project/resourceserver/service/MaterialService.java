@@ -25,7 +25,7 @@ public class MaterialService {
         this.companyRepository = companyRepository;
     }
 
-    public ResponseEntity<Material> addNewMaterial(String companyId, Material material) {
+    public ResponseEntity<Material> addNewMaterial(Long companyId, Material material) {
         HttpHeaders httpHeaders = new HttpHeaders();
         Material newMaterial = this.materialRepository.save(material);
         Company company = this.companyRepository.findById(companyId).get();

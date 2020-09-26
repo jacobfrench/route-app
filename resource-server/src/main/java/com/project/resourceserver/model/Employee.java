@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,17 +15,14 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 @Table(name = "employee")
 public class Employee {
 
   @Id
-  @GeneratedValue(generator = "uuid")
-  @GenericGenerator(name = "uuid", strategy = "uuid2")
-  @Column(name = "id", length = 36)
-  private String id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
+  private Long id;
 
   @Column(name = "employee_id")
   private String employeeId;
@@ -58,20 +56,6 @@ public class Employee {
   private Company employer;
 
   public Employee() {
-  }
-
-  /**
-   * @return String return the id
-   */
-  public String getId() {
-    return id;
-  }
-
-  /**
-   * @param id the id to set
-   */
-  public void setId(final String id) {
-    this.id = id;
   }
 
   /**
@@ -198,6 +182,20 @@ public class Employee {
    */
   public void setLname(String lname) {
     this.lname = lname;
+  }
+
+  /**
+   * @return Long return the id
+   */
+  public Long getId() {
+    return id;
+  }
+
+  /**
+   * @param id the id to set
+   */
+  public void setId(Long id) {
+    this.id = id;
   }
 
 }

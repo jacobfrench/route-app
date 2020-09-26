@@ -24,7 +24,7 @@ public class CustomerController {
     }
 
     @PostMapping(value="/company/{companyId}/customer")
-    public ResponseEntity<Customer> addNewCustomer(@PathVariable String companyId, @RequestBody Customer customer) {
+    public ResponseEntity<Customer> addNewCustomer(@PathVariable Long companyId, @RequestBody Customer customer) {
         return customerService.addNewCustomer(companyId, customer);
     }
     

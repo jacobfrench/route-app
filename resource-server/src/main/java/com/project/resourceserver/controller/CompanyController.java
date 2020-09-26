@@ -61,7 +61,7 @@ public class CompanyController {
     }
 
     @PatchMapping("/public/company/{companyId}/update")
-    public ResponseEntity<Company> updateCompany(@PathVariable String companyId, @RequestBody Map<Object, Object> fields) {
+    public ResponseEntity<Company> updateCompany(@PathVariable Long companyId, @RequestBody Map<Object, Object> fields) {
         HttpHeaders httpHeaders = new HttpHeaders();
         Company company = companyService.update(companyId, fields);
 

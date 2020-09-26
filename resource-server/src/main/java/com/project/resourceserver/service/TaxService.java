@@ -23,7 +23,7 @@ public class TaxService {
     public TaxService(){}
 
 
-    public ResponseEntity<Tax> createNewTax(String companyId, Tax tax) {
+    public ResponseEntity<Tax> createNewTax(Long companyId, Tax tax) {
         HttpHeaders httpHeaders = new HttpHeaders();
         Tax newTax = taxRepository.save(tax);
         Company company = companyRepository.findById(companyId).get();

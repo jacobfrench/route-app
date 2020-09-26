@@ -19,7 +19,7 @@ public class TaxController {
     private TaxService taxService;
 
     @PostMapping(value="/public/company/{companyId}/tax")
-    public ResponseEntity<Tax> postNewTax(@PathVariable String companyId, @RequestBody Tax tax) {
+    public ResponseEntity<Tax> postNewTax(@PathVariable Long companyId, @RequestBody Tax tax) {
         return taxService.createNewTax(companyId, tax);
     }
 

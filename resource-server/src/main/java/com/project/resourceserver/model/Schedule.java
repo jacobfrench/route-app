@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -17,20 +18,18 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 @Table(name = "schedule")
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Schedule {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", length = 36)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-    // @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, fetch =
+    // FetchType.LAZY)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Job> jobs;
 
@@ -42,23 +41,8 @@ public class Schedule {
         jobs = new HashSet<>();
     }
 
-
     public void addJob(Job job) {
         this.jobs.add(job);
-    }
-
-    /**
-     * @return String return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
     }
 
     /**
@@ -87,6 +71,20 @@ public class Schedule {
      */
     public void setTechnician(Technician technician) {
         this.technician = technician;
+    }
+
+    /**
+     * @return Long return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

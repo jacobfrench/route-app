@@ -25,7 +25,7 @@ public class CustomerService {
         this.companyRepository = companyRepository;
     }
 
-    public ResponseEntity<Customer> addNewCustomer(String companyId, Customer customer) {
+    public ResponseEntity<Customer> addNewCustomer(Long companyId, Customer customer) {
         HttpHeaders httpHeaders = new HttpHeaders();
         Company company = companyRepository.findById(companyId).get();
         customer.setCompany(company);

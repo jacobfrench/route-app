@@ -5,20 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "service_type")
 public class ServiceType {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", length = 36)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "name", length = 50)
     private String name;
@@ -38,28 +36,16 @@ public class ServiceType {
     @Column(name = "color_code", length = 7)
     private String colorCodeHex;
 
-    // Note: this enum is of type ORDINAL. If any entries need to be added at a later date,
-    // append them to the end of the current enum. !!! DO NOT reorder this enum once in production !!!
+    // Note: this enum is of type ORDINAL. If any entries need to be added at a
+    // later date,
+    // append them to the end of the current enum. !!! DO NOT reorder this enum once
+    // in production !!!
     public enum Repeat {
         NONE, DAILY, WEEKLY, MONTHLY, BIMONTHLY, QUARTERLY, YEARLY
     };
 
     @Enumerated(EnumType.ORDINAL)
     private Repeat repeat;
-
-    /**
-     * @return String return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
 
     /**
      * @return String return the name
@@ -157,6 +143,20 @@ public class ServiceType {
      */
     public void setRepeat(Repeat repeat) {
         this.repeat = repeat;
+    }
+
+    /**
+     * @return Long return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

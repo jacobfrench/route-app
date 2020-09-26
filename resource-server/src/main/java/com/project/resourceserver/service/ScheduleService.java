@@ -43,7 +43,7 @@ public class ScheduleService {
         this.companyService = companyService;
     }
 
-    public ResponseEntity<String> addJobToSchedule(String technicianId, String geoPropertyId, Job job) {
+    public ResponseEntity<String> addJobToSchedule(Long technicianId, Long geoPropertyId, Job job) {
         HttpHeaders httpHeaders = new HttpHeaders();
         GeoProperty geoProperty = this.geoPropertyRepository.findById(geoPropertyId).get();
         Technician technician = this.technicianRepository.findById(technicianId).get();
@@ -65,7 +65,7 @@ public class ScheduleService {
     }
 
 
-    public ResponseEntity<String> saveSchedule(String technicianId, String scheduleId) {
+    public ResponseEntity<String> saveSchedule(Long technicianId, Long scheduleId) {
         HttpHeaders httpHeaders = new HttpHeaders();
 
         Technician technician = this.technicianRepository.findById(technicianId).get();
@@ -80,7 +80,7 @@ public class ScheduleService {
 
     }
 
-    public ResponseEntity<Schedule> createNewSchedule(String companyId, String scheduleId) {
+    public ResponseEntity<Schedule> createNewSchedule(Long companyId, Long scheduleId) {
         HttpHeaders httpHeaders = new HttpHeaders();
 
         this.companyService = new CompanyService();

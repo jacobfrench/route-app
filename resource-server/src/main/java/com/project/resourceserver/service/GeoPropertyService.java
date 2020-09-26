@@ -34,7 +34,7 @@ public class GeoPropertyService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public ResponseEntity<GeoProperty> addNewGeoProperty(String companyId, String customerId, String serviceTypeId, GeoProperty geoProperty) {
+    public ResponseEntity<GeoProperty> addNewGeoProperty(Long companyId, Long customerId, Long serviceTypeId, GeoProperty geoProperty) {
         HttpHeaders httpHeaders = new HttpHeaders();
         Customer customer = customerRepository.findById(customerId).get();
         geoProperty.setOwner(customer);

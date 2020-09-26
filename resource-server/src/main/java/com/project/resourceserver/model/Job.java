@@ -10,6 +10,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -18,19 +19,15 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 @Table(name = "job")
-@JsonIgnoreProperties(value={"hibernateLazyInitializer", "$$_hibernate_interceptor"})
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "$$_hibernate_interceptor" })
 public class Job {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", length = 36)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "scheduled_date_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
@@ -40,9 +37,13 @@ public class Job {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime timeCompleted;
 
-    // Note: this enum is of type ORDINAL. If any entries need to be added at a later date,
-    // append them to the end of the current enum. !!! DO NOT reorder this enum once in production !!!
-    public enum Status {CREATED, ACTIVE, COMPLETED, CANCELED};
+    // Note: this enum is of type ORDINAL. If any entries need to be added at a
+    // later date,
+    // append them to the end of the current enum. !!! DO NOT reorder this enum once
+    // in production !!!
+    public enum Status {
+        CREATED, ACTIVE, COMPLETED, CANCELED
+    };
 
     @Enumerated(EnumType.ORDINAL)
     private Status status;
@@ -63,20 +64,6 @@ public class Job {
     public Job() {
         this.tags = new HashSet<>();
         this.appliedTaxes = new HashSet<>();
-    }
-
-    /**
-     * @return String return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
     }
 
     /**
@@ -151,7 +138,18 @@ public class Job {
         this.appliedTaxes.add(tax);
     }
 
+    /**
+     * @return Long return the id
+     */
+    public Long getId() {
+        return id;
+    }
 
-
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 }

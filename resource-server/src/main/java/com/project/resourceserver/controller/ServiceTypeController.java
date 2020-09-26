@@ -23,7 +23,7 @@ public class ServiceTypeController {
     }
 
     @PostMapping("/company/{companyId}/service_type")
-    public ResponseEntity<ServiceType> createNewServiceType(@PathVariable String companyId, @RequestBody ServiceType serviceType) {
+    public ResponseEntity<ServiceType> createNewServiceType(@PathVariable Long companyId, @RequestBody ServiceType serviceType) {
         return serviceTypeService.createNewServiceType(companyId, serviceType);
     }
 
