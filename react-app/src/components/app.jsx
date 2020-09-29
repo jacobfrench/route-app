@@ -21,8 +21,8 @@ const AppLayout = ({children}) => {
                         <div className="page-body">
                             {children}
                         </div>
-                        <Footer />
-                        {/* <ThemeCustomizer /> */}
+                        {/* <Footer />
+                        <ThemeCustomizer /> */}
                     </div>
                 </div>
                 <ToastContainer />

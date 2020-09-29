@@ -24,20 +24,23 @@ public class Customer {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "fname")
+    @Column(name = "fname", length = 80)
     private String fname;
 
-    @Column(name = "name")
+    @Column(name = "name", length = 80)
     private String lname;
 
-    @Column(name = "primary_phone")
+    @Column(name = "primary_phone", length = 10)
     private String primaryPhone;
 
-    @Column(name = "alt_phone")
+    @Column(name = "alt_phone", length = 10)
     private String altPhone;
 
+    @Column(name = "email", length = 80)
+    private String email;
+
     enum ContactPref {
-        TEXT, CALL
+        TEXT, CALL, TEXT_OR_CALL
     }
 
     @Column(name = "primary_phone_pref")
@@ -47,7 +50,7 @@ public class Customer {
     private ContactPref altPref;
 
     @OneToMany(mappedBy = "owner")
-    private Set<GeoProperty> ownedProperties;
+    private Set<GeoProperty> locations;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", referencedColumnName = "id")
@@ -55,7 +58,7 @@ public class Customer {
     private Company company;
 
     public Customer() {
-        ownedProperties = new HashSet<>();
+        locations = new HashSet<>();
     }
 
     /**
@@ -145,15 +148,15 @@ public class Customer {
     /**
      * @return Set<GeoProperty> return the ownedProperties
      */
-    public Set<GeoProperty> getOwnedProperties() {
-        return ownedProperties;
+    public Set<GeoProperty> getLocations() {
+        return locations;
     }
 
     /**
      * @param ownedProperties the ownedProperties to set
      */
-    public void setOwnedProperties(Set<GeoProperty> ownedProperties) {
-        this.ownedProperties = ownedProperties;
+    public void setLocations(Set<GeoProperty> locations) {
+        this.locations = locations;
     }
 
     /**
@@ -170,8 +173,8 @@ public class Customer {
         this.company = company;
     }
 
-    public void addOwnedProperty(GeoProperty geoProperty) {
-        this.ownedProperties.add(geoProperty);
+    public void addLocation(GeoProperty geoProperty) {
+        this.locations.add(geoProperty);
     }
 
     /**
@@ -186,6 +189,20 @@ public class Customer {
      */
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /**
+     * @return String return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }
