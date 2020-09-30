@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState, useReducer } from "react";
 import Breadcrumb from "../common/breadcrumb";
 import {
   Container,
@@ -20,6 +20,7 @@ import { states } from "../common/values";
 function Customer() {
   // useState variables
   const [activeTab, setActiveTab] = useState("1");
+  // Search Field Variables
   const [searchByType, setSearchByType] = useState("");
   const [searchFirstName, setSearchFirstName] = useState("");
   const [searchLastName, setSearchLastName] = useState("");
@@ -30,12 +31,21 @@ function Customer() {
   const [searchAccountId, setSearchAccountId] = useState("");
   const [searchEmail, setSearchEmail] = useState("");
 
+  // Input Field Variables
+  const [fname, setFName] = useState("");
+  const [lname, setFLName] = useState("");
+  const [email, setEmail] = useState("");
+  const [priPhone, setPriPhone] = useState("");
+  const [altPhone, setAltPhone] = useState("");
+
+
   const searchOptions = [
     { value: "aid", label: "Account ID" },
     { value: "name", label: "Name" },
     { value: "email", label: "Email" },
     { value: "address", label: "Address" },
   ];
+
 
   function handleSearchTypeChanged(type) {
     setSearchByType(type.label);
@@ -55,6 +65,7 @@ function Customer() {
         break;
     }
   }
+
 
   function handleInputTextChangedEvent(e) {
     let value = e.target.value;
@@ -83,9 +94,16 @@ function Customer() {
       case "search_email":
         setSearchEmail(value);
         break;
+      case "first_name":
+        
+        break;
+      case "last_name":
+      
+        break;
       default:
         return;
     }
+
   }
 
   function renderSearchOptions() {
@@ -213,9 +231,12 @@ function Customer() {
               </Col>
               {renderSearchOptions()}
               <Col>
-                <Button onClick={() => handleSearchButtonClicked()}>
+                {/* <Button onClick={() => handleSearchButtonClicked()}>
                   <i class="fa fa-search"></i>
-                </Button>
+                </Button> */}
+                <button style={{padding:8, width:50}} onClick={() => handleSearchButtonClicked()} class={"btn-primary  btn-sm"} type="button">
+                  <i class="fa fa-search"></i>
+                </button>
               </Col>
             </Row>
           </Container>
@@ -251,10 +272,12 @@ function Customer() {
               </NavItem>
             </Nav>
             <TabContent activeTab={activeTab}>
+
+              {/* Account Information Tab */}
               <TabPane tabId="1">
                 <div className="card" style={{ marginTop: 10 }}>
                   <div className="card-header">
-                    <h5>Account - Smith, John</h5>
+                    <h5>Account - {lname}, {fname}</h5>
                   </div>
                   <div className="card-body">
                     <Row style={{ padding: 0 }}>
@@ -284,29 +307,37 @@ function Customer() {
                       <Col style={{ flex: 2 }}>
                         <label class="form-label">First Name</label>
                         <input
+                          id={"first_name"}
+                          value={fname}
                           class="form-control"
                           type="text"
                           name="firstNameInput"
                           placeholder={"First Name"}
+                          onChange={handleInputTextChangedEvent}
                         />
                       </Col>
                       <Col style={{ flex: 0.2 }}>
                         <label class="form-label">M.I.</label>
                         <input
+                          id={"minit"}
+                          value={lname}
                           maxLength="1"
                           class="form-control"
                           type="text"
                           name="midInitialInput"
                           placeholder={"M.I."}
+                          onChange={handleInputTextChangedEvent}
                         />
                       </Col>
                       <Col style={{ flex: 2 }}>
                         <label class="form-label">Last Name</label>
                         <input
+                          id={"last_name"}
                           class="form-control"
                           type="text"
                           name="lastNameInput"
                           placeholder={"Last Name"}
+                          onChange={handleInputTextChangedEvent}
                         />
                       </Col>
                     </Row>
@@ -315,11 +346,13 @@ function Customer() {
                         <Col>
                           <label class="form-label">Primary Phone</label>
                           <input
+                            id={"primary_phone"}
                             maxLength="10"
                             class="form-control"
                             type="text"
                             name="primPhoneInput"
                             placeholder={"(xxx) xxx-xxxx"}
+                            onChange={handleInputTextChangedEvent}
                           />
                         </Col>
                       </Row>
@@ -327,11 +360,13 @@ function Customer() {
                         <Col>
                           <label class="form-label">Alternate Phone</label>
                           <input
+                            id={"alt_phone"}
                             maxLength="10"
                             class="form-control"
                             type="text"
                             name="altPhoneInput"
                             placeholder={"(xxx) xxx-xxxx"}
+                            onChange={handleInputTextChangedEvent}
                           />
                         </Col>
                         <Col>
@@ -372,6 +407,7 @@ function Customer() {
                       <Col style={{ flex: 1 }}>
                         <label class="form-label">Street</label>
                         <input
+                          id={"street_address"}
                           maxLength="100"
                           class="form-control"
                           type="text"
@@ -420,7 +456,7 @@ function Customer() {
                         />
                       </Col>
                     </Row>
-                    <Button style={{ marginTop: 20, width: 150 }}>Save</Button>
+                      <button style={{marginTop: 20, width: 150}} class={"btn-primary  btn-lg"} type="button">Save</button>
                   </div>
                 </div>
               </TabPane>
