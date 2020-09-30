@@ -18,16 +18,18 @@ def main():
             line = line.strip("\n")
             addresses.add(line)
 
-    out = open('raw_address.txt', 'w')
+    locations = []
+    out = open('out.txt', 'w')
     for address in addresses:
-        print(address)
-        out.write(address)
-        out.write("\n")
+      locations.append(address.split(','))
+      out.write(address)
+      out.write("\n")
     out.close()
-    
-    print(len(addresses))
 
-    # print(len(addresses))
+    for l in locations:
+      print(l)
+
+
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,393 @@
+742 Silver Oak Dr, Tehachapi, CA, 93561   ,35.1295913,-118.4598666
+22720 Lake Dr, Tehachapi, CA, 93561   ,35.1502216,-118.4803973
+21301 Golden Hills Blvd, Tehachapi, CA, 93561   ,35.1288856,-118.4864647
+21900 Old Well Rd, Tehachapi, CA, 93561   ,35.1390114,-118.3100073
+400 Woodrow St #APT 5, Taft, CA, 93268   ,35.1453293,-119.4560065
+3608 Alice Meadows Ct, Bakersfield, CA, 93313   ,35.2794247,-119.0425151
+24405 San Juan Dr, Tehachapi, CA, 93561   ,35.174939,-118.633738
+21241 Golden Hills Blvd, Tehachapi, CA, 93561   ,35.1278667,-118.4861944
+7633 Lordsburg Dr, Bakersfield, CA, 93309   ,35.3210286,-119.087741
+706 B St, Taft, CA, 93268   ,35.1361022,-119.4763337
+1512 El Toro Dr, Bakersfield, CA, 93304   ,35.3407976,-119.0160551
+Rawhide, Tehachapi, CA, 93561   ,35.0826931,-118.6241078
+3003 Peerless Ave, Bakersfield, CA, 93308   ,35.4335561,-119.0204305
+8700 Willow Spring Ct, Bakersfield, CA, 93312   ,35.3664809,-119.0990341
+21405 Indian Wells Dr, Tehachapi, CA, 93561   ,35.149352,-118.5106868
+21255 Madre St #C, Tehachapi, CA, 93561   ,35.1267013,-118.4900686
+402 E Woodrow St, Taft, CA, 93268   ,35.1439285,-119.4436638
+600 N Dennison Rd #15, Tehachapi, CA, 93561   ,35.13246970000001,-118.4321335
+1025 Hickory Ave, Tehachapi, CA, 93561   ,35.1200045,-118.4618285
+520 Olive St #C, Bakersfield, CA, 93304   ,35.3627521,-119.0369414
+420 N Mill St, Tehachapi, CA, 93561   ,35.135746,-118.4509919
+626 D St, Taft, CA, 93268   ,35.1343965,-119.4746829
+6805 Klamath Way, Bakersfield, CA, 93309   ,35.3291336,-119.0779417
+3450 Grassotti Ct, Bakersfield, CA, 93309   ,35.330213,-119.0407404
+Willow Pass Dr, Tehachapi, CA, 93561   ,35.1725097,-118.638903
+21430 Mission St, Tehachapi, CA, 93561   ,35.1310694,-118.4927601
+11506 Palm Ave, Bakersfield, CA, 93312   ,35.3764414,-119.1313634
+1200 38th St #9, Bakersfield, CA, 93301   ,35.3947208,-119.0159386
+1329 Fair Oak Dr, Tehachapi, CA, 93561   ,35.1139622,-118.4435314
+6701 Auburn St, Bakersfield, CA, 93306   ,35.397736,-118.921089
+609 Buena Vista St, Taft, CA, 93268   ,35.1316366,-119.456954
+500 Plover Ct, Bakersfield, CA, 93309   ,35.3573809,-119.0774925
+811 Quincy St, Bakersfield, CA, 93305   ,35.3844829,-118.9879079
+503 S Mill St, Tehachapi, CA, 93561   ,35.1273653,-118.45357
+22384 Zurich Dr, Tehachapi, CA, 93561   ,35.0834136,-118.5232754
+700 New Stine Rd #18, Bakersfield, CA, 93309   ,35.34838939999999,-119.0607898
+14305 Tierra Blanca Ave, Bakersfield, CA, 93314   ,35.3528599,-119.1608923
+7719 Snowbird St, Bakersfield, CA, 93307   ,35.2846843,-119.0204654
+24400 Willow Pass Dr, Tehachapi, CA, 93561   ,35.1739019,-118.6396284
+400 N Stine Rd, Bakersfield, CA, 93309    ,35.3620562,-119.0474701
+21230 Golden Hills Blvd #A, Tehachapi, CA, 93561   ,35.1276734,-118.4856436
+10425 Glenn St, Bakersfield, CA, 93312   ,35.3772197,-119.1184484
+26620 Columbia Way, Tehachapi, CA, 93561   ,35.1606412,-118.6035733
+1718 Panama Ln #701, Bakersfield, CA, 93307   ,35.296963,-119.0221129
+6409 Castleford St, Bakersfield, CA, 93313   ,35.2966897,-119.0421514
+Po Box 551, Taft, CA, 93268   ,35.1424671,-119.4565078
+21192 Old Town Rd, Tehachapi, CA, 93561   ,35.1261345,-118.5091359
+720 Way Ter #54, Bakersfield, CA, 93304   ,35.350606,-119.011292
+29 Emmons Park Dr, Taft, CA, 93268   ,35.1492183,-119.4601285
+19813 Moon Dr, Tehachapi, CA, 93561   ,35.1445472,-118.4825657
+716 Taylor St, Taft, CA, 93268   ,35.1621164,-119.4598485
+11726 Stratosphere Ave, Bakersfield, CA, 93312   ,35.3938236,-119.1332035
+21011 Sierra Vista Dr, Tehachapi, CA, 93561   ,35.1248541,-118.4741357
+24181 Willow Pass Dr, Tehachapi, CA, 93561   ,35.1694711,-118.6358455
+620 Hudson Dr, Bakersfield, CA, 93307   ,35.2768089,-119.0111573
+601 Douglas St #112B, Bakersfield, CA, 93308   ,35.4256389,-119.0325363
+1942 Juniper Ct, Bakersfield, CA, 93309   ,35.3368648,-119.0439698
+Knotts, Bakersfield, CA, 93301   ,35.3912974,-118.9851826
+811 Quincy St, Bakersfield, CA, 93305    ,35.3844829,-118.9879079
+322 E Woodrow St, Taft, CA, 93268   ,35.1438956,-119.4442384
+309 Naylor Ave, Taft, CA, 93268   ,35.1340568,-119.4577292
+25101 Bear Valley Rd, Tehachapi, CA, 93561   ,35.14726600000001,-118.5760334
+400 Wilson St, Arvin, CA, 93203   ,35.2124663,-118.8289329
+813 Townsley Ave, Bakersfield, CA, 93304   ,35.3487267,-119.0114173
+29941 Sunland Way, Tehachapi, CA, 93561   ,35.150297,-118.664194
+3409 Edison Hwy, Bakersfield, CA, 93307   ,35.3643658,-118.9425615
+14305 Tierra Blanca Ave, Bakersfield, CA, 93314    ,35.3528599,-119.1608923
+700 46th St, Bakersfield, CA, 93301    ,35.4006464,-119.0104231
+4015 Scenic River Ln, Bakersfield, CA, 93308   ,35.3961246,-119.0899906
+716 Espee St, Bakersfield, CA, 93301   ,35.3841287,-119.0094393
+706 Mulberry St, Tehachapi, CA, 93561   ,35.124585,-118.4558742
+6 Village Ln #12, Tehachapi, CA, 93561   ,35.167599,-118.658792
+7633 Lordsburg Dr, Bakersfield, CA, 93309    ,35.3210286,-119.087741
+21410 Golden Hills Blvd, Tehachapi, CA, 93561   ,35.1304195,-118.4865698
+22904 Woodford Tehachapi Rd, Tehachapi, CA, 93561   ,35.152828,-118.4941465
+11105 Cypress Falls Ave, Bakersfield, CA, 93312    ,35.4243929,-119.1261158
+813 La Puente Dr, Bakersfield, CA, 93309    ,35.3468968,-119.0732429
+22202 Mccarthy Dr, Tehachapi, CA, 93561   ,35.1423629,-118.5018833
+11601 Silver Crown Ave, Bakersfield, CA, 93312   ,35.4153927,-119.1311135
+Kelton, Tehachapi, CA, 93561   ,35.1220918,-118.454432
+9903 Rancho Verde Dr, Bakersfield, CA, 93311   ,35.3197819,-119.1128254
+516 Fillmore St, Taft, CA, 93268   ,35.1588958,-119.4608912
+1301 New Stine Rd #A1, Bakersfield, CA, 93309   ,35.3419404,-119.0621298
+400 White Ln, Bakersfield, CA, 93307   ,35.3181794,-119.0063474
+925 Quincy St, Bakersfield, CA, 93305   ,35.3839343,-118.9858124
+3901 Navajo Ave, Bakersfield, CA, 93309   ,35.349168,-119.045754
+319 Spectacular Bid Dr, Bakersfield, CA, 93307   ,35.2805182,-118.9997477
+5004 Sea Star Ln, Bakersfield, CA, 93309    ,35.3346139,-119.0576525
+906 Union Ave, Bakersfield, CA, 93307   ,35.3662004,-119.0024141
+3535 S H St #49, Bakersfield, CA, 93304    ,35.3226946,-119.0216702
+8118 Fighting Irish Dr, Bakersfield, CA, 93313   ,35.2805172,-119.0501976
+619 Buena Vista St, Taft, CA, 93268   ,35.1315993,-119.4563827
+222 Sequoia Dr, Bakersfield, CA, 93308   ,35.4073356,-119.0340528
+26671 Trotter Dr, Tehachapi, CA, 93561   ,35.136017,-118.6026278
+827 Pacific St, Bakersfield, CA, 93305    ,35.3832177,-118.9875668
+24300 Sorrel Ct, Tehachapi, CA, 93561   ,35.171061,-118.6178413
+6019 Pearl Ridge Dr, Bakersfield, CA, 93313   ,35.2745928,-119.0690614
+7124 Drift Creek St, Bakersfield, CA, 93313   ,35.2968926,-119.0816915
+27900 Cummings Valley Rd, Tehachapi, CA, 93561   ,35.125757,-118.6275502
+104 W D St, Tehachapi, CA, 93561   ,35.1287411,-118.4488601
+903 Wilson Ave, Bakersfield, CA, 93308   ,35.4170811,-119.0395147
+30681 Sheeptrail Ct, Tehachapi, CA, 93561   ,35.1590733,-118.6747771
+6706 Chinook Falls Dr, Bakersfield, CA, 93312   ,35.4208379,-119.1207771
+1805 Isil Ave, Bakersfield, CA, 93304   ,35.3043468,-119.0222229
+23961 Breech Ct, Tehachapi, CA, 93561   ,35.1656422,-118.6378509
+2600 Way Ter, Bakersfield, CA, 93304   ,35.3506641,-119.0325135
+512 Tyler St, Taft, CA, 93268   ,35.158473,-119.4572418
+708 Mallory Ct, Taft, CA, 93268   ,35.1369872,-119.4767113
+10200 Ashbourne Dr, Bakersfield, CA, 93312    ,35.3598448,-119.1165968
+20200 Mini Ct, Tehachapi, CA, 93561   ,35.134277,-118.49029
+21611 Foothill Dr, Tehachapi, CA, 93561   ,35.1330621,-118.4877421
+30617 Buckskin Dr, Tehachapi, CA, 93561   ,35.0898857,-118.6768146
+2600 Brookside Dr #46, Bakersfield, CA, 93311    ,35.3318145,-119.0948261
+7508 Bonanza Dr, Bakersfield, CA, 93307    ,35.3375509,-118.9204975
+224 Northrup St, Bakersfield, CA, 93307   ,35.3587131,-118.9899429
+108 Brandon Ave, Taft, CA, 93268   ,35.1380611,-119.4779125
+501 Rose Ave, Taft, CA, 93268   ,35.1316254,-119.4590229
+1513 Fairview Rd, Bakersfield, CA, 93307   ,35.3028873,-119.0193742
+24220 Willow Pass Dr, Tehachapi, CA, 93561   ,35.1705658,-118.6351163
+828 Philippine St, Taft, CA, 93268   ,35.1352965,-119.4806321
+Po Box 2046, Tehachapi, CA, 93581   ,35.13,-118.45
+9903 Rancho Verde Dr, Bakersfield, CA, 93311    ,35.3197819,-119.1128254
+Bank, Bakersfield, CA, 93304   ,35.3189727,-119.0268713
+1626 19th St #14, Bakersfield, CA, 93301   ,35.3765106,-119.0208119
+1809 Doolittle Ave, Bakersfield, CA, 93304   ,35.3351625,-119.0233297
+503 Mulberry St, Tehachapi, CA, 93561   ,35.1274339,-118.4563989
+362 Apple Way, Tehachapi, CA, 93561   ,35.1266526,-118.4437368
+400 White Ln, Bakersfield, CA, 93307    ,35.3181794,-119.0063474
+2801 Loch Fern Ct, Bakersfield, CA, 93306    ,35.3988757,-118.9416972
+1015 Monterey St, Bakersfield, CA, 93305   ,35.3794467,-118.9859979
+9428 Seager Ct, Bakersfield, CA, 93311    ,35.3167316,-119.1071
+11707 Aurora Valley Ave, Bakersfield, CA, 93312   ,35.4188781,-119.1325447
+3800 Piedmont Ave, Bakersfield, CA, 93312   ,35.3946545,-119.1393595
+21276 White Pine Dr, Tehachapi, CA, 93561   ,35.1540862,-118.5080515
+1005 Candlemas Ct, Bakersfield, CA, 93312   ,35.3678756,-119.1318632
+8516 Haupt Ave, Bakersfield, CA, 93306   ,35.3633723,-118.9091686
+24601 Paramount Dr, Tehachapi, CA, 93561   ,35.181112,-118.6482421
+9507 Orchard Grass Ct, Bakersfield, CA, 93313   ,35.268421,-119.0599252
+1107 E 10th St, Bakersfield, CA, 93307   ,35.366401,-118.9903522
+30150 Garces Ct, Tehachapi, CA, 93561   ,35.1693492,-118.6669037
+6409 Castleford St, Bakersfield, CA, 93313    ,35.2966897,-119.0421514
+29800 Butterfield Way, Tehachapi, CA, 93561   ,35.1505522,-118.6602505
+19225 Jacks Hill Rd, Tehachapi, CA, 93561   ,35.0989776,-118.6568099
+601 Douglas St, Bakersfield, CA, 93308   ,35.4256389,-119.0325363
+632 Cherry Ln #H, Tehachapi, CA, 93561   ,35.1206543,-118.4592673
+20140 Park Rd #D, Tehachapi, CA, 93561   ,35.1278712,-118.4884263
+716 S 10th St, Taft, CA, 93268   ,35.1337022,-119.464563
+1021 S Green St, Tehachapi, CA, 93561   ,35.119701,-118.447652
+19066 Conway Ave, Tehachapi, CA, 93561   ,35.1264893,-118.4690829
+801 Nord Ave, Bakersfield, CA, 93314    ,35.3655221,-119.1993165
+1609 Wilson Rd, Bakersfield, CA, 93304   ,35.3318845,-119.0201357
+5004 Sea Star Ln, Bakersfield, CA, 93309   ,35.3346139,-119.0576525
+27564 119th Hwy, Taft, CA, 93268   ,35.1424678,-119.4472351
+26751 Sutter Ct, Tehachapi, CA, 93561   ,35.1665992,-118.6064908
+27930 Hialeah Dr, Tehachapi, CA, 93561   ,35.0797022,-118.6279604
+211 S Davis St, Tehachapi, CA, 93561   ,35.1300418,-118.4450301
+21405 Quail Springs Rd, Tehachapi, CA, 93561   ,35.1504229,-118.5106552
+14710 Redwood Springs Dr, Bakersfield, CA, 93312   ,35.3903806,-119.1656391
+5225 Fillmore Ave, Bakersfield, CA, 93306   ,35.3695077,-118.925866
+500 W Columbus St, Bakersfield, CA, 93301   ,35.3981073,-119.0076205
+2801 Loch Fern Ct, Bakersfield, CA, 93306   ,35.3988757,-118.9416972
+30181 Sunland Way, Tehachapi, CA, 93561   ,35.151382,-118.666871
+720 Way Ter #54, Bakersfield, CA, 93304    ,35.350606,-119.011292
+2429 Beech St, Bakersfield, CA, 93301    ,35.3825265,-119.0345139
+333 Maple Ave, Taft, CA, 93268   ,35.1486664,-119.4534564
+1114 Lake St, Bakersfield, CA, 93305   ,35.3785899,-118.9847694
+35 Poso Hollow Rd #RR3, Bakersfield, CA, 93308   ,35.543508,-119.061497
+653 Twinleaf Dr, Bakersfield, CA, 93308   ,35.4285392,-119.0344912
+19809 Cross Way, Tehachapi, CA, 93561   ,35.1272848,-118.4830661
+29781 N Lower Valley Rd, Tehachapi, CA, 93561   ,35.1692369,-118.6599087
+708 El Tejon Ave, Bakersfield, CA, 93308   ,35.4183774,-119.0354686
+801 Nord Ave, Bakersfield, CA, 93314   ,35.3655221,-119.1993165
+5405 Peppertree Ln, Bakersfield, CA, 93309   ,35.325828,-119.0615843
+222 Sequoia Dr, Bakersfield, CA, 93308    ,35.4073356,-119.0340528
+713 A St, Taft, CA, 93268   ,35.1365072,-119.4768926
+24400 Bay Ct, Tehachapi, CA, 93561   ,35.1730814,-118.6181148
+1315 Baldwin Rd, Bakersfield, CA, 93304   ,35.3406564,-119.0291947
+3409 Fillmore Ave, Bakersfield, CA, 93306   ,35.3694144,-118.9418792
+49520 Alan Ave, Tehachapi, CA, 93561   ,35.1341111,-118.4294308
+400 N Stine Rd, Bakersfield, CA, 93309   ,35.3620562,-119.0474701
+525 Walker St, Arvin, CA, 93203   ,35.20485499999999,-118.835766
+307 Calvin St, Taft, CA, 93268   ,35.1462087,-119.4535471
+25700 Deertrail Dr, Tehachapi, CA, 93561   ,35.191649,-118.651246
+1040 Stevens St, Taft, CA, 93268   ,35.1325552,-119.4506094
+1410 Hood St, Arvin, CA, 93203   ,35.2040986,-118.8409276
+22601 Shenandoah Pl, Tehachapi, CA, 93561   ,35.147567,-118.601306
+2725 Renegade Ave, Bakersfield, CA, 93306   ,35.4025907,-118.9618933
+2120 L St, Bakersfield, CA, 93301   ,35.3788388,-119.0161629
+29341 Stallion Springs Dr, Tehachapi, CA, 93561   ,35.087676,-118.65144
+23010 Tulip Ct, Tehachapi, CA, 93561   ,35.154153,-118.476859
+22559 Mariposa Rd, Tehachapi, CA, 93561   ,35.1472553,-118.5056597
+27522 Acacia St, Taft, CA, 93268   ,35.2027048,-119.4092937
+22811 Lake Dr, Tehachapi, CA, 93561   ,35.1512956,-118.4800208
+8806 Jerry St, Bakersfield, CA, 93307   ,35.2756338,-119.0151002
+4410 Waterfall Canyon Dr, Bakersfield, CA, 93313   ,35.2839682,-119.0519477
+7508 Bonanza Dr, Bakersfield, CA, 93307   ,35.3375509,-118.9204975
+14160 Clay Ct, Bakersfield, CA, 93306   ,35.432054,-118.875037
+19940 Chinook St, Tehachapi, CA, 93561   ,35.1090921,-118.4633684
+20125 Tehachapi Willow Springs Rd, Tehachapi, CA, 93561   ,35.111929,-118.399008
+4200 Boise St, Bakersfield, CA, 93306   ,35.413078,-118.955367
+1309 34th St, Bakersfield, CA, 93301   ,35.3903563,-119.0166411
+903 Wilson Ave, Bakersfield, CA, 93308    ,35.4170811,-119.0395147
+403 Monroe St, Taft, CA, 93268   ,35.15644959999999,-119.4528218
+23700 Crystal Lake Ln, Tehachapi, CA, 93561   ,35.1619855,-118.658815
+207 Ash St, Taft, CA, 93268   ,35.1511682,-119.4495291
+5904 Columbine St, Bakersfield, CA, 93308   ,35.4164085,-119.0682432
+1016 Valhalla Dr, Bakersfield, CA, 93309   ,35.3451685,-119.0548342
+7713 Canfield Ct, Bakersfield, CA, 93308   ,35.4234715,-119.0887636
+4015 Scenic River Ln, Bakersfield, CA, 93308    ,35.3961246,-119.0899906
+902 2nd St, Taft, CA, 93268   ,35.1460344,-119.4512961
+217 U St, Bakersfield, CA, 93304   ,35.3575965,-119.0057335
+30060 Jamaica Dunes Dr, Tehachapi, CA, 93561   ,35.15887680000001,-118.6653771
+2520 S P St, Bakersfield, CA, 93304   ,35.3313384,-119.011661
+20113 Bald Mountain Dr, Tehachapi, CA, 93561   ,35.1504875,-118.4882103
+207 Shady Ln, Bakersfield, CA, 93301    ,35.3724687,-119.0038919
+1913 Maple St, Bakersfield, CA, 93304    ,35.3655562,-119.0238046
+6805 Ona Ct, Bakersfield, CA, 93307   ,35.2929111,-119.0244664
+9305 Laurel Oak Way, Bakersfield, CA, 93311   ,35.3282836,-119.1064639
+519 Shattuck Ave, Taft, CA, 93268   ,35.1310951,-119.4612651
+202 Pierce St, Taft, CA, 93268   ,35.153236,-119.4622511
+22501 Shenandoah Pl, Tehachapi, CA, 93561   ,35.146635,-118.602197
+28156 Mcclaren Ave, Taft, CA, 93268   ,35.2204742,-119.3797971
+9305 Laurel Oak Way, Bakersfield, CA, 93311    ,35.3282836,-119.1064639
+1209 Royal St, Arvin, CA, 93203   ,35.2002055,-118.8379461
+601 Garratt St, Taft, CA, 93268   ,35.1429372,-119.4466561
+22116 Gold St, Tehachapi, CA, 93561   ,35.1422007,-118.4848728
+22710 Tom Ct, Tehachapi, CA, 93561   ,35.1502848,-118.4767475
+716 Espee St, Bakersfield, CA, 93301    ,35.3841287,-119.0094393
+4216 Hillsborough Dr, Bakersfield, CA, 93309    ,35.3599778,-119.0506067
+4509 Baybrook Way, Bakersfield, CA, 93313   ,35.3016791,-119.0526707
+912 Georgia St, Tehachapi, CA, 93561   ,35.1222341,-118.4306858
+1322 Catalpa Way, Bakersfield, CA, 93306   ,35.3765904,-118.95888
+911 S Green St, Tehachapi, CA, 93561   ,35.1211946,-118.4474785
+406 5th St, Taft, CA, 93268   ,35.1429571,-119.4578425
+10904 Royal Ascot Ave, Bakersfield, CA, 93312   ,35.3995961,-119.1234124
+2429 Beech St, Bakersfield, CA, 93301   ,35.3825265,-119.0345139
+5101 Marsha St, Bakersfield, CA, 93309   ,35.3524079,-119.0579934
+316 Pierce St, Taft, CA, 93268   ,35.1556331,-119.4623871
+4708 La Posta St, Bakersfield, CA, 93307   ,35.3494491,-118.9512498
+11009 Truchard Ct, Bakersfield, CA, 93312   ,35.4135068,-119.1250935
+2553 Old Farm Rd, Bakersfield, CA, 93312   ,35.3831809,-119.1374287
+2905 Saint Marys St, Bakersfield, CA, 93305   ,35.4004175,-118.969307
+24500 Marcel Dr, Tehachapi, CA, 93561   ,35.176787,-118.510774
+19813 Breeze Pl, Tehachapi, CA, 93561   ,35.149702,-118.48272
+4808 Stanton Way, Bakersfield, CA, 93309   ,35.357714,-119.0562468
+2725 Renegade Ave, Bakersfield, CA, 93306    ,35.4025907,-118.9618933
+23881 Coyote Ct, Tehachapi, CA, 93561   ,35.1655792,-118.59963
+319 San Emidio St, Taft, CA, 93268   ,35.1437941,-119.4553539
+7003 Elkhorn St, Bakersfield, CA, 93313    ,35.299492,-119.0799468
+809 Oildale Dr, Bakersfield, CA, 93308   ,35.4142039,-119.0301563
+4216 Hillsborough Dr, Bakersfield, CA, 93309   ,35.3599778,-119.0506067
+Brett Ave, Tehachapi, CA, 93561   ,35.1332069,-118.430615
+26950 Columbia Way, Tehachapi, CA, 93561   ,35.1649487,-118.6046218
+416 El Tejon Ave, Bakersfield, CA, 93308   ,35.4184051,-119.0293766
+25480 Barbara St, Arvin, CA, 93203   ,35.2248721,-118.8231514
+602 Blue Way Mtn #A, Bakersfield, CA, 93308    ,35.4407359,-119.0328545
+1300 Valhalla Dr, Bakersfield, CA, 93309   ,35.3429306,-119.0548342
+1309 34th St, Bakersfield, CA, 93301    ,35.3903563,-119.0166411
+120 Taylor St, Taft, CA, 93268   ,35.152531,-119.459718
+17900 Bold Venture Dr, Tehachapi, CA, 93561   ,35.0801,-118.6190265
+1114 Lake St, Bakersfield, CA, 93305   Addres,35.3785899,-118.9847694
+931 S St, Bakersfield, CA, 93304   ,35.3662978,-119.0086436
+108 Center St, Taft, CA, 93268   ,35.1392196,-119.4528898
+601 E St, Taft, CA, 93268   ,35.133198,-119.4734703
+8704 Maria Angelica St, Bakersfield, CA, 93313   ,35.2759611,-119.031877
+607 Pierce St, Taft, CA, 93268   ,35.1597672,-119.4629596
+21520 San Lucas Dr, Tehachapi, CA, 93561   ,35.131621,-118.485405
+3020 Catalina Dr, Bakersfield, CA, 93306   ,35.4011532,-118.9451544
+702 Mulberry St, Tehachapi, CA, 93561   ,35.1249824,-118.4559426
+24019 Quail Canyon Rd, Tehachapi, CA, 93561   ,35.1688141,-118.490616
+11801 Pasture Ave, Tehachapi, CA, 93561   ,35.1835427,-118.3369946
+20405 Mar Vista Pl, Tehachapi, CA, 93561   ,35.1332429,-118.4939917
+801 Pierce St, Taft, CA, 93268   ,35.1629599,-119.4630218
+602 Blue Way Mtn #A, Bakersfield, CA, 93308   ,35.4407359,-119.0328545
+Po Box 1349, Tehachapi, CA, 93581   ,35.13,-118.45
+108 Woodlawn Ave, Taft, CA, 93268   ,35.1393776,-119.4678722
+1913 Maple St, Bakersfield, CA, 93304   ,35.3655562,-119.0238046
+312 Pierce St, Taft, CA, 93268   ,35.15547610000001,-119.4623871
+1726 Orange St, Bakersfield, CA, 93304   ,35.3669251,-119.0221331
+22020 Cody Ct, Tehachapi, CA, 93561   ,35.1384602,-118.6466015
+1904 Quincy St, Bakersfield, CA, 93305   ,35.38098,-118.9708478
+809 Oildale Dr, Bakersfield, CA, 93308    ,35.4142039,-119.0301563
+919 2nd St, Taft, CA, 93268   ,35.14717,-119.4503737
+Caddy Tehachapi, Tehachapi, CA, 93561   ,35.1573374,-118.6653203
+14141 Di Giorgio Rd, Arvin, CA, 93203   ,35.2522707,-118.8450698
+813 La Puente Dr, Bakersfield, CA, 93309   ,35.3468968,-119.0732429
+411 Alpine St, Taft, CA, 93268   ,35.1414336,-119.4708413
+212 Rose Ave, Taft, CA, 93268   ,35.13535340000001,-119.4583525
+801 N Dennison Rd, Tehachapi, CA, 93561   ,35.1342896,-118.432104
+5101 Marsha St #111, Bakersfield, CA, 93309   ,35.3524079,-119.0579934
+1208 Fairview Rd #3D, Bakersfield, CA, 93307   ,35.3034039,-119.0161233
+20420 Sycamore Dr, Tehachapi, CA, 93561   ,35.1589205,-118.4931022
+10904 Royal Ascot Ave, Bakersfield, CA, 93312    ,35.3995961,-119.1234124
+3400 Mountain View St, Bakersfield, CA, 93309   ,35.3241329,-119.0419448
+20120 Sears Dr, Tehachapi, CA, 93561   ,35.152484,-118.4887001
+2608 Lacorte Pl, Bakersfield, CA, 93313   ,35.2787942,-119.0320134
+6906 Firebaugh St, Bakersfield, CA, 93313   ,35.2976814,-119.0792878
+21800 Oak Summit Ct, Tehachapi, CA, 93561   ,35.103343,-118.520291
+312 S Mill St, Tehachapi, CA, 93561   ,35.1296245,-118.4526118
+1618 Locust Ravine, Bakersfield, CA, 93306   ,35.3796841,-118.9622572
+208 T St, Bakersfield, CA, 93304   ,35.357632,-119.007567
+1015 Monterey St, Bakersfield, CA, 93305    ,35.3794467,-118.9859979
+601 Douglas St #112B, Bakersfield, CA, 93308    ,35.4256389,-119.0325363
+104 Mesquite Dr, Tehachapi, CA, 93561   ,35.115319,-118.4466571
+205 Suzanne Ln, Taft, CA, 93268   ,35.1503967,-119.4493561
+30280 Knight Ct, Tehachapi, CA, 93561   ,35.1610009,-118.6689998
+9428 Seager Ct, Bakersfield, CA, 93311   ,35.3167316,-119.1071
+11105 Cypress Falls Ave, Bakersfield, CA, 93312   ,35.4243929,-119.1261158
+610 Tyler St, Taft, CA, 93268   ,35.1601229,-119.4573098
+10200 Ashbourne Dr, Bakersfield, CA, 93312   ,35.3598448,-119.1165968
+2601 Westholme Blvd #B, Bakersfield, CA, 93309   ,35.3314338,-119.0652888
+17481 Climber Way Mtn, Tehachapi, CA, 93561   ,35.0732162,-118.5518698
+3535 S H St #49, Bakersfield, CA, 93304   ,35.3226946,-119.0216702
+703 Philippine St, Taft, CA, 93268   ,35.1348885,-119.4758954
+207 Shady Ln, Bakersfield, CA, 93301   ,35.3724687,-119.0038919
+7003 Elkhorn St, Bakersfield, CA, 93313   ,35.299492,-119.0799468
+101 E Woodrow St, Taft, CA, 93268   ,35.1436138,-119.451643
+12 Westpark Way, Taft, CA, 93268   ,35.1395778,-119.469776
+318 N Stine Rd, Bakersfield, CA, 93309   ,35.3611078,-119.0482429
+634 Cherry Ln, Tehachapi, CA, 93561   ,35.1206462,-118.4593194
+404 Mckinley St, Taft, CA, 93268   ,35.1420404,-119.4717486
+6009 Chicory Dr, Bakersfield, CA, 93309   ,35.3206284,-119.0716058
+21321 Golden Hills Blvd, Tehachapi, CA, 93561   ,35.1292852,-118.4866016
+7713 Canfield Ct, Bakersfield, CA, 93308    ,35.4234715,-119.0887636
+Cedarwood, Bakersfield, CA, 93309   ,35.328363,-119.063437
+19600 Mohawk, Tehachapi, CA, 93561   ,35.10425439999999,-118.4447879
+920 Monna Ave, Bakersfield, CA, 93308   ,35.4275714,-119.0109398
+3507 Ginnelli Way, Bakersfield, CA, 93309   ,35.328833,-119.0416513
+530 Jacobsen Ct, Tehachapi, CA, 93561   ,35.1251242,-118.4398125
+3808 Wood Ln, Bakersfield, CA, 93309   ,35.3452813,-119.0460154
+3805 Kathy Suzanne Way, Bakersfield, CA, 93313   ,35.2734325,-119.0447653
+3409 Fillmore Ave, Bakersfield, CA, 93306    ,35.3694144,-118.9418792
+6000 Burke Way, Bakersfield, CA, 93309    ,35.3495326,-119.0678342
+700 46th St, Bakersfield, CA, 93301   ,35.4006464,-119.0104231
+Ledgeview Ln, Bakersfield, CA, 93313   ,35.283502,-119.031751
+Oak Summit Ct, Tehachapi, CA, 93561   ,35.101429,-118.51625
+19809 Luana Dr, Tehachapi, CA, 93561   ,35.1396936,-118.4832713
+7101 Darrin Ave, Bakersfield, CA, 93308   ,35.4140868,-119.0814497
+1718 Panama Ln #910, Bakersfield, CA, 93307   ,35.296963,-119.0221129
+521 Oakwood St, Tehachapi, CA, 93561   ,35.1254908,-118.4573571
+2520 S P St, Bakersfield, CA, 93304    ,35.3313384,-119.011661
+225 Pine Ct, Tehachapi, CA, 93561   ,35.11819759999999,-118.4515623
+314 Kincaid St, Bakersfield, CA, 93307   ,35.3600432,-118.9932285
+8516 Haupt Ave, Bakersfield, CA, 93306    ,35.3633723,-118.9091686
+1000 Pacheco Rd, Bakersfield, CA, 93307   ,35.3112478,-119.0136225
+9902 Theodora Ave, Bakersfield, CA, 93312   ,35.3915263,-119.1121893
+27721 Bear Valley Rd, Tehachapi, CA, 93561   ,35.1724172,-118.6249977
+4201 Parkwood Ct, Bakersfield, CA, 93309   ,35.3443331,-119.0493339
+21501 Shirley Dr, Tehachapi, CA, 93561   ,35.1300167,-118.4804885
+500 W Columbus St, Bakersfield, CA, 93301    ,35.3981073,-119.0076205
+22213 Valley Vista Dr, Tehachapi, CA, 93561   ,35.1427224,-118.513606
+White Pine Dr, Tehachapi, CA, 93561   ,35.1537333,-118.5028502
+2831 Beech St, Bakersfield, CA, 93301   ,35.3886936,-119.0289544
+3902 Whirlwind Dr, Bakersfield, CA, 93313   ,35.2955957,-119.0458791
+8806 Jerry St, Bakersfield, CA, 93307    ,35.2756338,-119.0151002
+104 Pinon St, Tehachapi, CA, 93561   ,35.116646,-118.4477294
+W E D St, Tehachapi, CA, 93561   ,35.128483,-118.4500811
+1320 Tanglewood Dr, Tehachapi, CA, 93561   ,35.11466530000001,-118.449144
+15787 Blackburn Canyon Rd, Tehachapi, CA, 93561   ,35.04913800000001,-118.431188
+27961 Ack Ack Ct, Tehachapi, CA, 93561   ,35.0810769,-118.6281427
+127 Lincoln Ave, Bakersfield, CA, 93308   ,35.4143911,-119.0232843
+925 Quincy St, Bakersfield, CA, 93305    ,35.3839343,-118.9858124
+2608 Lacorte Pl, Bakersfield, CA, 93313    ,35.2787942,-119.0320134
+203 Taylor St, Taft, CA, 93268   ,35.1532498,-119.4603324
+6300 Ridgeway Ct, Bakersfield, CA, 93306   ,35.3934131,-118.9317119
+Po Box 189, Tehachapi, CA, 93581   ,35.13,-118.45
+20409 Bell Ct, Tehachapi, CA, 93561   ,35.1295123,-118.4934443
+1341 Ponderosa Dr, Tehachapi, CA, 93561   ,35.1140292,-118.4459042
+6000 Burke Way, Bakersfield, CA, 93309   ,35.3495326,-119.0678342
+3409 Edison Hwy, Bakersfield, CA, 93307    ,35.3643658,-118.9425615
+27981 119th Hwy, Taft, CA, 93268   ,35.1424678,-119.4472351
+Meadow Lakes Dr, Tehachapi, CA, 93561   ,35.1677127,-118.6590778
+20674 Tucker Rd, Tehachapi, CA, 93561   ,35.1193608,-118.4669841
+24553 Chimanimani Ct, Tehachapi, CA, 93561   ,35.175028,-118.344066
+21600 Loop St, Tehachapi, CA, 93561   ,35.132155,-118.4889738
+23740 Port Royal Ct, Tehachapi, CA, 93561   ,35.1615217,-118.6612302
+2918 Kaibab Ave, Bakersfield, CA, 93306   ,35.404426,-118.9599719
+3402 Buccaneer Rose Ave, Bakersfield, CA, 93313   ,35.2857251,-119.0410376
+1401 Robin Ln, Tehachapi, CA, 93561   ,35.1134903,-118.4611897
+24761 Deertrail Dr, Tehachapi, CA, 93561   ,35.1788809,-118.649242
+123 N 10th St #26, Taft, CA, 93268   ,35.1432179,-119.468467
+10708 Palm Ave, Bakersfield, CA, 93312   ,35.3764621,-119.1242756
+10200 Enger St, Bakersfield, CA, 93312   ,35.378722,-119.1152337
+Po Box 115, Tehachapi, CA, 93581   ,35.13,-118.45
+24260 Bowen Ct, Tehachapi, CA, 93561   ,35.1712394,-118.6347972
+28180 Sunridge Ave, Taft, CA, 93268   ,35.2240474,-119.3776257
+5904 Columbine St, Bakersfield, CA, 93308    ,35.4164085,-119.0682432
+19188 Backes Ln, Tehachapi, CA, 93561   ,35.0973382,-118.5004008
+26701 Skyline Dr, Tehachapi, CA, 93561   ,35.1404235,-118.6060122
+1012 3rd St, Taft, CA, 93268   ,35.1475912,-119.4505105
+C District Office 29981 Gree, Tehachapi, CA, 93561   ,35.1321877,-118.4489739
+827 Pacific St, Bakersfield, CA, 93305   ,35.3832177,-118.9875668
+2600 Brookside Dr #46, Bakersfield, CA, 93311   ,35.3318145,-119.0948261
