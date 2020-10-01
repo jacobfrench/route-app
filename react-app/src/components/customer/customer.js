@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useReducer } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Breadcrumb from "../common/breadcrumb";
 import {
   Container,
@@ -9,10 +9,9 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Button,
 } from "reactstrap";
 import Select from "react-select";
-
+import { useDispatch, useSelector } from 'react-redux';
 import LocationTable from "./locationtable";
 
 import { states } from "../common/values";
@@ -31,13 +30,16 @@ function Customer() {
   const [searchAccountId, setSearchAccountId] = useState("");
   const [searchEmail, setSearchEmail] = useState("");
 
-  // Input Field Variables
+  // Input Fields
   const [fname, setFName] = useState("");
-  const [lname, setFLName] = useState("");
+  const [lname, setLName] = useState("");
   const [email, setEmail] = useState("");
   const [priPhone, setPriPhone] = useState("");
   const [altPhone, setAltPhone] = useState("");
 
+  // Redux
+  const dispatch = useDispatch();
+  const customer = useSelector(state => state.Customer.customer);
 
   const searchOptions = [
     { value: "aid", label: "Account ID" },
@@ -45,6 +47,11 @@ function Customer() {
     { value: "email", label: "Email" },
     { value: "address", label: "Address" },
   ];
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    setFName(customer.fname);
+  }, [customer]);
 
 
   function handleSearchTypeChanged(type) {
@@ -54,12 +61,12 @@ function Customer() {
   function handleSearchButtonClicked() {
     switch (searchByType) {
       case "Account ID":
-        alert(searchAccountId);
+        // alert(searchAccountId);
         break;
       case "Name":
         break;
       case "Email":
-        alert(searchEmail);
+        dispatch({ type: 'ADD_NEW_CUSTOMER', payload: searchEmail });
         break;
       case "Address":
         break;
@@ -95,7 +102,7 @@ function Customer() {
         setSearchEmail(value);
         break;
       case "first_name":
-        
+        setFName(value);
         break;
       case "last_name":
       
@@ -118,7 +125,7 @@ function Customer() {
                 placeholder={"First Name"}
                 class="form-control"
                 type="text"
-                onChange={handleInputTextChangedEvent}
+                onChange={(e) => setSearchFirstName(e.target.value)}
               />
             </Col>
             <Col style={{ paddingLeft: 0 }}>
@@ -313,14 +320,14 @@ function Customer() {
                           type="text"
                           name="firstNameInput"
                           placeholder={"First Name"}
-                          onChange={handleInputTextChangedEvent}
+                          onChange={(e) => console.log(e.target.value)}
                         />
                       </Col>
                       <Col style={{ flex: 0.2 }}>
                         <label class="form-label">M.I.</label>
                         <input
                           id={"minit"}
-                          value={lname}
+                          value={customer.miinit}
                           maxLength="1"
                           class="form-control"
                           type="text"
@@ -333,11 +340,12 @@ function Customer() {
                         <label class="form-label">Last Name</label>
                         <input
                           id={"last_name"}
+                          value={customer.lname}
                           class="form-control"
                           type="text"
                           name="lastNameInput"
                           placeholder={"Last Name"}
-                          onChange={handleInputTextChangedEvent}
+                          onChange={(e) => setLName(e.target.value)}
                         />
                       </Col>
                     </Row>
