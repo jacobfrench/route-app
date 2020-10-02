@@ -11,8 +11,9 @@ import {
   NavLink,
 } from "reactstrap";
 import Select from "react-select";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import LocationTable from "./locationtable";
+import { getCustomerByEmail, saveCustomer } from "../../actions";
 
 import { states } from "../common/values";
 
@@ -31,15 +32,25 @@ function Customer() {
   const [searchEmail, setSearchEmail] = useState("");
 
   // Input Fields
+  const [accountId, setAccountId] = useState("");
   const [fname, setFName] = useState("");
   const [lname, setLName] = useState("");
+  const [minit, setMinit] = useState("");
   const [email, setEmail] = useState("");
   const [priPhone, setPriPhone] = useState("");
   const [altPhone, setAltPhone] = useState("");
+  const [callPrim, setCallPrim] = useState(false);
+  const [textPrim, setTextPrim] = useState(false);
+  const [callAlt, setCallAlt] = useState(false);
+  const [textAlt, setTextAlt] = useState(false);
 
   // Redux
   const dispatch = useDispatch();
-  const customer = useSelector(state => state.Customer.customer);
+  const customer = useSelector((state) => state.Customer.customer);
+
+  // Logic control
+  const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
+  const [searching, setSearching] = useState(false);
 
   const searchOptions = [
     { value: "aid", label: "Account ID" },
@@ -49,10 +60,12 @@ function Customer() {
   ];
 
   useEffect(() => {
-    // Update the document title using the browser API
+    setAccountId(customer.accountId);
     setFName(customer.fname);
+    setLName(customer.lname);
+    setEmail(customer.email);
+    setMinit(customer.minit);
   }, [customer]);
-
 
   function handleSearchTypeChanged(type) {
     setSearchByType(type.label);
@@ -66,16 +79,30 @@ function Customer() {
       case "Name":
         break;
       case "Email":
-        dispatch({ type: 'ADD_NEW_CUSTOMER', payload: searchEmail });
+        dispatch(getCustomerByEmail(searchEmail));
+        setSaveButtonDisabled(true);
         break;
       case "Address":
         break;
     }
   }
 
+  function handleSaveButtonClicked() {
+    let modifiedCustomer = {
+      fname: fname,
+      lname: lname,
+      email: email,
+      accountId: accountId,
+      minit: minit
+    };
 
-  function handleInputTextChangedEvent(e) {
+    dispatch(saveCustomer(modifiedCustomer));
+    
+  }
+
+  function handleInputChangedEvent(e) {
     let value = e.target.value;
+    setSaveButtonDisabled(false);
     switch (e.target.id) {
       case "search_account_id":
         setSearchAccountId(value);
@@ -105,12 +132,17 @@ function Customer() {
         setFName(value);
         break;
       case "last_name":
-      
+        setLName(value);
+        break;
+      case "account_id":
+        setAccountId(value);
+        break;
+      case "email":
+        setEmail(value);
         break;
       default:
         return;
     }
-
   }
 
   function renderSearchOptions() {
@@ -135,7 +167,7 @@ function Customer() {
                 placeholder={"Last Name"}
                 class="form-control"
                 type="text"
-                onChange={handleInputTextChangedEvent}
+                onChange={(e) => setSearchLastName(e.target.value)}
               />{" "}
             </Col>
           </Row>
@@ -150,7 +182,7 @@ function Customer() {
                 placeholder={"Account ID"}
                 class="form-control"
                 type="text"
-                onChange={handleInputTextChangedEvent}
+                onChange={(e) => setSearchAccountId(e.target.value)}
               />
             </Col>
           </Row>
@@ -165,7 +197,7 @@ function Customer() {
                 placeholder={"Street"}
                 class="form-control"
                 type="text"
-                onChange={handleInputTextChangedEvent}
+                onChange={(e) => setSearchStreet(e.target.value)}
               />
             </Col>
             <Col style={{ paddingLeft: 0 }}>
@@ -175,15 +207,16 @@ function Customer() {
                 placeholder={"City"}
                 class="form-control"
                 type="text"
-                onChange={handleInputTextChangedEvent}
+                onChange={(e) => setSearchCity(e.target.value)}
               />
             </Col>
             <Col style={{ paddingLeft: 0, width: 10 }}>
               <Select
                 id={"search_state"}
+                value={searchState}
                 options={states}
                 placeholder={"State..."}
-                onChange={(text) => setSearchState(text.label)}
+                onChange={(text) => setSearchState(text)}
                 style={{ width: 10 }}
               />
             </Col>
@@ -194,7 +227,7 @@ function Customer() {
                 placeholder={"Zip"}
                 class="form-control"
                 type="text"
-                onChange={handleInputTextChangedEvent}
+                onChange={(e) => setSearchZip(e.target.value)}
               />
             </Col>
           </Row>
@@ -209,7 +242,7 @@ function Customer() {
                 placeholder={"Email"}
                 class="form-control"
                 type="text"
-                onChange={handleInputTextChangedEvent}
+                onChange={(e) => setSearchEmail(e.target.value)}
               />
             </Col>
           </Row>
@@ -238,10 +271,12 @@ function Customer() {
               </Col>
               {renderSearchOptions()}
               <Col>
-                {/* <Button onClick={() => handleSearchButtonClicked()}>
-                  <i class="fa fa-search"></i>
-                </Button> */}
-                <button style={{padding:8, width:50}} onClick={() => handleSearchButtonClicked()} class={"btn-primary  btn-sm"} type="button">
+                <button
+                  style={{ padding: 8, width: 50 }}
+                  onClick={() => handleSearchButtonClicked()}
+                  class={"btn-primary  btn-sm"}
+                  type="button"
+                >
                   <i class="fa fa-search"></i>
                 </button>
               </Col>
@@ -279,34 +314,38 @@ function Customer() {
               </NavItem>
             </Nav>
             <TabContent activeTab={activeTab}>
-
-              {/* Account Information Tab */}
+              {/* Account Information Tab *******************************************************/}
               <TabPane tabId="1">
                 <div className="card" style={{ marginTop: 10 }}>
                   <div className="card-header">
-                    <h5>Account - {lname}, {fname}</h5>
+                    <h5>
+                      Account - {lname}, {fname}
+                    </h5>
                   </div>
                   <div className="card-body">
                     <Row style={{ padding: 0 }}>
                       <Col>
                         <label class="form-label">Account ID</label>
                         <input
+                          id={"account_id"}
+                          value={accountId}
                           class="form-control"
                           type="text"
                           name="accountIdInput"
                           placeholder={"Account ID"}
-                          onChange={(text) => setSearchAccountId(text)}
+                          onChange={(e) => handleInputChangedEvent(e)}
                         />
                       </Col>
                       <Col>
                         <label class="form-label">Email</label>
                         <input
                           id={"email"}
+                          value={email}
                           placeholder={"Email"}
                           class="form-control"
                           type="text"
                           name="emailInput"
-                          onChange={(email) => setSearchFirstName(email)}
+                          onChange={(e) => handleInputChangedEvent(e)}
                         />
                       </Col>
                     </Row>
@@ -320,27 +359,27 @@ function Customer() {
                           type="text"
                           name="firstNameInput"
                           placeholder={"First Name"}
-                          onChange={(e) => console.log(e.target.value)}
+                          onChange={(e) => handleInputChangedEvent(e)}
                         />
                       </Col>
                       <Col style={{ flex: 0.2 }}>
                         <label class="form-label">M.I.</label>
                         <input
                           id={"minit"}
-                          value={customer.miinit}
+                          value={minit}
                           maxLength="1"
                           class="form-control"
                           type="text"
                           name="midInitialInput"
                           placeholder={"M.I."}
-                          onChange={handleInputTextChangedEvent}
+                          onChange={(e) => handleInputChangedEvent(e)}
                         />
                       </Col>
                       <Col style={{ flex: 2 }}>
                         <label class="form-label">Last Name</label>
                         <input
                           id={"last_name"}
-                          value={customer.lname}
+                          value={lname}
                           class="form-control"
                           type="text"
                           name="lastNameInput"
@@ -351,52 +390,92 @@ function Customer() {
                     </Row>
                     <Row style={{ marginLeft: 0, paddingTop: 10 }}>
                       <Row>
-                        <Col>
+                        <Col style={{ width: 400 }}>
                           <label class="form-label">Primary Phone</label>
                           <input
                             id={"primary_phone"}
+                            value={priPhone}
                             maxLength="10"
                             class="form-control"
                             type="text"
                             name="primPhoneInput"
                             placeholder={"(xxx) xxx-xxxx"}
-                            onChange={handleInputTextChangedEvent}
+                            onChange={(e) => handleInputChangedEvent(e)}
                           />
                         </Col>
-                      </Row>
-                      <Row style={{ marginLeft: 10 }}>
                         <Col>
+                          <label class="form-label">Contact By:</label>
+                          <div class="checkbox">
+                            <input
+                              id={"primCallCheckbox"}
+                              type="checkbox"
+                              value={callPrim}
+                            />
+                            <label
+                              for="primCallCheckbox"
+                              style={{ marginLeft: 10 }}
+                            >
+                              Call
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <input
+                              id={"primTextCheckbox"}
+                              type="checkbox"
+                              value={textPrim}
+                              name="altPrefRadio"
+                            />
+                            <label
+                              for="primTextCheckbox"
+                              style={{ marginLeft: 10 }}
+                            >
+                              Text
+                            </label>
+                          </div>
+                        </Col>
+                      </Row>
+                      <Row style={{ marginLeft: 0 }}>
+                        <Col style={{ width: 400 }}>
                           <label class="form-label">Alternate Phone</label>
                           <input
                             id={"alt_phone"}
+                            value={altPhone}
                             maxLength="10"
                             class="form-control"
                             type="text"
                             name="altPhoneInput"
                             placeholder={"(xxx) xxx-xxxx"}
-                            onChange={handleInputTextChangedEvent}
+                            onChange={(e) => handleInputChangedEvent(e)}
                           />
                         </Col>
                         <Col>
-                          <label class="form-label" style={{ marginTop: 0 }}>
-                            Preferred
-                          </label>
-                          <br />
-                          <div class="radio radio-primary">
+                          <label class="form-label">Contact By:</label>
+                          <div class="checkbox">
                             <input
-                              // style={{ margin: 10 }}
-                              type="radio"
-                              value="prim"
-                              name="primPrefRadio"
+                              id={"altCallCheckbox"}
+                              type="checkbox"
+                              value={callAlt}
                             />
-                            Primary
-                            <input
+                            <label
+                              for="altCallCheckbox"
                               style={{ marginLeft: 10 }}
-                              type="radio"
-                              value="alt"
+                            >
+                              Call
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <input
+                              id={"altTextCheckbox"}
+                              type="checkbox"
+                              value={textAlt}
                               name="altPrefRadio"
                             />
-                            Alt.
+                            <label
+                              for="altTextCheckbox"
+                              style={{ marginLeft: 10 }}
+                            >
+                              Text
+                            </label>
                           </div>
                         </Col>
                       </Row>
@@ -464,7 +543,19 @@ function Customer() {
                         />
                       </Col>
                     </Row>
-                      <button style={{marginTop: 20, width: 150}} class={"btn-primary  btn-lg"} type="button">Save</button>
+                    <button
+                      disabled={saveButtonDisabled}
+                      style={{ marginTop: 20, width: 150 }}
+                      class={
+                        saveButtonDisabled
+                          ? "btn-default btn-lg"
+                          : "btn-primary btn-lg"
+                      }
+                      type="button"
+                      onClick={handleSaveButtonClicked}
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
               </TabPane>
