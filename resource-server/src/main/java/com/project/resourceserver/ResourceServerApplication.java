@@ -23,6 +23,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @SpringBootApplication
 public class ResourceServerApplication implements CommandLineRunner{
 
+
 	@Autowired
 	private AccountRepository accountRepository;
 
@@ -72,11 +73,26 @@ public class ResourceServerApplication implements CommandLineRunner{
 		companyRepository.save(company);
 
 		Customer customer = new Customer();
+		customer.setAccountId("123");
 		customer.setFname("John");
+		customer.setMinit("Z");
 		customer.setLname("Doe");
 		customer.setEmail("johndoe@gmail.com");
+		customer.setPrimaryPhone("6615551234");
+		customer.setAltPhone("6613211568");
 		customer.setCompany(company);
 		customerRepository.save(customer);
+
+		Customer customer2 = new Customer();
+		customer2.setAccountId("A-96582");
+		customer2.setFname("Zark");
+		customer2.setMinit("A");
+		customer2.setLname("Fuckerberg");
+		customer2.setEmail("fuckerberg@gmail.com");
+		customer2.setPrimaryPhone("6152465854");
+		customer2.setAltPhone("9663254125");
+		customer2.setCompany(company);
+		customerRepository.save(customer2);
 
 
 		Route route1 = new Route();
@@ -95,6 +111,18 @@ public class ResourceServerApplication implements CommandLineRunner{
 		geoProperty.setRoute(route1);
 		geoProperty.setOwner(customer);
 		geoPropertyRepository.save(geoProperty);
+
+		GeoProperty geoProperty2 = new GeoProperty();
+		geoProperty2.setPhysStreet("24761 Deertrail Dr");
+		geoProperty2.setPhysCity("Tehachapi");
+		geoProperty2.setPhysState("CA");
+		geoProperty2.setPhysCountry("United States");
+		geoProperty2.setPhysZip("93561");
+		geoProperty2.setLat(35.1788809f);
+		geoProperty2.setLng(-118.649242f);
+		geoProperty2.setRoute(route1);
+		geoProperty2.setOwner(customer);
+		geoPropertyRepository.save(geoProperty2);
 		
 		Route route2 = new Route();
 		route2.setName("Route 2 - Oildale");

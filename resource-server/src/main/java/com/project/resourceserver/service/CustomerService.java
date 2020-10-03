@@ -1,11 +1,15 @@
 package com.project.resourceserver.service;
 
+import java.lang.reflect.Field;
+import java.util.Map;
+
 import com.project.resourceserver.model.Company;
 import com.project.resourceserver.model.Customer;
 import com.project.resourceserver.repository.CompanyRepository;
 import com.project.resourceserver.repository.CustomerRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.ReflectionUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +49,22 @@ public class CustomerService {
 
     public Customer findCustomerByEmail(String email) {
         return customerRepository.findByEmail(email);
+    }
+
+    public Customer updateCustomer(Long customerId, Map<Object, Object> fields) {
+        Customer existingCustomer = customerRepository.findById(customerId).get();
+
+        fields.forEach((key, value) -> {
+            if(!key.equals("id")){
+                Field field = ReflectionUtils.findRequiredField(Customer.class, (String) key);
+                field.setAccessible(true);
+                ReflectionUtils.setField(field, existingCustomer, value);
+            }
+        });
+        
+        Customer returnCustomer = customerRepository.save(existingCustomer);
+
+        return returnCustomer;
     }
     
 }

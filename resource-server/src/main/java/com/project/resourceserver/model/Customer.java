@@ -27,6 +27,9 @@ public class Customer {
     @Column(name = "fname", length = 80)
     private String fname;
 
+    @Column(name = "minit", length = 1)
+    private String minit;
+
     @Column(name = "name", length = 80)
     private String lname;
 
@@ -39,8 +42,11 @@ public class Customer {
     @Column(name = "email", length = 80)
     private String email;
 
+    @Column(name = "account_id")
+    private String accountId;
+
     enum ContactPref {
-        TEXT, CALL, TEXT_OR_CALL
+        CALL, TEXT, TEXT_OR_CALL
     }
 
     @Column(name = "primary_phone_pref")
@@ -203,6 +209,34 @@ public class Customer {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * @return String return the accountId
+     */
+    public String getAccountId() {
+        return accountId;
+    }
+
+    /**
+     * @param accountId the accountId to set
+     */
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
+    /**
+     * @return String return the minit
+     */
+    public String getMinit() {
+        return minit;
+    }
+
+    /**
+     * @param minit the minit to set
+     */
+    public void setMinit(String minit) {
+        this.minit = minit;
     }
 
 }
