@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { Home } from 'react-feather';
 import { Link } from 'react-router-dom'
 import Bookmark from './bookmark';
-import { Button } from "reactstrap";
 
 
 const Breadcrumb = props => {
@@ -10,8 +9,7 @@ const Breadcrumb = props => {
 
     function renderAddCustomerButton(props) {
         if(props.page === "customer")
-            return <Button color="success" type="button">Add New  <i class="fa fa-plus"></i></Button>
-
+            return <button class={"btn btn-pill btn-success btn-air-success btn-sm"} type="button">New Customer  <i class="fa fa-plus"></i></button>
         return null;
     }
 

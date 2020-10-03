@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 export function getCustomerByEmail(email){
-    const config = {
+    const options = {
         method: "get",
         url: "http://localhost:8081/resource/public/customer/email/" + email,
         headers: {
@@ -14,18 +14,27 @@ export function getCustomerByEmail(email){
       };
 
       return(dispatch) => {
-          axios.get(config.url, {data: null}, config.headers)
-            .then((response) => {dispatch({type: UPDATE_CUSTOMER, payload: response.data})})
-            .catch((response) => {return Promise.reject(response)});
+        axios.get(options.url, {data: null}, options.headers)
+          .then((response) => {dispatch({type: UPDATE_CUSTOMER, payload: response.data})})
+          .catch((response) => {return Promise.reject(response)});
       }
-
-
 }
 
 export function  saveCustomer(customer){
-    console.log(customer);
+  const options = {
+    method: "patch",
+    url: 'http://localhost:8081/resource/public/customer/' + customer.id  + '/update',
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    data: customer
+  };
 
-    return(dispatch) => {
-   
-    }
+  return(dispatch) => {
+    axios.patch(options.url, options.data, options.headers)
+      .then((response) => {dispatch({type: UPDATE_CUSTOMER, payload: response.data})})
+      .catch((response) => {return Promise.reject(response)});
+  }
 }
