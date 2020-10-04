@@ -47,7 +47,7 @@ public class CustomerController {
 
         String message = String.format("Customer with id=%d was found.", customer.getId());
         httpHeaders.add("result_msg", message);
-        return new ResponseEntity<>(customer, httpHeaders, HttpStatus.FOUND);
+        return new ResponseEntity<>(customer, httpHeaders, HttpStatus.OK);
 
     }
 

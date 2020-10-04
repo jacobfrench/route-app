@@ -1,8 +1,9 @@
 package com.project.resourceserver.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,14 +17,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
 @Table(name = "geo_property")
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer" })
 public class GeoProperty {
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
@@ -58,6 +55,9 @@ public class GeoProperty {
 
   @Column(name = "linear_sq_ft")
   private float linearSqFt;
+
+  @Column(name = "notes")
+  private String notes;
 
   @ManyToOne
   @JoinColumn(name = "owner_id")
@@ -287,4 +287,17 @@ public class GeoProperty {
     this.zip = zip;
   }
 
+  /**
+   * @return String return the notes
+   */
+  public String getNotes() {
+    return notes;
+  }
+
+  /**
+   * @param notes the notes to set
+   */
+  public void setNotes(String notes) {
+    this.notes = notes;
+  }
 }

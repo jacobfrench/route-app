@@ -9,9 +9,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Toast,
-  ToastHeader,
-  ToastBody,
 } from "reactstrap";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +16,8 @@ import LocationTable from "./locationtable";
 import { getCustomerByEmail, saveCustomer } from "../../actions";
 import { Accordion, AccordionItem } from "react-light-accordion";
 import "react-light-accordion/demo/css/index.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { states } from "../common/values";
 
@@ -44,6 +43,7 @@ function Customer() {
   const [email, setEmail] = useState("");
   const [priPhone, setPriPhone] = useState("");
   const [altPhone, setAltPhone] = useState("");
+  const [locations, setLocations] = useState([]);
 
   const [callPrim, setCallPrim] = useState(false);
   const [textPrim, setTextPrim] = useState(false);
@@ -67,7 +67,7 @@ function Customer() {
   ];
 
   useEffect(() => {
-    console.log("useEffect:");
+    console.log("Start useEffect:");
     console.log(customer);
     setAccountId(customer.accountId);
     setFName(customer.fname);
@@ -76,6 +76,7 @@ function Customer() {
     setMinit(customer.minit);
     setPriPhone(customer.primaryPhone);
     setAltPhone(customer.altPhone);
+    setLocations(customer.locations);
 
     switch (customer.primePref) {
       case 1:
@@ -95,6 +96,7 @@ function Customer() {
         setCallPrim(true);
         break;
     }
+    console.log("End useEffect");
   }, [customer]);
 
   function handleSearchTypeChanged(type) {
@@ -147,6 +149,8 @@ function Customer() {
       }.bind(this),
       3000
     );
+
+    toast.success("Customer has been saved.");
   }
 
   function handleInputChangedEvent(e) {
@@ -202,7 +206,6 @@ function Customer() {
   }
 
   function renderLocationsAccordian() {
-    let locations = customer.locations;
     if (typeof locations === "undefined") return <div></div>;
     return (
       <div className="card" style={{ margin: 5 }}>
@@ -230,7 +233,7 @@ function Customer() {
                     <label class="form-label">Street</label>
                     <input
                       id={"loc_street" + index}
-                      value={location.physStreet}
+                      value={location.street}
                       placeholder={"Street"}
                       class="form-control"
                       type="text"
@@ -241,7 +244,7 @@ function Customer() {
                     <label class="form-label">City</label>
                     <input
                       id={"loc_city" + index}
-                      value={location.physCity}
+                      value={location.city}
                       placeholder={"City"}
                       class="form-control"
                       type="text"
@@ -250,21 +253,28 @@ function Customer() {
                   </Col>
                   <Col>
                     <label class="form-label">State</label>
-                    <input
+                    {/* <input
                       id={"loc_state" + index}
-                      style={{ width: 150 }}
                       value={location.physState}
                       placeholder={"State"}
                       class="form-control"
                       type="text"
                       // onChange={(e) => setSearchLastName(e.target.value)}
+                    /> */}
+                    <Select
+                      id={"loc_state"}
+                      value={location.state}
+                      options={states}
+                      placeholder={"State..."}
+                      // onChange={(text) => setSearchState(text)}
+                      // onKeyPress={(e) => handleKeyPress(e)}
                     />
                   </Col>
                   <Col>
                     <label class="form-label">Zip</label>
                     <input
                       id={"loc_zip" + index}
-                      value={location.physZip}
+                      value={location.zip}
                       placeholder={"Zip"}
                       class="form-control"
                       type="text"
@@ -276,16 +286,6 @@ function Customer() {
             </AccordionItem>
           </Accordion>
         ))}
-        <Row>
-          <button
-            style={{margin:15}}
-            // onClick={() => handleSearchButtonClicked()}
-            class={"btn btn-pill btn-primary btn-air-primary btn-sm"}
-            type="button"
-          >
-            Add Location <i class="fa fa-plus"></i>
-          </button>
-        </Row>
       </div>
     );
   }
@@ -406,18 +406,6 @@ function Customer() {
   }
 
   function renderSaveButton() {
-    // if(showToast) {
-    //   return (
-    //     <Row>
-    //       <Col style={{ backgroundColor:"yellow", justifyContent: 'center', alignItems: 'center', padding: 10, width:100 }}>
-    //         <Toast isOpen={showToast}>
-    //           <ToastHeader>Customer Saved</ToastHeader>
-    //         </Toast>
-    //       </Col>
-    //     </Row>
-    //   );
-    // }
-
     return (
       <Row>
         <Col style={{ flex: 0.1 }}>
@@ -432,7 +420,7 @@ function Customer() {
             type="button"
             onClick={handleSaveButtonClicked}
           >
-            {saveButtonDisabled ? "Customer Saved" : "Save"}
+            Save
           </button>
         </Col>
       </Row>
@@ -445,379 +433,360 @@ function Customer() {
 
       <div className="container-fluid">
         {/* <div className="col-sm-12"> */}
-          {/* <Container style={{ margin: 0, marginLeft: 0, paddingLeft: 0 }}> */}
-            <h6>Search By:</h6>
-            <Row>
-              <Col className={"col-sm-2"}>
-                <Select
-                  options={searchOptions}
-                  placeholder={"Search by..."}
-                  onChange={(type) => handleSearchTypeChanged(type)}
-                  style={{ paddingRight: 10 }}
-                />
-              </Col>
-              {renderSearchOptions()}
-              <Col>
-                <button
-                  style={{ padding: 8, width: 50 }}
-                  onClick={() => handleSearchButtonClicked()}
-                  class={"btn btn-pill btn-primary btn-air-primary btn-sm"}
-                  type="button"
-                >
-                  <i class="fa fa-search"></i>
-                </button>
-              </Col>
-            </Row>
-          {/* </Container> */}
-          {/* <div className="card"> */}
-            <div className="card-body">
-              <Nav tabs className="border-tab-primary">
-                <NavItem className="nav nav-tabs" id="infoTab" role="tablist">
-                  <NavLink
-                    className={activeTab === "1" ? "active" : ""}
-                    onClick={() => setActiveTab("1")}
-                  >
-                    ACCOUNT
-                  </NavLink>
-                </NavItem>
-                <NavItem
-                  className="nav nav-tabs"
-                  id="locationTab"
-                  role="tablist"
-                >
-                  <NavLink
-                    className={activeTab === "2" ? "active" : ""}
-                    onClick={() => setActiveTab("2")}
-                  >
-                    LOCATIONS
-                  </NavLink>
-                </NavItem>
-                <NavItem
-                  className="nav nav-tabs"
-                  id="serviceHisTab"
-                  role="tablist"
-                >
-                  <NavLink
-                    className={activeTab === "3" ? "active" : ""}
-                    onClick={() => setActiveTab("3")}
-                  >
-                    SERVICE HISTORY
-                  </NavLink>
-                </NavItem>
-              </Nav>
-              <TabContent activeTab={activeTab}>
-                {/* Account Information Tab *******************************************************/}
-                <TabPane tabId="1">
-                  <div className="card" style={{ marginTop: 10 }}>
-                    <div className="card-header">
-                      <h5>
-                        Account - {lname}, {fname}
-                      </h5>
-                    </div>
-                    <div className="card-body">
-                      <Row style={{ padding: 0 }}>
-                        <Col>
-                          <label class="form-label">Account ID</label>
-                          <input
-                            id={"account_id"}
-                            value={accountId}
-                            class="form-control"
-                            type="text"
-                            placeholder={"Account ID"}
-                            disabled={
-                              typeof customer.id === "undefined" ? true : false
-                            }
-                            onChange={(e) => handleInputChangedEvent(e)}
-                          />
-                        </Col>
-                        <Col>
-                          <label class="form-label">Email</label>
-                          <input
-                            id={"email"}
-                            value={email}
-                            placeholder={"Email"}
-                            class="form-control"
-                            type="text"
-                            disabled={
-                              typeof customer.id === "undefined" ? true : false
-                            }
-                            onChange={(e) => handleInputChangedEvent(e)}
-                          />
-                        </Col>
-                      </Row>
-                      <Row style={{ paddingTop: 10 }}>
-                        <Col style={{ flex: 2 }}>
-                          <label class="form-label">First Name</label>
-                          <input
-                            id={"first_name"}
-                            value={fname}
-                            class="form-control"
-                            type="text"
-                            disabled={
-                              typeof customer.id === "undefined" ? true : false
-                            }
-                            placeholder={"First Name"}
-                            onChange={(e) => handleInputChangedEvent(e)}
-                          />
-                        </Col>
-                        <Col style={{ flex: 0.2 }}>
-                          <label class="form-label">M.I.</label>
-                          <input
-                            id={"minit"}
-                            value={minit}
-                            maxLength="1"
-                            class="form-control"
-                            type="text"
-                            disabled={
-                              typeof customer.id === "undefined" ? true : false
-                            }
-                            placeholder={"M.I."}
-                            onChange={(e) => handleInputChangedEvent(e)}
-                          />
-                        </Col>
-                        <Col style={{ flex: 2 }}>
-                          <label class="form-label">Last Name</label>
-                          <input
-                            id={"last_name"}
-                            value={lname}
-                            class="form-control"
-                            type="text"
-                            disabled={
-                              typeof customer.id === "undefined" ? true : false
-                            }
-                            placeholder={"Last Name"}
-                            onChange={(e) => setLName(e.target.value)}
-                          />
-                        </Col>
-                      </Row>
-                      <Row style={{ marginLeft: 0, paddingTop: 10 }}>
-                        <Row>
-                          <Col style={{ width: 400 }}>
-                            <label class="form-label">Primary Phone</label>
-                            <input
-                              id={"primary_phone"}
-                              value={priPhone}
-                              maxLength="10"
-                              class="form-control"
-                              type="text"
-                              placeholder={"(xxx) xxx-xxxx"}
-                              disabled={
-                                typeof customer.id === "undefined"
-                                  ? true
-                                  : false
-                              }
-                              onChange={(e) => handleInputChangedEvent(e)}
-                            />
-                          </Col>
-                          <Col>
-                            <label class="form-label">Contact By:</label>
-                            <div class="checkbox">
-                              <input
-                                id={"primCallCheckbox"}
-                                type="checkbox"
-                                checked={callPrim}
-                                onChange={(e) => {
-                                  setSaveButtonDisabled(false);
-                                  setCallPrim(e.target.checked);
-                                }}
-                              />
-                              <label
-                                for="primCallCheckbox"
-                                style={{ marginLeft: 10 }}
-                              >
-                                Call
-                              </label>
-                            </div>
-                            <div class="checkbox">
-                              <input
-                                id={"primTextCheckbox"}
-                                type="checkbox"
-                                checked={textPrim}
-                                onChange={(e) => {
-                                  setSaveButtonDisabled(false);
-                                  setTextPrim(e.target.checked);
-                                }}
-                              />
-                              <label
-                                for="primTextCheckbox"
-                                style={{ marginLeft: 10 }}
-                              >
-                                Text
-                              </label>
-                            </div>
-                          </Col>
-                        </Row>
-                        <Row style={{ marginLeft: 0 }}>
-                          <Col style={{ width: 400 }}>
-                            <label class="form-label">Alternate Phone</label>
-                            <input
-                              id={"alt_phone"}
-                              value={altPhone}
-                              maxLength="10"
-                              class="form-control"
-                              type="text"
-                              disabled={
-                                typeof customer.id === "undefined"
-                                  ? true
-                                  : false
-                              }
-                              placeholder={"(xxx) xxx-xxxx"}
-                              onChange={(e) => handleInputChangedEvent(e)}
-                            />
-                          </Col>
-                          <Col>
-                            <label class="form-label">Contact By:</label>
-                            <div class="checkbox">
-                              <input
-                                id={"alt_phone_call_checkbox"}
-                                type="checkbox"
-                                value={callAlt}
-                                onChange={(e) => setCallAlt(e.target.checked)}
-                              />
-                              <label
-                                for="alt_phone_call_checkbox"
-                                style={{ marginLeft: 10 }}
-                              >
-                                Call
-                              </label>
-                            </div>
-                            <div class="checkbox">
-                              <input
-                                id={"alt_phone_text_checkbox"}
-                                type="checkbox"
-                                value={textAlt}
-                                onChange={(e) => setTextAlt(e.target.checked)}
-                              />
-                              <label
-                                for="altTextCheckbox"
-                                style={{ marginLeft: 10 }}
-                              >
-                                Text
-                              </label>
-                            </div>
-                          </Col>
-                        </Row>
-                      </Row>
-
-                      <h5
-                        style={{
-                          fontStyle: "bold",
-                          marginTop: 40,
-                          marginBottom: 10,
-                        }}
-                      >
-                        Mailing Address
-                      </h5>
-                      <Row>
-                        <Col style={{ flex: 1 }}>
-                          <label class="form-label">Street</label>
-                          <input
-                            id={"street_address"}
-                            maxLength="100"
-                            class="form-control"
-                            type="text"
-                            name="mailingStreet"
-                            placeholder={"Street Address"}
-                          />
-                        </Col>
-                        <Col style={{ flex: 1 }}>
-                          <label class="form-label">City</label>
-                          <input
-                            maxLength="100"
-                            class="form-control"
-                            type="text"
-                            name="mailingCity"
-                            placeholder={"City"}
-                          />
-                        </Col>
-                        <Col style={{ flex: 0.2 }}>
-                          <label class="form-label">State</label>
-                          <input
-                            maxLength="2"
-                            class="form-control"
-                            type="text"
-                            name="mailingState"
-                            placeholder={"State"}
-                          />
-                        </Col>
-                        <Col style={{ flex: 1 }}>
-                          <label class="form-label">County</label>
-                          <input
-                            maxLength="15"
-                            class="form-control"
-                            type="text"
-                            name="mailingCounty"
-                            placeholder={"County"}
-                          />
-                        </Col>
-                        <Col style={{ flex: 0.5 }}>
-                          <label class="form-label">Zip</label>
-                          <input
-                            maxLength="5"
-                            class="form-control"
-                            type="text"
-                            name="mailingZip"
-                            placeholder={"Zip"}
-                          />
-                        </Col>
-                      </Row>
-                      {/* <Row>
-                        <Col style={{flex: 0.1}}>
-                          <button
-                            disabled={saveButtonDisabled}
-                            style={{ marginTop: 20, width: 150 }}
-                            class={
-                              saveButtonDisabled
-                                ? "btn btn-pill btn-default btn-air-default btn-lg"
-                                : "btn btn-pill btn-primary btn-air-primary btn-lg"
-                            }
-                            type="button"
-                            onClick={handleSaveButtonClicked}
-                          >
-                            Save
-                          </button>
-                        </Col>
-                        <Col style={{ flex: 1, marginTop: 30 }}>
-                          <Toast isOpen={showToast}>
-                            <ToastHeader>Customer Saved.</ToastHeader>
-                          </Toast>
-                        </Col>
-                      </Row> */}
-                      {renderSaveButton()}
-                    </div>
-                  </div>
-                </TabPane>
-                <TabPane tabId="2">{renderLocationsAccordian()}</TabPane>
-                <TabPane tabId="3">
-                  <Row style={{ margin: 10 }}>
-                    <Col style={{ paddingLeft: 0, width: 10 }}>
-                      <Select
-                        id={"select_location"}
-                        options={[
-                          {
-                            value: "test",
-                            label:
-                              "12255 Burbank Blvd. North Hollywood, CA 91607",
-                          },
-                        ]}
-                        placeholder={"Select Location..."}
-                        onChange={(text) => setSearchState(text.label)}
-                        style={{ width: 10 }}
-                      />
-                      <div className="card" style={{ marginTop: 10 }}>
-                        <div className="card-header">
-                          <h5>Service History - Smith, John</h5>
-                        </div>
-                        <div className="card-body datatable-react">
-                          <LocationTable data={null} columns={null} />
-                        </div>
-                      </div>
-                    </Col>
-                  </Row>
-                </TabPane>
-              </TabContent>
-            </div>
+        {/* <Container style={{ margin: 0, marginLeft: 0, paddingLeft: 0 }}> */}
+        <h6>Search By:</h6>
+        <Row>
+          <Col className={"col-sm-2"}>
+            <Select
+              options={searchOptions}
+              placeholder={"Search by..."}
+              onChange={(type) => handleSearchTypeChanged(type)}
+              style={{ paddingRight: 10 }}
+            />
+          </Col>
+          {renderSearchOptions()}
+          <Col>
+            <button
+              style={{ padding: 8, width: 50 }}
+              onClick={() => handleSearchButtonClicked()}
+              class={"btn btn-pill btn-primary btn-air-primary btn-sm"}
+              type="button"
+            >
+              <i class="fa fa-search"></i>
+            </button>
+          </Col>
+        </Row>
+        {/* </Container> */}
+        <div className="card" style={{ margin: 10 }}>
+          <div className="card-header">
+            <h5>Account - {fname} {minit}, {lname}</h5>
           </div>
+          <div className="card-body tabbed-card">
+            <Nav tabs className="nav-pills nav-primary">
+              <NavItem className="nav nav-tabs" id="myTab" role="tablist">
+                <NavLink
+                  className={activeTab === "1" ? "active" : ""}
+                  onClick={() => setActiveTab("1")}
+                >
+                  <i className="icofont icofont-user"></i> Account
+                </NavLink>
+              </NavItem>
+              <NavItem className="nav nav-tabs" id="myTab" role="tablist">
+                <NavLink
+                  className={activeTab === "2" ? "active" : ""}
+                  onClick={() => setActiveTab("2")}
+                >
+                  <i className="icofont icofont-home"></i> Locations
+                </NavLink>
+              </NavItem>
+              <NavItem className="nav nav-tabs" id="myTab" role="tablist">
+                <NavLink
+                  className={activeTab === "3" ? "active" : ""}
+                  onClick={() => setActiveTab("3")}
+                >
+                  <i className="icofont icofont-history"></i> Service History
+                </NavLink>
+              </NavItem>
+            </Nav>
+            <TabContent activeTab={activeTab}>
+              {/* Account Information Tab *******************************************************/}
+              <TabPane tabId="1">
+                <div className="card" style={{ marginTop: 10 }}>
+                  {/* <div className="card-header">
+                <h5>
+                  Account - {lname}, {fname}
+                </h5>
+              </div> */}
+                  {/* <div className="card-body"> */}
+                    <Row style={{ padding: 0 }}>
+                      <Col>
+                        <label class="form-label">Account ID</label>
+                        <input
+                          id={"account_id"}
+                          value={accountId}
+                          class="form-control"
+                          type="text"
+                          placeholder={"Account ID"}
+                          disabled={
+                            typeof customer.id === "undefined" ? true : false
+                          }
+                          onChange={(e) => handleInputChangedEvent(e)}
+                        />
+                      </Col>
+                      <Col>
+                        <label class="form-label">Email</label>
+                        <input
+                          id={"email"}
+                          value={email}
+                          placeholder={"Email"}
+                          class="form-control"
+                          type="text"
+                          disabled={
+                            typeof customer.id === "undefined" ? true : false
+                          }
+                          onChange={(e) => handleInputChangedEvent(e)}
+                        />
+                      </Col>
+                    </Row>
+                    <Row style={{ paddingTop: 10 }}>
+                      <Col style={{ flex: 2 }}>
+                        <label class="form-label">First Name</label>
+                        <input
+                          id={"first_name"}
+                          value={fname}
+                          class="form-control"
+                          type="text"
+                          disabled={
+                            typeof customer.id === "undefined" ? true : false
+                          }
+                          placeholder={"First Name"}
+                          onChange={(e) => handleInputChangedEvent(e)}
+                        />
+                      </Col>
+                      <Col style={{ flex: 0.2 }}>
+                        <label class="form-label">M.I.</label>
+                        <input
+                          id={"minit"}
+                          value={minit}
+                          maxLength="1"
+                          class="form-control"
+                          type="text"
+                          disabled={
+                            typeof customer.id === "undefined" ? true : false
+                          }
+                          placeholder={"M.I."}
+                          onChange={(e) => handleInputChangedEvent(e)}
+                        />
+                      </Col>
+                      <Col style={{ flex: 2 }}>
+                        <label class="form-label">Last Name</label>
+                        <input
+                          id={"last_name"}
+                          value={lname}
+                          class="form-control"
+                          type="text"
+                          disabled={
+                            typeof customer.id === "undefined" ? true : false
+                          }
+                          placeholder={"Last Name"}
+                          onChange={(e) => setLName(e.target.value)}
+                        />
+                      </Col>
+                    </Row>
+                    <Row style={{ marginLeft: 0, paddingTop: 10 }}>
+                      <Row>
+                        <Col style={{ width: 400 }}>
+                          <label class="form-label">Primary Phone</label>
+                          <input
+                            id={"primary_phone"}
+                            value={priPhone}
+                            maxLength="10"
+                            class="form-control"
+                            type="text"
+                            placeholder={"(xxx) xxx-xxxx"}
+                            disabled={
+                              typeof customer.id === "undefined" ? true : false
+                            }
+                            onChange={(e) => handleInputChangedEvent(e)}
+                          />
+                        </Col>
+                        <Col>
+                          <label class="form-label">Contact By:</label>
+                          <div class="checkbox">
+                            <input
+                              id={"primCallCheckbox"}
+                              type="checkbox"
+                              checked={callPrim}
+                              onChange={(e) => {
+                                setSaveButtonDisabled(false);
+                                setCallPrim(e.target.checked);
+                              }}
+                            />
+                            <label
+                              for="primCallCheckbox"
+                              style={{ marginLeft: 10 }}
+                            >
+                              Call
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <input
+                              id={"primTextCheckbox"}
+                              type="checkbox"
+                              checked={textPrim}
+                              onChange={(e) => {
+                                setSaveButtonDisabled(false);
+                                setTextPrim(e.target.checked);
+                              }}
+                            />
+                            <label
+                              for="primTextCheckbox"
+                              style={{ marginLeft: 10 }}
+                            >
+                              Text
+                            </label>
+                          </div>
+                        </Col>
+                      </Row>
+                      <Row style={{ marginLeft: 0 }}>
+                        <Col style={{ width: 400 }}>
+                          <label class="form-label">Alternate Phone</label>
+                          <input
+                            id={"alt_phone"}
+                            value={altPhone}
+                            maxLength="10"
+                            class="form-control"
+                            type="text"
+                            disabled={
+                              typeof customer.id === "undefined" ? true : false
+                            }
+                            placeholder={"(xxx) xxx-xxxx"}
+                            onChange={(e) => handleInputChangedEvent(e)}
+                          />
+                        </Col>
+                        <Col>
+                          <label class="form-label">Contact By:</label>
+                          <div class="checkbox">
+                            <input
+                              id={"alt_phone_call_checkbox"}
+                              type="checkbox"
+                              value={callAlt}
+                              onChange={(e) => setCallAlt(e.target.checked)}
+                            />
+                            <label
+                              for="alt_phone_call_checkbox"
+                              style={{ marginLeft: 10 }}
+                            >
+                              Call
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <input
+                              id={"alt_phone_text_checkbox"}
+                              type="checkbox"
+                              value={textAlt}
+                              onChange={(e) => setTextAlt(e.target.checked)}
+                            />
+                            <label
+                              for="altTextCheckbox"
+                              style={{ marginLeft: 10 }}
+                            >
+                              Text
+                            </label>
+                          </div>
+                        </Col>
+                      </Row>
+                    </Row>
+
+                    <h5
+                      style={{
+                        fontStyle: "bold",
+                        marginTop: 40,
+                        marginBottom: 10,
+                      }}
+                    >
+                      Mailing Address
+                    </h5>
+                    <Row>
+                      <Col style={{ flex: 1 }}>
+                        <label class="form-label">Street</label>
+                        <input
+                          id={"street_address"}
+                          maxLength="100"
+                          class="form-control"
+                          type="text"
+                          name="mailingStreet"
+                          placeholder={"Street Address"}
+                        />
+                      </Col>
+                      <Col style={{ flex: 1 }}>
+                        <label class="form-label">City</label>
+                        <input
+                          maxLength="100"
+                          class="form-control"
+                          type="text"
+                          name="mailingCity"
+                          placeholder={"City"}
+                        />
+                      </Col>
+                      <Col style={{ flex: 0.2 }}>
+                        <label class="form-label">State</label>
+                        <input
+                          maxLength="2"
+                          class="form-control"
+                          type="text"
+                          name="mailingState"
+                          placeholder={"State"}
+                        />
+                      </Col>
+                      <Col style={{ flex: 1 }}>
+                        <label class="form-label">County</label>
+                        <input
+                          maxLength="15"
+                          class="form-control"
+                          type="text"
+                          name="mailingCounty"
+                          placeholder={"County"}
+                        />
+                      </Col>
+                      <Col style={{ flex: 0.5 }}>
+                        <label class="form-label">Zip</label>
+                        <input
+                          maxLength="5"
+                          class="form-control"
+                          type="text"
+                          name="mailingZip"
+                          placeholder={"Zip"}
+                        />
+                      </Col>
+                    </Row>
+                    {renderSaveButton()}
+                  </div>
+                {/* </div> */}
+              </TabPane>
+              <TabPane tabId="2">
+                {renderLocationsAccordian()}
+                <Row>
+                  <button
+                    style={{ margin: 15, marginLeft: 20 }}
+                    onClick={() => alert("Add Location +")}
+                    class={"btn btn-pill btn-primary btn-air-primary btn-sm"}
+                    type="button"
+                  >
+                    Add Location <i class="fa fa-plus"></i>
+                  </button>
+                </Row>
+              </TabPane>
+              <TabPane tabId="3">
+                <Row style={{ margin: 10 }}>
+                  <Col style={{ paddingLeft: 0, width: 10 }}>
+                    <Select
+                      id={"select_location"}
+                      options={[
+                        {
+                          value: "test",
+                          label:
+                            "12255 Burbank Blvd. North Hollywood, CA 91607",
+                        },
+                      ]}
+                      placeholder={"Select Location..."}
+                      onChange={(text) => setSearchState(text.label)}
+                      style={{ width: 10 }}
+                    />
+                    {/* <div className="card" style={{ marginTop: 10 }}> */}
+                      {/* <div className="card-body datatable-react"> */}
+                        <LocationTable data={null} columns={null} />
+                      {/* </div> */}
+                    {/* </div> */}
+                  </Col>
+                </Row>
+              </TabPane>
+            </TabContent>
+          </div>
+        </div>
+      </div>
+      {/* </div> */}
+      <ToastContainer />
     </Fragment>
   );
 }

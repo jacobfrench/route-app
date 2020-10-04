@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Button } from "reactstrap";
 
 import ReactTable from "react-table";
@@ -63,7 +63,11 @@ const columns = [
 
 const LocationTable = (props) => {
   // let {data, columns} = props;
-  return <ReactTable data={data} columns={columns} />;
+  return (
+    <Fragment>
+      <ReactTable data={data} columns={columns} />;
+    </Fragment>
+  )
 };
 
 export default LocationTable;
