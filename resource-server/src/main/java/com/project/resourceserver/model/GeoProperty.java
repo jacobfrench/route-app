@@ -19,8 +19,6 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 @Table(name = "geo_property")
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer" })
@@ -31,41 +29,26 @@ public class GeoProperty {
   @Column(name = "id")
   private Long id;
 
-  @Column(name = "phys_street", length = 25)
-  private String physStreet;
+  @Column(name = "street", length = 80)
+  private String Street;
 
-  @Column(name = "phys_city", length = 17)
-  private String physCity;
+  @Column(name = "city", length = 17)
+  private String city;
 
-  @Column(name = "phys_state", length = 2)
-  private String physState;
+  @Column(name = "state", length = 2)
+  private String state;
 
-  @Column(name = "phys_country", length = 25)
-  private String physCountry;
+  @Column(name = "country", length = 25)
+  private String country;
 
-  @Column(name = "phys_zip", length = 5)
-  private String physZip;
+  @Column(name = "zip", length = 10)
+  private String zip;
 
-  @Column(name = "phys_lat")
+  @Column(name = "lat")
   private float lat;
 
-  @Column(name = "phys_lng")
+  @Column(name = "lng")
   private float lng;
-
-  @Column(name = "bill_street", length = 25)
-  private String billStreet;
-
-  @Column(name = "bill_city", length = 17)
-  private String billCity;
-
-  @Column(name = "bill_state", length = 2)
-  private String billState;
-
-  @Column(name = "bill_country", length = 25)
-  private String billCountry;
-
-  @Column(name = "bill_zip", length = 5)
-  private String billZip;
 
   @Column(name = "property_sq_ft")
   private float propertySqFt;
@@ -109,73 +92,17 @@ public class GeoProperty {
   }
 
   /**
-   * @return String return the physStreet
+   * @return String return the Street
    */
-  public String getPhysStreet() {
-    return physStreet;
+  public String getStreet() {
+    return Street;
   }
 
   /**
-   * @param physStreet the physStreet to set
+   * @param Street the Street to set
    */
-  public void setPhysStreet(String physStreet) {
-    this.physStreet = physStreet;
-  }
-
-  /**
-   * @return String return the physCity
-   */
-  public String getPhysCity() {
-    return physCity;
-  }
-
-  /**
-   * @param physCity the physCity to set
-   */
-  public void setPhysCity(String physCity) {
-    this.physCity = physCity;
-  }
-
-  /**
-   * @return String return the physState
-   */
-  public String getPhysState() {
-    return physState;
-  }
-
-  /**
-   * @param physState the physState to set
-   */
-  public void setPhysState(String physState) {
-    this.physState = physState;
-  }
-
-  /**
-   * @return String return the physCountry
-   */
-  public String getPhysCountry() {
-    return physCountry;
-  }
-
-  /**
-   * @param physCountry the physCountry to set
-   */
-  public void setPhysCountry(String physCountry) {
-    this.physCountry = physCountry;
-  }
-
-  /**
-   * @return String return the physZip
-   */
-  public String getPhysZip() {
-    return physZip;
-  }
-
-  /**
-   * @param physZip the physZip to set
-   */
-  public void setPhysZip(String physZip) {
-    this.physZip = physZip;
+  public void setStreet(String Street) {
+    this.Street = Street;
   }
 
   /**
@@ -204,76 +131,6 @@ public class GeoProperty {
    */
   public void setLng(float lng) {
     this.lng = lng;
-  }
-
-  /**
-   * @return String return the billStreet
-   */
-  public String getBillStreet() {
-    return billStreet;
-  }
-
-  /**
-   * @param billStreet the billStreet to set
-   */
-  public void setBillStreet(String billStreet) {
-    this.billStreet = billStreet;
-  }
-
-  /**
-   * @return String return the billCity
-   */
-  public String getBillCity() {
-    return billCity;
-  }
-
-  /**
-   * @param billCity the billCity to set
-   */
-  public void setBillCity(String billCity) {
-    this.billCity = billCity;
-  }
-
-  /**
-   * @return String return the billState
-   */
-  public String getBillState() {
-    return billState;
-  }
-
-  /**
-   * @param billState the billState to set
-   */
-  public void setBillState(String billState) {
-    this.billState = billState;
-  }
-
-  /**
-   * @return String return the billCountry
-   */
-  public String getBillCountry() {
-    return billCountry;
-  }
-
-  /**
-   * @param billCountry the billCountry to set
-   */
-  public void setBillCountry(String billCountry) {
-    this.billCountry = billCountry;
-  }
-
-  /**
-   * @return String return the billZip
-   */
-  public String getBillZip() {
-    return billZip;
-  }
-
-  /**
-   * @param billZip the billZip to set
-   */
-  public void setBillZip(String billZip) {
-    this.billZip = billZip;
   }
 
   /**
@@ -372,6 +229,62 @@ public class GeoProperty {
    */
   public void setId(Long id) {
     this.id = id;
+  }
+
+  /**
+   * @return String return the city
+   */
+  public String getCity() {
+    return city;
+  }
+
+  /**
+   * @param city the city to set
+   */
+  public void setCity(String city) {
+    this.city = city;
+  }
+
+  /**
+   * @return String return the state
+   */
+  public String getState() {
+    return state;
+  }
+
+  /**
+   * @param state the state to set
+   */
+  public void setState(String state) {
+    this.state = state;
+  }
+
+  /**
+   * @return String return the country
+   */
+  public String getCountry() {
+    return country;
+  }
+
+  /**
+   * @param country the country to set
+   */
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
+  /**
+   * @return String return the zip
+   */
+  public String getZip() {
+    return zip;
+  }
+
+  /**
+   * @param zip the zip to set
+   */
+  public void setZip(String zip) {
+    this.zip = zip;
   }
 
 }

@@ -15,7 +15,8 @@ if __name__ == "__main__":
         lat = line[4].strip()
         lng = line[5].strip()
 
-        print('{"%s":"%s","%s":"%s","%s":"%s","%s":"%s","%s":"%s","%s":"%s"},' % ("street", street, "city", city, "state", state, "zip", zip_code, "lat", lat, "lng", lng))
+        if(len(zip) <= 5):
+            print('{"%s":"%s","%s":"%s","%s":"%s","%s":"%s","%s":"%s","%s":"%s"},' % ("street", street, "city", city, "state", state, "zip", zip_code, "lat", lat, "lng", lng))
 
         # {"accountId":32995,"fname":"Nellie","lname":"Timperley","email":"ntimperleyf@cargocollective.com","minit":"G","priPhone":"6098083344","altPhone":"5186413536"},
 

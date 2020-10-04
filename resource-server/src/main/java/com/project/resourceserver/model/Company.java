@@ -107,6 +107,7 @@ public class Company {
     tags = new HashSet<>();
     taxes = new HashSet<>();
     materials = new HashSet<>();
+    geoProperties = new HashSet<>();
   }
 
   /**

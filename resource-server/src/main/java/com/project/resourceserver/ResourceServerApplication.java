@@ -40,8 +40,7 @@ import org.springframework.core.io.ResourceLoader;
 
 @EnableResourceServer
 @SpringBootApplication
-public class ResourceServerApplication implements CommandLineRunner{
-
+public class ResourceServerApplication implements CommandLineRunner {
 
 	@Autowired
 	private AccountRepository accountRepository;
@@ -56,10 +55,10 @@ public class ResourceServerApplication implements CommandLineRunner{
 	private GeoPropertyRepository geoPropertyRepository;
 
 	@Autowired
-  private CustomerRepository customerRepository;
-  
-  @Autowired
-  private ResourceLoader resourceLoader;
+	private CustomerRepository customerRepository;
+
+	@Autowired
+	private ResourceLoader resourceLoader;
 
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -73,14 +72,12 @@ public class ResourceServerApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
+
 		// Account account = new Account();
 		// account.setUsername("jakefrench84@gmail.com");
 		// account.setPassword(passwordEncoder.encode("password"));
 		// account.setVerified(true);
 		// accountRepository.save(account);
-
-		
 
 		// Company company = new Company();
 		// company.setName("Natrix Pest Control");
@@ -116,11 +113,7 @@ public class ResourceServerApplication implements CommandLineRunner{
 		// customer2.setCompany(company);
 		// customerRepository.save(customer2);
 
-
-		// Route route1 = new Route();
-		// route1.setName("Route 1 - Rosedale");
-		// route1.setCompany(company);
-		// routeRepository.save(route1);
+		
 
 		// GeoProperty geoProperty = new GeoProperty();
 		// geoProperty.setPhysStreet("6000 Burke Way");
@@ -145,17 +138,17 @@ public class ResourceServerApplication implements CommandLineRunner{
 		// geoProperty2.setRoute(route1);
 		// geoProperty2.setOwner(customer);
 		// geoPropertyRepository.save(geoProperty2);
-		
+
 		// Route route2 = new Route();
 		// route2.setName("Route 2 - Oildale");
 		// route2.setCompany(company);
-    // routeRepository.save(route2);
-    populateWithMockData();
-  }
-  
-  private void populateWithMockData() throws IOException, ParseException {
-    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
+		// routeRepository.save(route2);
+		populateWithMockData();
+	}
+
+	private void populateWithMockData() throws IOException, ParseException {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
 		Account account = new Account();
 		account.setUsername("jakefrench84@gmail.com");
 		account.setPassword(passwordEncoder.encode("password"));
@@ -172,55 +165,94 @@ public class ResourceServerApplication implements CommandLineRunner{
 		company.setZip("93312");
 		company.setIndustry("Pest Control");
 		company.setAccount(account);
-    companyRepository.save(company);
+		companyRepository.save(company);
 
-    // read json files
-    
-    // insert customers
-    JSONParser parser = new JSONParser();
+		Route route1 = new Route();
+		route1.setName("Route 1 - Kern County");
+		route1.setCompany(company);
+		routeRepository.save(route1);
 
-    Resource resource = new ClassPathResource("mock-customers.json");
+		// read json files
 
-	  InputStream input = resource.getInputStream();
+		// insert customers
+		JSONParser parser = new JSONParser();
 
-    File file = resource.getFile();
-    
-    try(Reader reader = new FileReader(file)){
-      JSONObject jsonObject = (JSONObject) parser.parse(reader);
-      JSONArray customers = (JSONArray) jsonObject.get("customers");
-      JSONObject line;
-      for(int i = 0; i < customers.size(); i++){
-        line = (JSONObject)customers.get(i);
+		Resource customersResource = new ClassPathResource("mock-customers.json");
+		Resource addressesResource = new ClassPathResource("mock-addresses.json");
 
-        String accountId = Long.toString((Long)line.get("accountId"));
-        String fname = (String)line.get("fname");
-        String minit = (String)line.get("minit");
-        String lname = (String)line.get("lname");
-        String email = (String)line.get("email");
-        String priPhone = (String)line.get("priPhone");
-        String altPhone = (String)line.get("altPhone");
+		File customersFile = customersResource.getFile();
+		File addressesFile = addressesResource.getFile();
 
-        Customer customer = new Customer();
-        customer.setAccountId(accountId);
-        customer.setFname(fname);
-        customer.setMinit(minit);
-        customer.setLname(lname);
-        customer.setEmail(email);
-        customer.setPrimaryPhone(priPhone);
-        customer.setAltPhone(altPhone);
-        customer.setCompany(company);
-        customerRepository.save(customer);
-      }
+		try {
+			Reader reader = new FileReader(customersFile);
+			JSONObject jsonObject = (JSONObject) parser.parse(reader);
+			JSONArray customers = (JSONArray) jsonObject.get("customers");
 
-    } catch (IOException e) {
-        e.printStackTrace();
-    } catch(ParseException e) {
-      e.printStackTrace();
-    }
-    
+			reader = new FileReader(addressesFile);
+			jsonObject = (JSONObject) parser.parse(reader);
+			JSONArray addresses = (JSONArray) jsonObject.get("addresses");
+
+			reader.close();
+
+			JSONObject line;
+			for (int i = 0; i < customers.size(); i++) {
+				if (i >= addresses.size()-1)
+					break;
+
+				line = (JSONObject) customers.get(i);
+
+				String accountId = Long.toString((Long) line.get("accountId"));
+				String fname = (String) line.get("fname");
+				String minit = (String) line.get("minit");
+				String lname = (String) line.get("lname");
+				String email = (String) line.get("email");
+				String priPhone = (String) line.get("priPhone");
+				String altPhone = (String) line.get("altPhone");
+
+				Customer customer = new Customer();
+				customer.setAccountId(accountId);
+				customer.setFname(fname);
+				customer.setMinit(minit);
+				customer.setLname(lname);
+				customer.setEmail(email);
+				customer.setPrimaryPhone(priPhone);
+				customer.setAltPhone(altPhone);
+				customer.setCompany(company);
+				customerRepository.save(customer);
+
+				line = (JSONObject) addresses.get(i);
+
+				String street = (String) line.get("street");
+				String city = (String) line.get("city");
+				String state = (String) line.get("state");
+				String zip = (String) line.get("zip");
+				float lat = Float.parseFloat((String)line.get("lat"));
+				float lng = Float.parseFloat((String)line.get("lng"));
+
+				GeoProperty geoProperty = new GeoProperty();
+				geoProperty.setStreet(street);
+				geoProperty.setCity(city);
+				geoProperty.setState(state);
+				geoProperty.setCountry("United States");
+				geoProperty.setZip(zip);
+				geoProperty.setLat(lat);
+				geoProperty.setLng(lng);
+				geoProperty.setRoute(route1);
+				geoProperty.setOwner(customer);
+				geoProperty = geoPropertyRepository.save(geoProperty);
+
+				company.addGeoProperty(geoProperty);
 
 
- 
-  }
+			}
+			companyRepository.save(company);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 }
