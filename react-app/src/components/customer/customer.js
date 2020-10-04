@@ -225,18 +225,67 @@ function Customer() {
                 id="collapseicon2"
                 data-parent="#accordionoc"
               >
-                <input
-                  id={"loc_street" + index}
-                  value={location.physStreet}
-                  placeholder={"Last Name"}
-                  class="form-control"
-                  type="text"
-                  onChange={(e) => setSearchLastName(e.target.value)}
-                />
+                <Row style={{ padding: 10 }}>
+                  <Col>
+                    <label class="form-label">Street</label>
+                    <input
+                      id={"loc_street" + index}
+                      value={location.physStreet}
+                      placeholder={"Street"}
+                      class="form-control"
+                      type="text"
+                      // onChange={(e) => setstr(e.target.value)}
+                    />
+                  </Col>
+                  <Col>
+                    <label class="form-label">City</label>
+                    <input
+                      id={"loc_city" + index}
+                      value={location.physCity}
+                      placeholder={"City"}
+                      class="form-control"
+                      type="text"
+                      // onChange={(e) => setSearchLastName(e.target.value)}
+                    />
+                  </Col>
+                  <Col>
+                    <label class="form-label">State</label>
+                    <input
+                      id={"loc_state" + index}
+                      style={{ width: 150 }}
+                      value={location.physState}
+                      placeholder={"State"}
+                      class="form-control"
+                      type="text"
+                      // onChange={(e) => setSearchLastName(e.target.value)}
+                    />
+                  </Col>
+                  <Col>
+                    <label class="form-label">Zip</label>
+                    <input
+                      id={"loc_zip" + index}
+                      value={location.physZip}
+                      placeholder={"Zip"}
+                      class="form-control"
+                      type="text"
+                      // onChange={(e) => setSearchLastName(e.target.value)}
+                    />
+                  </Col>
+                </Row>
               </div>
             </AccordionItem>
           </Accordion>
         ))}
+        <Row>
+          <button
+            style={{margin:15}}
+            // onClick={() => handleSearchButtonClicked()}
+            class={"btn btn-pill btn-primary btn-air-primary btn-sm"}
+            type="button"
+          >
+            Add Location <i class="fa fa-plus"></i>
+          </button>
+        </Row>
       </div>
     );
   }
@@ -354,6 +403,40 @@ function Customer() {
       default:
         return null;
     }
+  }
+
+  function renderSaveButton() {
+    // if(showToast) {
+    //   return (
+    //     <Row>
+    //       <Col style={{ backgroundColor:"yellow", justifyContent: 'center', alignItems: 'center', padding: 10, width:100 }}>
+    //         <Toast isOpen={showToast}>
+    //           <ToastHeader>Customer Saved</ToastHeader>
+    //         </Toast>
+    //       </Col>
+    //     </Row>
+    //   );
+    // }
+
+    return (
+      <Row>
+        <Col style={{ flex: 0.1 }}>
+          <button
+            disabled={saveButtonDisabled}
+            style={{ marginTop: 20, width: 150 }}
+            class={
+              saveButtonDisabled
+                ? "btn btn-pill btn-default btn-air-default btn-lg"
+                : "btn btn-pill btn-primary btn-air-primary btn-lg"
+            }
+            type="button"
+            onClick={handleSaveButtonClicked}
+          >
+            {saveButtonDisabled ? "Customer Saved" : "Save"}
+          </button>
+        </Col>
+      </Row>
+    );
   }
 
   return (
@@ -678,7 +761,7 @@ function Customer() {
                           />
                         </Col>
                       </Row>
-                      <Row>
+                      {/* <Row>
                         <Col style={{flex: 0.1}}>
                           <button
                             disabled={saveButtonDisabled}
@@ -699,7 +782,8 @@ function Customer() {
                             <ToastHeader>Customer Saved.</ToastHeader>
                           </Toast>
                         </Col>
-                      </Row>
+                      </Row> */}
+                      {renderSaveButton()}
                     </div>
                   </div>
                 </TabPane>

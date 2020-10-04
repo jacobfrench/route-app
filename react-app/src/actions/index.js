@@ -20,7 +20,7 @@ export function getCustomerByEmail(email){
       }
 }
 
-export function  saveCustomer(customer){
+export function saveCustomer(customer){
   const options = {
     method: "patch",
     url: 'http://localhost:8081/resource/public/customer/' + customer.id  + '/update',
