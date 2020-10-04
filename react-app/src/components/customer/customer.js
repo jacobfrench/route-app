@@ -211,13 +211,13 @@ function Customer() {
             <AccordionItem
               className="card-header bg-primary"
               title={
-                location.physStreet +
+                location.street +
                 ", " +
-                location.physCity +
+                location.city +
                 " " +
-                location.physState +
+                location.state +
                 ", " +
-                location.physZip
+                location.zip
               }
             >
               <div
@@ -361,8 +361,8 @@ function Customer() {
       <Breadcrumb title="Customers" parent="Home" page="customer" />
 
       <div className="container-fluid">
-        <div className="col-sm-12">
-          <Container style={{ margin: 10, marginLeft: 15, paddingLeft: 0 }}>
+        {/* <div className="col-sm-12"> */}
+          {/* <Container style={{ margin: 0, marginLeft: 0, paddingLeft: 0 }}> */}
             <h6>Search By:</h6>
             <Row>
               <Col className={"col-sm-2"}>
@@ -385,8 +385,8 @@ function Customer() {
                 </button>
               </Col>
             </Row>
-          </Container>
-          <div className="card">
+          {/* </Container> */}
+          {/* <div className="card"> */}
             <div className="card-body">
               <Nav tabs className="border-tab-primary">
                 <NavItem className="nav nav-tabs" id="infoTab" role="tablist">
@@ -734,8 +734,6 @@ function Customer() {
               </TabContent>
             </div>
           </div>
-        </div>
-      </div>
     </Fragment>
   );
 }
