@@ -69,7 +69,7 @@ public class CustomerController {
     @PatchMapping(value="/customer/{customerId}/update")
     public ResponseEntity<Customer> patchCustomer(@PathVariable int customerId, @RequestBody Map<Object, Object> fields) {
         HttpHeaders httpHeaders = new HttpHeaders();
-        Customer savedCustomer = customerService.updateCustomer(new Long(customerId), fields);
+        Customer savedCustomer = customerService.updateCustomer(Long.valueOf(customerId), fields);
 
         return new ResponseEntity<>(savedCustomer, httpHeaders, HttpStatus.OK);
         

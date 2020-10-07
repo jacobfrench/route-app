@@ -3,6 +3,7 @@ package com.project.resourceserver.service;
 import java.lang.reflect.Field;
 import java.util.Map;
 
+import com.project.resourceserver.constants.enums.ContactPref;
 import com.project.resourceserver.model.Company;
 import com.project.resourceserver.model.Customer;
 import com.project.resourceserver.repository.CompanyRepository;
@@ -58,6 +59,16 @@ public class CustomerService {
             if(!key.equals("id")){
                 Field field = ReflectionUtils.findRequiredField(Customer.class, (String) key);
                 field.setAccessible(true);
+
+                if(key.equals("primePref") || key.equals("altPref")) {
+                    if(value.equals("CALL"))
+                        value = ContactPref.CALL;
+                    else if(value.equals("TEXT"))
+                        value = ContactPref.TEXT;
+                    else if(value.equals("TEXT_OR_CALL"))
+                        value = ContactPref.TEXT_OR_CALL;
+                }
+
                 ReflectionUtils.setField(field, existingCustomer, value);
             }
         });

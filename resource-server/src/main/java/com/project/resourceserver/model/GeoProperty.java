@@ -59,6 +59,9 @@ public class GeoProperty {
   @Column(name = "notes")
   private String notes;
 
+  @Column(name = "map_code")
+  private String mapCode;
+
   @ManyToOne
   @JoinColumn(name = "owner_id")
   @JsonBackReference("geo_property-owner")
@@ -299,5 +302,19 @@ public class GeoProperty {
    */
   public void setNotes(String notes) {
     this.notes = notes;
+  }
+
+  /**
+   * @return String return the mapCode
+   */
+  public String getMapCode() {
+    return mapCode;
+  }
+
+  /**
+   * @param mapCode the mapCode to set
+   */
+  public void setMapCode(String mapCode) {
+    this.mapCode = mapCode;
   }
 }

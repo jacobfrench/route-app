@@ -1,10 +1,14 @@
 package com.project.resourceserver.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.project.resourceserver.constants.enums.ContactPref;
+import com.project.resourceserver.constants.enums.CustomerStatus;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,25 +45,16 @@ public class Customer {
   @Column(name = "account_id")
   private String accountId;
 
-  enum Status {
-    ACTIVE,
-    INACTIVE,
-    HOLD,
-  }
-
   @Column(name = "status")
-  Status status;
-
-  enum ContactPref {
-    CALL,
-    TEXT,
-    TEXT_OR_CALL,
-  }
+  @Enumerated(EnumType.ORDINAL)
+  private CustomerStatus status;
 
   @Column(name = "primary_phone_pref")
+  @Enumerated(EnumType.ORDINAL)
   private ContactPref primePref;
 
   @Column(name = "alt_phone_pref")
+  @Enumerated(EnumType.ORDINAL)
   private ContactPref altPref;
 
   @OneToMany(mappedBy = "owner")
@@ -244,5 +239,19 @@ public class Customer {
    */
   public void setMinit(String minit) {
     this.minit = minit;
+  }
+
+  /**
+   * @return CustomerStatus return the status
+   */
+  public CustomerStatus getStatus() {
+    return status;
+  }
+
+  /**
+   * @param status the status to set
+   */
+  public void setStatus(CustomerStatus status) {
+    this.status = status;
   }
 }
