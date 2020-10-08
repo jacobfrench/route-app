@@ -57,6 +57,21 @@ public class Customer {
   @Enumerated(EnumType.ORDINAL)
   private ContactPref altPref;
 
+  @Column(name = "billing_street")
+  private String billStreet;
+
+  @Column(name = "billing_city")
+  private String billCity;
+
+  @Column(name = "billing_state")
+  private String billState;
+
+  @Column(name = "billing_county")
+  private String billCounty;
+
+  @Column(name = "billing_zip")
+  private String billZip;
+
   @OneToMany(mappedBy = "owner")
   private Set<GeoProperty> locations;
 
@@ -67,6 +82,9 @@ public class Customer {
 
   public Customer() {
     locations = new HashSet<>();
+    setPrimePref(ContactPref.NONE);
+    setAltPref(ContactPref.NONE);
+
   }
 
   /**
@@ -253,5 +271,75 @@ public class Customer {
    */
   public void setStatus(CustomerStatus status) {
     this.status = status;
+  }
+
+  /**
+   * @return String return the billStreet
+   */
+  public String getBillStreet() {
+    return billStreet;
+  }
+
+  /**
+   * @param billStreet the billStreet to set
+   */
+  public void setBillStreet(String billStreet) {
+    this.billStreet = billStreet;
+  }
+
+  /**
+   * @return String return the billCity
+   */
+  public String getBillCity() {
+    return billCity;
+  }
+
+  /**
+   * @param billCity the billCity to set
+   */
+  public void setBillCity(String billCity) {
+    this.billCity = billCity;
+  }
+
+  /**
+   * @return String return the billState
+   */
+  public String getBillState() {
+    return billState;
+  }
+
+  /**
+   * @param billState the billState to set
+   */
+  public void setBillState(String billState) {
+    this.billState = billState;
+  }
+
+  /**
+   * @return String return the billCounty
+   */
+  public String getBillCounty() {
+    return billCounty;
+  }
+
+  /**
+   * @param billCounty the billCounty to set
+   */
+  public void setBillCounty(String billCounty) {
+    this.billCounty = billCounty;
+  }
+
+  /**
+   * @return String return the billZip
+   */
+  public String getBillZip() {
+    return billZip;
+  }
+
+  /**
+   * @param billZip the billZip to set
+   */
+  public void setBillZip(String billZip) {
+    this.billZip = billZip;
   }
 }

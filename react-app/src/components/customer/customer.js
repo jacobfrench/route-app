@@ -43,21 +43,26 @@ function Customer() {
   const [email, setEmail] = useState("");
   const [priPhone, setPriPhone] = useState("");
   const [altPhone, setAltPhone] = useState("");
-  const [locations, setLocations] = useState([]);
+  const [billStreet, setBillStreet] = useState("");
+  const [billCity, setBillCity] = useState("");
+  const [billState, setBillState] = useState("");
+  const [billCounty, setBillCounty] = useState("");
+  const [billZip, setBillZip] = useState("");
 
   const [callPrim, setCallPrim] = useState(false);
   const [textPrim, setTextPrim] = useState(false);
   const [callAlt, setCallAlt] = useState(false);
   const [textAlt, setTextAlt] = useState(false);
-  const [showToast, setShowToast] = useState(false);
 
   // Redux
   const dispatch = useDispatch();
   const customer = useSelector((state) => state.Customer.customer);
+  const loading = useSelector((state) => state.Customer.isloading);
 
   // Logic control
   const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
-  const [searching, setSearching] = useState(false);
+    const [locations, setLocations] = useState([]);
+
 
   const searchOptions = [
     { value: "aid", label: "Account ID" },
@@ -98,7 +103,7 @@ function Customer() {
         setTextPrim(true);
         setCallPrim(true);
         break;
-      case ContactPref.NONE:
+      default:
         setTextPrim(false);
         setCallPrim(false);
         break;
@@ -117,7 +122,7 @@ function Customer() {
         setTextAlt(true);
         setCallAlt(true);
         break;
-      case ContactPref.NONE:
+      default:
         setTextAlt(false);
         setCallAlt(false);
         break;
@@ -151,7 +156,7 @@ function Customer() {
     }
   }
 
-  function checkPrimePref() {
+  const checkPrimePref = () => {
     let pnum = 0;
     if (callPrim) pnum += 1;
     if (textPrim) pnum += 2;
@@ -166,9 +171,9 @@ function Customer() {
       default:
         return ContactPref.NONE;
     }
-  }
+  };
   // TODO: probably not neccessary to have this function. find a way to replace it so that we don't need separate functions for prime and alt.
-  function checkAltPref() {
+  const checkAltPref = () => {
     let pnum = 0;
     if (callAlt) pnum += 1;
     if (textAlt) pnum += 2;
@@ -183,7 +188,7 @@ function Customer() {
       default:
         return ContactPref.NONE;
     }
-  }
+  };
 
   function handleSaveButtonClicked() {
     let modifiedCustomer = {
@@ -203,15 +208,6 @@ function Customer() {
     console.log(modifiedCustomer);
     dispatch(saveCustomer(modifiedCustomer));
     setSaveButtonDisabled(true);
-    setShowToast(true);
-
-    setTimeout(
-      function () {
-        //Start the timer
-        setShowToast(false);
-      }.bind(this),
-      3000
-    );
 
     toast.success("Customer has been saved.");
   }
@@ -415,12 +411,13 @@ function Customer() {
                     />
                   </Col>
                 </Row>
-                <Row style={{padding: 10}}>
+                <Row style={{ padding: 10 }}>
                   <Col>
                     <label class="form-label">Note</label>
                     <textarea
                       id={"loc_notes" + index}
                       value={location.note}
+                      style={{ height: 100 }}
                       placeholder={"Note"}
                       class="form-control"
                       type="textarea"
@@ -606,7 +603,11 @@ function Customer() {
               class={"btn btn-pill btn-primary btn-air-primary btn-sm"}
               type="button"
             >
-              <i class="fa fa-search"></i>
+              {loading ? (
+                <i class="fa fa-home"></i>
+              ) : (
+                <i class="fa fa-search"></i>
+              )}
             </button>
           </Col>
         </Row>
@@ -618,9 +619,10 @@ function Customer() {
             </h5>
           </div>
           <div className="card-body tabbed-card">
-            <Nav tabs className="nav-pills nav-primary">
+            <Nav tabs className="nav-border nav-default">
               <NavItem className="nav nav-tabs" id="myTab" role="tablist">
                 <NavLink
+                  style={{ cursor: "pointer", color: "#2684FF" }}
                   className={activeTab === "1" ? "active" : ""}
                   onClick={() => setActiveTab("1")}
                 >
@@ -629,6 +631,7 @@ function Customer() {
               </NavItem>
               <NavItem className="nav nav-tabs" id="myTab" role="tablist">
                 <NavLink
+                  style={{ cursor: "pointer", color: "#2684FF" }}
                   className={activeTab === "2" ? "active" : ""}
                   onClick={() => setActiveTab("2")}
                 >
@@ -637,6 +640,7 @@ function Customer() {
               </NavItem>
               <NavItem className="nav nav-tabs" id="myTab" role="tablist">
                 <NavLink
+                  style={{ cursor: "pointer", color: "#2684FF" }}
                   className={activeTab === "3" ? "active" : ""}
                   onClick={() => setActiveTab("3")}
                 >
@@ -753,6 +757,9 @@ function Customer() {
                             id={"primCallCheckbox"}
                             type="checkbox"
                             checked={callPrim}
+                            disabled={
+                              typeof customer.id === "undefined" ? true : false
+                            }
                             onChange={(e) => {
                               setSaveButtonDisabled(false);
                               setCallPrim(e.target.checked);
@@ -770,6 +777,9 @@ function Customer() {
                             id={"primTextCheckbox"}
                             type="checkbox"
                             checked={textPrim}
+                            disabled={
+                              typeof customer.id === "undefined" ? true : false
+                            }
                             onChange={(e) => {
                               setSaveButtonDisabled(false);
                               setTextPrim(e.target.checked);
@@ -790,6 +800,9 @@ function Customer() {
                         <input
                           id={"alt_phone"}
                           value={altPhone}
+                          disabled={
+                            typeof customer.id === "undefined" ? true : false
+                          }
                           maxLength="10"
                           class="form-control"
                           type="text"
@@ -809,7 +822,10 @@ function Customer() {
                           <input
                             id={"alt_phone_call_checkbox"}
                             type="checkbox"
-                            value={callAlt}
+                            checked={callAlt}
+                            disabled={
+                              typeof customer.id === "undefined" ? true : false
+                            }
                             onChange={(e) => {
                               setSaveButtonDisabled(false);
                               setCallAlt(e.target.checked);
@@ -826,7 +842,10 @@ function Customer() {
                           <input
                             id={"alt_phone_text_checkbox"}
                             type="checkbox"
-                            value={textAlt}
+                            checked={textAlt}
+                            disabled={
+                              typeof customer.id === "undefined" ? true : false
+                            }
                             onChange={(e) => {
                               setSaveButtonDisabled(false);
                               setTextAlt(e.target.checked);
@@ -850,7 +869,7 @@ function Customer() {
                       marginBottom: 10,
                     }}
                   >
-                    Mailing Address
+                    Billing Address
                   </h5>
                   <Row>
                     <Col style={{ flex: 1 }}>
@@ -858,6 +877,9 @@ function Customer() {
                       <input
                         id={"street_address"}
                         maxLength="100"
+                        disabled={
+                          typeof customer.id === "undefined" ? true : false
+                        }
                         class="form-control"
                         type="text"
                         name="mailingStreet"
@@ -869,6 +891,9 @@ function Customer() {
                       <input
                         maxLength="100"
                         class="form-control"
+                        disabled={
+                          typeof customer.id === "undefined" ? true : false
+                        }
                         type="text"
                         name="mailingCity"
                         placeholder={"City"}
@@ -879,6 +904,9 @@ function Customer() {
                       <input
                         maxLength="2"
                         class="form-control"
+                        disabled={
+                          typeof customer.id === "undefined" ? true : false
+                        }
                         type="text"
                         name="mailingState"
                         placeholder={"State"}
@@ -889,6 +917,9 @@ function Customer() {
                       <input
                         maxLength="15"
                         class="form-control"
+                        disabled={
+                          typeof customer.id === "undefined" ? true : false
+                        }
                         type="text"
                         name="mailingCounty"
                         placeholder={"County"}
@@ -899,6 +930,9 @@ function Customer() {
                       <input
                         maxLength="5"
                         class="form-control"
+                        disabled={
+                          typeof customer.id === "undefined" ? true : false
+                        }
                         type="text"
                         name="mailingZip"
                         placeholder={"Zip"}

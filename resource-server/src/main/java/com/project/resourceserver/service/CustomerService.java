@@ -67,6 +67,8 @@ public class CustomerService {
                         value = ContactPref.TEXT;
                     else if(value.equals("TEXT_OR_CALL"))
                         value = ContactPref.TEXT_OR_CALL;
+                    else if(value.equals("NONE"))
+                        value = ContactPref.NONE;
                 }
 
                 ReflectionUtils.setField(field, existingCustomer, value);
