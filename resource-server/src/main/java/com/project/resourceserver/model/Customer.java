@@ -30,7 +30,7 @@ public class Customer {
   @Column(name = "minit", length = 1)
   private String minit;
 
-  @Column(name = "name", length = 80)
+  @Column(name = "lname", length = 80)
   private String lname;
 
   @Column(name = "primary_phone", length = 10)

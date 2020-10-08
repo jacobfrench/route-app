@@ -345,6 +345,89 @@ function Customer() {
                     />
                   </Col>
                 </Row>
+                <Row style={{ padding: 10 }}>
+                  <Col>
+                    <label class="form-label">Latitude</label>
+                    <input
+                      id={"loc_lat" + index}
+                      value={location.lat}
+                      placeholder={"Latitude"}
+                      class="form-control"
+                      type="text"
+                      // onChange={(e) => setSearchLastName(e.target.value)}
+                    />
+                  </Col>
+                  <Col>
+                    <label class="form-label">Longitude</label>
+                    <input
+                      id={"loc_lng" + index}
+                      value={location.lng}
+                      placeholder={"Longitude"}
+                      class="form-control"
+                      type="text"
+                      // onChange={(e) => setSearchLastName(e.target.value)}
+                    />
+                  </Col>
+                  <Col>
+                    <label class="form-label">Map Code</label>
+                    <input
+                      id={"loc_map_code" + index}
+                      value={location.mapCode}
+                      placeholder={"Map Code"}
+                      class="form-control"
+                      type="text"
+                      // onChange={(e) => setSearchLastName(e.target.value)}
+                    />
+                  </Col>
+                </Row>
+                <Row style={{ padding: 10 }}>
+                  <Col>
+                    <label class="form-label">Property Sq Ft.</label>
+                    <input
+                      id={"loc_property_sq_ft" + index}
+                      value={location.propertySqFt}
+                      placeholder={"Property Square Footage"}
+                      class="form-control"
+                      type="text"
+                      // onChange={(e) => setSearchLastName(e.target.value)}
+                    />
+                  </Col>
+                  <Col>
+                    <label class="form-label">Property Sq Ft.</label>
+                    <input
+                      id={"loc_structure_sq_ft" + index}
+                      value={location.structureSqFt}
+                      placeholder={"Structure Square Footage"}
+                      class="form-control"
+                      type="text"
+                      // onChange={(e) => setSearchLastName(e.target.value)}
+                    />
+                  </Col>
+                  <Col>
+                    <label class="form-label">Linear Sq Ft.</label>
+                    <input
+                      id={"loc_linear_sq_ft" + index}
+                      value={location.linearSqFt}
+                      placeholder={"Linear Square Footage"}
+                      class="form-control"
+                      type="text"
+                      // onChange={(e) => setSearchLastName(e.target.value)}
+                    />
+                  </Col>
+                </Row>
+                <Row style={{padding: 10}}>
+                  <Col>
+                    <label class="form-label">Note</label>
+                    <textarea
+                      id={"loc_notes" + index}
+                      value={location.note}
+                      placeholder={"Note"}
+                      class="form-control"
+                      type="textarea"
+                      // onChange={(e) => setSearchLastName(e.target.value)}
+                    />
+                  </Col>
+                </Row>
                 <button
                   style={{ margin: 15, marginLeft: 20 }}
                   onClick={() => alert("Save Location[" + index + "]")}
