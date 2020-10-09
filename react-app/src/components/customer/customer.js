@@ -9,6 +9,11 @@ import {
   Nav,
   NavItem,
   NavLink,
+  ModalHeader,
+  ModalBody,
+  Input,
+  Label, 
+  Button
 } from "reactstrap";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +23,7 @@ import { Accordion, AccordionItem } from "react-light-accordion";
 import "react-light-accordion/demo/css/index.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Modal from "react-responsive-modal";
 
 import { states } from "../common/values";
 
@@ -60,9 +66,9 @@ function Customer() {
   const loading = useSelector((state) => state.Customer.isloading);
 
   // Logic control
-  const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
-    const [locations, setLocations] = useState([]);
-
+  const [saveCustomerButtonDisabled, setsaveCustomerButtonDisabled] = useState(true);
+  const [locations, setLocations] = useState([]);
+  const [isCustomerNull, setIsCustomerNull] = useState(true);
 
   const searchOptions = [
     { value: "aid", label: "Account ID" },
@@ -127,6 +133,15 @@ function Customer() {
         setCallAlt(false);
         break;
     }
+
+    setBillStreet(customer.billStreet === null ? "" : customer.billStreet);
+    setBillCity(customer.billCity === null ? "" : customer.billCity);
+    setBillState(customer.billState === null ? "" : customer.billState);
+    setBillCounty(customer.billCounty === null ? "" : customer.billCounty);
+    setBillZip(customer.billZip === null ? "" : customer.billZip);
+
+    setIsCustomerNull(typeof customer.id === "undefined");
+
     console.log("End useEffect");
   }, [customer]);
 
@@ -149,7 +164,7 @@ function Customer() {
         break;
       case "Email":
         dispatch(getCustomerByEmail(searchEmail));
-        setSaveButtonDisabled(true);
+        setsaveCustomerButtonDisabled(true);
         break;
       case "Address":
         break;
@@ -202,12 +217,17 @@ function Customer() {
       altPhone: altPhone,
       primePref: checkPrimePref(),
       altPref: checkAltPref(),
+      billStreet: billStreet,
+      billState: billState,
+      billCity: billCity,
+      billCounty: billCounty,
+      billZip: billZip,
     };
 
     console.log("Customer on save:");
     console.log(modifiedCustomer);
     dispatch(saveCustomer(modifiedCustomer));
-    setSaveButtonDisabled(true);
+    setsaveCustomerButtonDisabled(true);
 
     toast.success("Customer has been saved.");
   }
@@ -215,7 +235,8 @@ function Customer() {
   function handleInputChangedEvent(e) {
     console.log(customer.id);
     let value = e.target.value;
-    setSaveButtonDisabled(false);
+    if (value === null) value = "";
+    setsaveCustomerButtonDisabled(false);
     switch (e.target.id) {
       case "search_account_id":
         setSearchAccountId(value);
@@ -258,6 +279,21 @@ function Customer() {
         break;
       case "primary_phone":
         setPriPhone(value);
+        break;
+      case "bill_street":
+        setBillStreet(value);
+        break;
+      case "bill_state":
+        setBillState(value);
+        break;
+      case "bill_city":
+        setBillCity(value);
+        break;
+      case "bill_county":
+        setBillCounty(value);
+        break;
+      case "bill_zip":
+        setBillZip(value);
         break;
       default:
         return;
@@ -561,10 +597,10 @@ function Customer() {
       <Row>
         <Col style={{ flex: 0.1 }}>
           <button
-            disabled={saveButtonDisabled}
+            disabled={saveCustomerButtonDisabled}
             style={{ marginTop: 20, width: 150 }}
             class={
-              saveButtonDisabled
+              saveCustomerButtonDisabled
                 ? "btn btn-pill btn-default btn-air-default btn-lg"
                 : "btn btn-pill btn-primary btn-air-primary btn-lg"
             }
@@ -578,9 +614,56 @@ function Customer() {
     );
   }
 
+  const [addCustomerModalOpen, setAddCustomerModalOpen] = useState(false);
+  function renderAddCustomerModal() {
+    return (
+      <Modal
+        open={addCustomerModalOpen}
+        onClose={() => setAddCustomerModalOpen(false)}
+      >
+            <ModalHeader style={{backgroundColor: 'white'}}>Add New Customer</ModalHeader>
+            <ModalBody>
+              <Row>
+                <Col>
+                  <Label>First Name</Label>
+                  <Input/>
+                </Col>
+                <Col>
+                  <Label>Last Name</Label>
+                  <Input/>
+                </Col>
+              </Row>
+              <button
+            disabled={saveCustomerButtonDisabled}
+            style={{ marginTop: 20, width: 150 }}
+            class={
+              saveCustomerButtonDisabled
+                ? "btn btn-pill btn-default btn-air-default btn-lg"
+                : "btn btn-pill btn-primary btn-air-primary btn-lg"
+            }
+            type="button"
+            onClick={handleSaveButtonClicked}
+          >
+            Save
+          </button>
+            </ModalBody>
+      </Modal>
+    );
+  }
+
+  function handleNewCustomerButtonClicked() {
+    setAddCustomerModalOpen(true);
+  }
+
   return (
     <Fragment>
-      <Breadcrumb title="Customers" parent="Home" page="customer" />
+      {renderAddCustomerModal()}
+      <Breadcrumb
+        title="Customers"
+        parent="Home"
+        page="customer"
+        onButtonClick={() => handleNewCustomerButtonClicked()}
+      />
 
       <div className="container-fluid">
         {/* <div className="col-sm-12"> */}
@@ -652,12 +735,6 @@ function Customer() {
               {/* Account Information Tab *******************************************************/}
               <TabPane tabId="1">
                 <div className="card" style={{ marginTop: 10 }}>
-                  {/* <div className="card-header">
-                <h5>
-                  Account - {lname}, {fname}
-                </h5>
-              </div> */}
-                  {/* <div className="card-body"> */}
                   <Row style={{ padding: 0 }}>
                     <Col>
                       <label class="form-label">Account ID</label>
@@ -667,9 +744,7 @@ function Customer() {
                         class="form-control"
                         type="text"
                         placeholder={"Account ID"}
-                        disabled={
-                          typeof customer.id === "undefined" ? true : false
-                        }
+                        disabled={isCustomerNull}
                         onChange={(e) => handleInputChangedEvent(e)}
                       />
                     </Col>
@@ -681,9 +756,7 @@ function Customer() {
                         placeholder={"Email"}
                         class="form-control"
                         type="text"
-                        disabled={
-                          typeof customer.id === "undefined" ? true : false
-                        }
+                        disabled={isCustomerNull}
                         onChange={(e) => handleInputChangedEvent(e)}
                       />
                     </Col>
@@ -696,9 +769,7 @@ function Customer() {
                         value={fname}
                         class="form-control"
                         type="text"
-                        disabled={
-                          typeof customer.id === "undefined" ? true : false
-                        }
+                        disabled={isCustomerNull}
                         placeholder={"First Name"}
                         onChange={(e) => handleInputChangedEvent(e)}
                       />
@@ -711,9 +782,7 @@ function Customer() {
                         maxLength="1"
                         class="form-control"
                         type="text"
-                        disabled={
-                          typeof customer.id === "undefined" ? true : false
-                        }
+                        disabled={isCustomerNull}
                         placeholder={"M.I."}
                         onChange={(e) => handleInputChangedEvent(e)}
                       />
@@ -725,9 +794,7 @@ function Customer() {
                         value={lname}
                         class="form-control"
                         type="text"
-                        disabled={
-                          typeof customer.id === "undefined" ? true : false
-                        }
+                        disabled={isCustomerNull}
                         placeholder={"Last Name"}
                         onChange={(e) => setLName(e.target.value)}
                       />
@@ -744,9 +811,7 @@ function Customer() {
                           class="form-control"
                           type="text"
                           placeholder={"(xxx) xxx-xxxx"}
-                          disabled={
-                            typeof customer.id === "undefined" ? true : false
-                          }
+                          disabled={isCustomerNull}
                           onChange={(e) => handleInputChangedEvent(e)}
                         />
                       </Col>
@@ -757,11 +822,9 @@ function Customer() {
                             id={"primCallCheckbox"}
                             type="checkbox"
                             checked={callPrim}
-                            disabled={
-                              typeof customer.id === "undefined" ? true : false
-                            }
+                            disabled={isCustomerNull}
                             onChange={(e) => {
-                              setSaveButtonDisabled(false);
+                              setsaveCustomerButtonDisabled(false);
                               setCallPrim(e.target.checked);
                             }}
                           />
@@ -777,11 +840,9 @@ function Customer() {
                             id={"primTextCheckbox"}
                             type="checkbox"
                             checked={textPrim}
-                            disabled={
-                              typeof customer.id === "undefined" ? true : false
-                            }
+                            disabled={isCustomerNull}
                             onChange={(e) => {
-                              setSaveButtonDisabled(false);
+                              setsaveCustomerButtonDisabled(false);
                               setTextPrim(e.target.checked);
                             }}
                           />
@@ -800,18 +861,14 @@ function Customer() {
                         <input
                           id={"alt_phone"}
                           value={altPhone}
-                          disabled={
-                            typeof customer.id === "undefined" ? true : false
-                          }
+                          disabled={isCustomerNull}
                           maxLength="10"
                           class="form-control"
                           type="text"
-                          disabled={
-                            typeof customer.id === "undefined" ? true : false
-                          }
+                          disabled={isCustomerNull}
                           placeholder={"(xxx) xxx-xxxx"}
                           onChange={(e) => {
-                            setSaveButtonDisabled(false);
+                            setsaveCustomerButtonDisabled(false);
                             handleInputChangedEvent(e);
                           }}
                         />
@@ -823,11 +880,9 @@ function Customer() {
                             id={"alt_phone_call_checkbox"}
                             type="checkbox"
                             checked={callAlt}
-                            disabled={
-                              typeof customer.id === "undefined" ? true : false
-                            }
+                            disabled={isCustomerNull}
                             onChange={(e) => {
-                              setSaveButtonDisabled(false);
+                              setsaveCustomerButtonDisabled(false);
                               setCallAlt(e.target.checked);
                             }}
                           />
@@ -843,11 +898,9 @@ function Customer() {
                             id={"alt_phone_text_checkbox"}
                             type="checkbox"
                             checked={textAlt}
-                            disabled={
-                              typeof customer.id === "undefined" ? true : false
-                            }
+                            disabled={isCustomerNull}
                             onChange={(e) => {
-                              setSaveButtonDisabled(false);
+                              setsaveCustomerButtonDisabled(false);
                               setTextAlt(e.target.checked);
                             }}
                           />
@@ -875,67 +928,71 @@ function Customer() {
                     <Col style={{ flex: 1 }}>
                       <label class="form-label">Street</label>
                       <input
-                        id={"street_address"}
+                        id={"bill_street"}
                         maxLength="100"
-                        disabled={
-                          typeof customer.id === "undefined" ? true : false
-                        }
+                        value={billStreet}
+                        disabled={isCustomerNull}
                         class="form-control"
                         type="text"
                         name="mailingStreet"
                         placeholder={"Street Address"}
+                        onChange={(e) => handleInputChangedEvent(e)}
                       />
                     </Col>
                     <Col style={{ flex: 1 }}>
                       <label class="form-label">City</label>
                       <input
+                        id={"bill_city"}
                         maxLength="100"
+                        value={billCity}
                         class="form-control"
-                        disabled={
-                          typeof customer.id === "undefined" ? true : false
-                        }
+                        disabled={isCustomerNull}
                         type="text"
                         name="mailingCity"
                         placeholder={"City"}
+                        onChange={(e) => handleInputChangedEvent(e)}
                       />
                     </Col>
                     <Col style={{ flex: 0.2 }}>
                       <label class="form-label">State</label>
                       <input
+                        id={"bill_state"}
                         maxLength="2"
+                        value={billState}
                         class="form-control"
-                        disabled={
-                          typeof customer.id === "undefined" ? true : false
-                        }
+                        disabled={isCustomerNull}
                         type="text"
                         name="mailingState"
                         placeholder={"State"}
+                        onChange={(e) => handleInputChangedEvent(e)}
                       />
                     </Col>
                     <Col style={{ flex: 1 }}>
                       <label class="form-label">County</label>
                       <input
+                        id={"bill_county"}
                         maxLength="15"
+                        value={billCounty}
                         class="form-control"
-                        disabled={
-                          typeof customer.id === "undefined" ? true : false
-                        }
+                        disabled={isCustomerNull}
                         type="text"
                         name="mailingCounty"
                         placeholder={"County"}
+                        onChange={(e) => handleInputChangedEvent(e)}
                       />
                     </Col>
                     <Col style={{ flex: 0.5 }}>
                       <label class="form-label">Zip</label>
                       <input
+                        id={"bill_zip"}
                         maxLength="5"
+                        value={billZip}
                         class="form-control"
-                        disabled={
-                          typeof customer.id === "undefined" ? true : false
-                        }
+                        disabled={isCustomerNull}
                         type="text"
                         name="mailingZip"
                         placeholder={"Zip"}
+                        onChange={(e) => handleInputChangedEvent(e)}
                       />
                     </Col>
                   </Row>

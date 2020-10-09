@@ -9,7 +9,7 @@ const Breadcrumb = props => {
 
     function renderAddCustomerButton(props) {
         if(props.page === "customer")
-            return <button class={"btn btn-pill btn-success btn-air-success btn-sm"} type="button">New Customer  <i class="fa fa-plus"></i></button>
+            return <button onClick={props.onButtonClick} class={"btn btn-pill btn-success btn-air-success btn-sm"} type="button">New Customer  <i class="fa fa-plus"></i></button>
         return null;
     }
 
