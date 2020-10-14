@@ -1,7 +1,7 @@
 package com.project.resourceserver.controller;
 
-import com.project.resourceserver.model.GeoProperty;
-import com.project.resourceserver.service.GeoPropertyService;
+import com.project.resourceserver.model.GeoLocation;
+import com.project.resourceserver.service.GeoLocationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/resource/public")
-public class GeoPropertyController {
+public class GeoLocationController {
 
     @Autowired
-    private GeoPropertyService geoPropertyService;
+    private GeoLocationService geoPropertyService;
 
-    public GeoPropertyController(GeoPropertyService geoPropertyService){
+    public GeoLocationController(GeoLocationService geoPropertyService){
         this.geoPropertyService = geoPropertyService;
     }
 
@@ -26,8 +26,8 @@ public class GeoPropertyController {
     // POST ***************************************************************************************
 
     @PostMapping(value="/company/{companyId}/customer/{customerId}/service_type/{serviceTypeId}/geo_property")
-    public ResponseEntity<GeoProperty> addNewGeoProperty(@PathVariable Long companyId, @PathVariable Long customerId, 
-                                                         @PathVariable Long serviceTypeId, @RequestBody GeoProperty geoProperty) {
+    public ResponseEntity<GeoLocation> addNewGeoProperty(@PathVariable Long companyId, @PathVariable Long customerId, 
+                                                         @PathVariable Long serviceTypeId, @RequestBody GeoLocation geoProperty) {
         return geoPropertyService.addNewGeoProperty(companyId, customerId, serviceTypeId,  geoProperty);
     }
 

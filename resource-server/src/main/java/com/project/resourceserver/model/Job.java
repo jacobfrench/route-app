@@ -49,7 +49,7 @@ public class Job {
     private Status status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private GeoProperty property;
+    private GeoLocation property;
 
     // @ManyToOne(fetch = FetchType.LAZY)
     // @JoinColumn(name = "schedule_id", referencedColumnName = "id")
@@ -69,14 +69,14 @@ public class Job {
     /**
      * @return GeoProperty return the property
      */
-    public GeoProperty getProperty() {
+    public GeoLocation getProperty() {
         return property;
     }
 
     /**
      * @param property the property to set
      */
-    public void setProperty(GeoProperty property) {
+    public void setProperty(GeoLocation property) {
         this.property = property;
     }
 

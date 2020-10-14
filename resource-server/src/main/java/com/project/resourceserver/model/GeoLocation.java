@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "geo_property")
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer" })
-public class GeoProperty {
+public class GeoLocation {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
@@ -78,7 +78,7 @@ public class GeoProperty {
   @OneToOne(fetch = FetchType.LAZY)
   private ServiceType serviceType;
 
-  public GeoProperty() {
+  public GeoLocation() {
     tags = new HashSet<>();
     route = null;
   }

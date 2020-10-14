@@ -9,12 +9,12 @@ import org.springframework.core.io.ClassPathResource;
 import com.project.resourceserver.model.Account;
 import com.project.resourceserver.model.Company;
 import com.project.resourceserver.model.Customer;
-import com.project.resourceserver.model.GeoProperty;
+import com.project.resourceserver.model.GeoLocation;
 import com.project.resourceserver.model.Route;
 import com.project.resourceserver.repository.AccountRepository;
 import com.project.resourceserver.repository.CompanyRepository;
 import com.project.resourceserver.repository.CustomerRepository;
-import com.project.resourceserver.repository.GeoPropertyRepository;
+import com.project.resourceserver.repository.GeoLocationRepository;
 import com.project.resourceserver.repository.RouteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +49,7 @@ public class ResourceServerApplication implements CommandLineRunner {
 	private RouteRepository routeRepository;
 
 	@Autowired
-	private GeoPropertyRepository geoPropertyRepository;
+	private GeoLocationRepository geoPropertyRepository;
 
 	@Autowired
 	private CustomerRepository customerRepository;
@@ -156,7 +156,7 @@ public class ResourceServerApplication implements CommandLineRunner {
 				float lat = Float.parseFloat((String)line.get("lat"));
 				float lng = Float.parseFloat((String)line.get("lng"));
 
-				GeoProperty geoProperty = new GeoProperty();
+				GeoLocation geoProperty = new GeoLocation();
 				geoProperty.setStreet(street);
 				geoProperty.setCity(city);
 				geoProperty.setState(state);

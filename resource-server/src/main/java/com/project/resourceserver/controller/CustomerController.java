@@ -7,7 +7,7 @@ import java.util.Map;
 import com.project.resourceserver.dto.CustomerDTO;
 import com.project.resourceserver.dto.GeoLocationDTO;
 import com.project.resourceserver.model.Customer;
-import com.project.resourceserver.model.GeoProperty;
+import com.project.resourceserver.model.GeoLocation;
 import com.project.resourceserver.service.CustomerService;
 
 import org.dozer.Mapper;
@@ -91,7 +91,7 @@ public class CustomerController {
         // I want to return a geoProperty with the routeId, and routeName attached.
         // TODO: This method works, but there is probably a better approach to this.
         ArrayList<GeoLocationDTO> locations = new ArrayList<>();
-        for(GeoProperty loc : customer.getLocations()) {
+        for(GeoLocation loc : customer.getLocations()) {
           GeoLocationDTO geoLocationDTO = new GeoLocationDTO();
           if(loc.getRoute() != null) {
             geoLocationDTO.setRouteId(loc.getRoute().getId());

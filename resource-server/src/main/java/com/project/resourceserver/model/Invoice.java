@@ -40,7 +40,7 @@ public class Invoice {
     private Company company;
 
     @OneToOne(fetch = FetchType.LAZY)
-    private GeoProperty property;
+    private GeoLocation property;
 
     @OneToOne(fetch = FetchType.LAZY)
     private Job job;
@@ -65,14 +65,14 @@ public class Invoice {
     /**
      * @return GeoProperty return the property
      */
-    public GeoProperty getProperty() {
+    public GeoLocation getProperty() {
         return property;
     }
 
     /**
      * @param property the property to set
      */
-    public void setProperty(GeoProperty property) {
+    public void setProperty(GeoLocation property) {
         this.property = property;
     }
 

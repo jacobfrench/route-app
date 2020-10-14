@@ -87,7 +87,7 @@ public class Company {
   private Set<Schedule> schedule;
 
   @OneToMany
-  private Set<GeoProperty> geoProperties;
+  private Set<GeoLocation> geoProperties;
 
   @OneToMany
   private Set<Tag> tags;
@@ -281,18 +281,18 @@ public class Company {
   /**
    * @return Set<GeoProperty> return the geoProperties
    */
-  public Set<GeoProperty> getGeoProperties() {
+  public Set<GeoLocation> getGeoProperties() {
     return geoProperties;
   }
 
   /**
    * @param geoProperties the geoProperties to set
    */
-  public void setGeoProperties(Set<GeoProperty> geoProperties) {
+  public void setGeoProperties(Set<GeoLocation> geoProperties) {
     this.geoProperties = geoProperties;
   }
 
-  public void addGeoProperty(GeoProperty geoProperty) {
+  public void addGeoProperty(GeoLocation geoProperty) {
     this.geoProperties.add(geoProperty);
   }
 

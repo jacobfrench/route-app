@@ -5,12 +5,12 @@ import java.util.Set;
 
 import com.project.resourceserver.model.Company;
 import com.project.resourceserver.model.Customer;
-import com.project.resourceserver.model.GeoProperty;
+import com.project.resourceserver.model.GeoLocation;
 import com.project.resourceserver.model.ServiceType;
 import com.project.resourceserver.model.Tag;
 import com.project.resourceserver.repository.CompanyRepository;
 import com.project.resourceserver.repository.CustomerRepository;
-import com.project.resourceserver.repository.GeoPropertyRepository;
+import com.project.resourceserver.repository.GeoLocationRepository;
 import com.project.resourceserver.repository.TagRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +20,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GeoPropertyService {
+public class GeoLocationService {
 
     @Autowired
-    private GeoPropertyRepository geoPropertyRepository;
+    private GeoLocationRepository geoPropertyRepository;
 
     @Autowired
     private TagRepository tagRepository;
@@ -34,7 +34,7 @@ public class GeoPropertyService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public ResponseEntity<GeoProperty> addNewGeoProperty(Long companyId, Long customerId, Long serviceTypeId, GeoProperty geoProperty) {
+    public ResponseEntity<GeoLocation> addNewGeoProperty(Long companyId, Long customerId, Long serviceTypeId, GeoLocation geoProperty) {
         HttpHeaders httpHeaders = new HttpHeaders();
         Customer customer = customerRepository.findById(customerId).get();
         geoProperty.setOwner(customer);

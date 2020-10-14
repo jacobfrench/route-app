@@ -73,7 +73,7 @@ public class Customer {
   private String billZip;
 
   @OneToMany(mappedBy = "owner")
-  private Set<GeoProperty> locations;
+  private Set<GeoLocation> locations;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "company_id", referencedColumnName = "id")
@@ -174,14 +174,14 @@ public class Customer {
   /**
    * @return Set<GeoProperty> return the ownedProperties
    */
-  public Set<GeoProperty> getLocations() {
+  public Set<GeoLocation> getLocations() {
     return locations;
   }
 
   /**
    * @param ownedProperties the ownedProperties to set
    */
-  public void setLocations(Set<GeoProperty> locations) {
+  public void setLocations(Set<GeoLocation> locations) {
     this.locations = locations;
   }
 
@@ -199,7 +199,7 @@ public class Customer {
     this.company = company;
   }
 
-  public void addLocation(GeoProperty geoProperty) {
+  public void addLocation(GeoLocation geoProperty) {
     this.locations.add(geoProperty);
   }
 

@@ -1,11 +1,11 @@
 package com.project.resourceserver.service;
 
 import com.project.resourceserver.model.Company;
-import com.project.resourceserver.model.GeoProperty;
+import com.project.resourceserver.model.GeoLocation;
 import com.project.resourceserver.model.Job;
 import com.project.resourceserver.model.Schedule;
 import com.project.resourceserver.model.Technician;
-import com.project.resourceserver.repository.GeoPropertyRepository;
+import com.project.resourceserver.repository.GeoLocationRepository;
 import com.project.resourceserver.repository.JobRepository;
 import com.project.resourceserver.repository.ScheduleRepository;
 import com.project.resourceserver.repository.TechnicianRepository;
@@ -23,7 +23,7 @@ public class ScheduleService {
     private JobRepository jobRepository;
 
     @Autowired
-    private GeoPropertyRepository geoPropertyRepository;
+    private GeoLocationRepository geoPropertyRepository;
 
     @Autowired
     private TechnicianRepository technicianRepository;
@@ -34,7 +34,7 @@ public class ScheduleService {
     @Autowired
     private ScheduleRepository scheduleRepository;
 
-    public ScheduleService(JobRepository jobRepository, GeoPropertyRepository geoPropertyRepository,
+    public ScheduleService(JobRepository jobRepository, GeoLocationRepository geoPropertyRepository,
             TechnicianRepository technicianRepository, ScheduleRepository scheduleRepository, CompanyService companyService) {
         this.jobRepository = jobRepository;
         this.geoPropertyRepository = geoPropertyRepository;
@@ -45,7 +45,7 @@ public class ScheduleService {
 
     public ResponseEntity<String> addJobToSchedule(Long technicianId, Long geoPropertyId, Job job) {
         HttpHeaders httpHeaders = new HttpHeaders();
-        GeoProperty geoProperty = this.geoPropertyRepository.findById(geoPropertyId).get();
+        GeoLocation geoProperty = this.geoPropertyRepository.findById(geoPropertyId).get();
         Technician technician = this.technicianRepository.findById(technicianId).get();
         Schedule schedule = technician.getSchedule();
 

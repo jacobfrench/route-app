@@ -33,7 +33,7 @@ public class Route {
   private Company company;
 
   @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Set<GeoProperty> geoProperties;
+  private Set<GeoLocation> geoProperties;
 
   public Route() {
     geoProperties = new HashSet<>();
@@ -70,18 +70,18 @@ public class Route {
   /**
    * @return Set<GeoProperty> return the geoProperties
    */
-  public Set<GeoProperty> getGeoProperties() {
+  public Set<GeoLocation> getGeoProperties() {
     return geoProperties;
   }
 
   /**
    * @param geoProperties the geoProperties to set
    */
-  public void setGeoProperties(Set<GeoProperty> geoProperties) {
+  public void setGeoProperties(Set<GeoLocation> geoProperties) {
     this.geoProperties = geoProperties;
   }
 
-  public void addGeoProperty(GeoProperty geoProperty) {
+  public void addGeoProperty(GeoLocation geoProperty) {
     this.geoProperties.add(geoProperty);
   }
 
