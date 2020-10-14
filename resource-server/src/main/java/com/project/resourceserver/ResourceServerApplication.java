@@ -26,6 +26,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 import org.json.simple.parser.JSONParser;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -55,7 +57,13 @@ public class ResourceServerApplication implements CommandLineRunner {
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
-	}
+  }
+  
+  @Bean
+  public Mapper dozerBeanMapper() {
+  //  return DozerBeanMapperBuilder.buildDefault();
+    return new DozerBeanMapper();
+}
 
 	public static void main(String[] args) {
 		SpringApplication.run(ResourceServerApplication.class, args);
@@ -63,7 +71,7 @@ public class ResourceServerApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		populateWithMockData();
+    populateWithMockData();
 	}
 
 	private void populateWithMockData() throws IOException, ParseException {

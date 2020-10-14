@@ -1,10 +1,16 @@
 package com.project.resourceserver.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
+import com.project.resourceserver.dto.CustomerDTO;
+import com.project.resourceserver.dto.GeoLocationDTO;
 import com.project.resourceserver.model.Customer;
+import com.project.resourceserver.model.GeoProperty;
 import com.project.resourceserver.service.CustomerService;
 
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -25,6 +31,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private Mapper mapper;
 
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
@@ -51,18 +60,53 @@ public class CustomerController {
 
     }
 
+    // @GetMapping(value="/customer/email/{customerEmail}")
+    // public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String customerEmail) {
+    //     HttpHeaders httpHeaders = new HttpHeaders();
+    //     Customer customer = customerService.findCustomerByEmail(customerEmail);
+    //     if(customer == null){
+    //         httpHeaders.add("result_msg", "Customer not Found");
+    //         return new ResponseEntity<>(null, httpHeaders, HttpStatus.NOT_FOUND);
+    //     }
+
+    //     String message = String.format("Customer with id=%d was found.", customer.getId());
+    //     httpHeaders.add("result_msg", message);
+    //     return new ResponseEntity<>(customer, httpHeaders, HttpStatus.OK);
+
+    // }
+
     @GetMapping(value="/customer/email/{customerEmail}")
-    public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String customerEmail) {
+    public ResponseEntity<Map<String, Object>> getCustomerByEmail(@PathVariable String customerEmail) {
         HttpHeaders httpHeaders = new HttpHeaders();
+        Map<String, Object> data = new HashMap<>();
         Customer customer = customerService.findCustomerByEmail(customerEmail);
         if(customer == null){
             httpHeaders.add("result_msg", "Customer not Found");
             return new ResponseEntity<>(null, httpHeaders, HttpStatus.NOT_FOUND);
         }
 
+        CustomerDTO customerDTO = new CustomerDTO();
+        mapper.map(customer, customerDTO);
+
+        // mapper.map(customer.getLocations(), geoLocationDTO);
+        ArrayList<GeoLocationDTO> locations = new ArrayList<>();
+        for(GeoProperty loc : customer.getLocations()) {
+          GeoLocationDTO geoLocationDTO = new GeoLocationDTO();
+          if(loc.getRoute() != null) {
+            geoLocationDTO.setRouteId(loc.getRoute().getId());
+            geoLocationDTO.setRouteName(loc.getRoute().getName());
+          }
+          mapper.map(loc, geoLocationDTO);
+          locations.add(geoLocationDTO);
+          
+        }
+
+        data.put("customer", customerDTO);
+        data.put("locations", locations);
+
         String message = String.format("Customer with id=%d was found.", customer.getId());
         httpHeaders.add("result_msg", message);
-        return new ResponseEntity<>(customer, httpHeaders, HttpStatus.OK);
+        return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
 
     }
 

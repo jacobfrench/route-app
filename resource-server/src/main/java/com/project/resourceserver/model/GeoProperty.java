@@ -80,6 +80,7 @@ public class GeoProperty {
 
   public GeoProperty() {
     tags = new HashSet<>();
+    route = null;
   }
 
   public void removeTags() {
