@@ -64,7 +64,7 @@ public class CustomerController {
     // public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String customerEmail) {
     //     HttpHeaders httpHeaders = new HttpHeaders();
     //     Customer customer = customerService.findCustomerByEmail(customerEmail);
-    //     if(customer == null){
+        // if(customer == null){
     //         httpHeaders.add("result_msg", "Customer not Found");
     //         return new ResponseEntity<>(null, httpHeaders, HttpStatus.NOT_FOUND);
     //     }
@@ -88,7 +88,8 @@ public class CustomerController {
         CustomerDTO customerDTO = new CustomerDTO();
         mapper.map(customer, customerDTO);
 
-        // mapper.map(customer.getLocations(), geoLocationDTO);
+        // I want to return a geoProperty with the routeId, and routeName attached.
+        // TODO: This method works, but there is probably a better approach to this.
         ArrayList<GeoLocationDTO> locations = new ArrayList<>();
         for(GeoProperty loc : customer.getLocations()) {
           GeoLocationDTO geoLocationDTO = new GeoLocationDTO();
@@ -98,11 +99,11 @@ public class CustomerController {
           }
           mapper.map(loc, geoLocationDTO);
           locations.add(geoLocationDTO);
-          
         }
 
         data.put("customer", customerDTO);
         data.put("locations", locations);
+        // TODO: put service history in data object (i.e. data.put("service_history", serviceHistoryDTO))
 
         String message = String.format("Customer with id=%d was found.", customer.getId());
         httpHeaders.add("result_msg", message);
