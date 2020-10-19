@@ -12,8 +12,7 @@ import {
   ModalHeader,
   ModalBody,
   Input,
-  Label, 
-  Button
+  Label
 } from "reactstrap";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
@@ -60,14 +59,16 @@ function Customer() {
   const [callAlt, setCallAlt] = useState(false);
   const [textAlt, setTextAlt] = useState(false);
 
+  const [customer, setCustomer] = useState({});
+  const [locations, setLocations] = useState([]);
+
   // Redux
   const dispatch = useDispatch();
-  const customer = useSelector((state) => state.Customer.customer);
+  const customerData = useSelector((state) => state.Customer.customer);
   const loading = useSelector((state) => state.Customer.isloading);
 
   // Logic control
   const [saveCustomerButtonDisabled, setsaveCustomerButtonDisabled] = useState(true);
-  const [locations, setLocations] = useState([]);
   const [isCustomerNull, setIsCustomerNull] = useState(true);
 
   const searchOptions = [
@@ -84,9 +85,28 @@ function Customer() {
     NONE: "NONE",
   };
 
+  /**
+ * Returns true if object is empty json object
+ *
+ * @param {obj} json object.
+ * @return {number} true if object is empty json object, false otherwise
+ */
+  function isEmpty(obj) {
+    return (!Object.keys(Object(obj)).length > 0);
+  }
+
   useEffect(() => {
-    console.log("Start useEffect:");
-    console.log(customer);
+    if(isEmpty(customerData)) return;
+
+    // update customer objects
+    setCustomer(customerData.customer);
+    setLocations(customerData.locations);
+
+  }, [customerData]);
+
+  useEffect(() => {
+    if(isEmpty(customer)) return;
+
     setAccountId(customer.accountId);
     setFName(customer.fname);
     setLName(customer.lname);
@@ -94,7 +114,7 @@ function Customer() {
     setMinit(customer.minit);
     setPriPhone(customer.primaryPhone);
     setAltPhone(customer.altPhone);
-    setLocations(customer.locations);
+    setLocations(locations);
 
     switch (customer.primePref) {
       case ContactPref.CALL:
@@ -142,8 +162,7 @@ function Customer() {
 
     setIsCustomerNull(typeof customer.id === "undefined");
 
-    console.log("End useEffect");
-  }, [customer]);
+  }, [customer, locations])
 
   function handleSearchTypeChanged(type) {
     setSearchByType(type.label);
@@ -206,6 +225,7 @@ function Customer() {
   };
 
   function handleSaveButtonClicked() {
+    let customer = customerData.customer;
     let modifiedCustomer = {
       id: customer.id,
       accountId: accountId,
@@ -233,7 +253,6 @@ function Customer() {
   }
 
   function handleInputChangedEvent(e) {
-    console.log(customer.id);
     let value = e.target.value;
     if (value === null) value = "";
     setsaveCustomerButtonDisabled(false);
