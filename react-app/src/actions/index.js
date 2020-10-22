@@ -1,4 +1,4 @@
-import {UPDATE_CUSTOMER} from '../constant/actionTypes';
+import {UPDATE_CUSTOMER, GET_REQUEST_RESULTS} from '../constant/actionTypes';
 import axios from 'axios';
 
 
@@ -34,7 +34,7 @@ export function saveCustomer(customer){
 
   return(dispatch) => {
     axios.patch(options.url, options.data, options.headers)
-      .then((response) => {dispatch({type: UPDATE_CUSTOMER, payload: response.data})})
+      .then((response) => {dispatch({type: GET_REQUEST_RESULTS, payload: response.data})})
       .catch((response) => {return Promise.reject(response)});
   }
 }

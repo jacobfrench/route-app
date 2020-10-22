@@ -65,6 +65,7 @@ function Customer() {
   // Redux
   const dispatch = useDispatch();
   const customerData = useSelector((state) => state.Customer.customer);
+  const requestResults = useSelector((state) => state.Customer.reqResults);
   const loading = useSelector((state) => state.Customer.isloading);
 
   // Logic control
@@ -249,6 +250,8 @@ function Customer() {
     dispatch(saveCustomer(modifiedCustomer));
     setsaveCustomerButtonDisabled(true);
 
+    
+
     toast.success("Customer has been saved.");
   }
 
@@ -319,6 +322,11 @@ function Customer() {
     }
   }
 
+  function updateLocation(loc) {
+    console.log(loc);
+
+  }
+
   function renderLocationsAccordian() {
     if (typeof locations === "undefined") return <div></div>;
     return (
@@ -347,37 +355,35 @@ function Customer() {
                     <label class="form-label">Street</label>
                     <input
                       id={"loc_street" + index}
-                      value={location.street}
+                      defaultValue={location.street}
                       placeholder={"Street"}
                       class="form-control"
                       type="text"
-                      // onChange={(e) => setstr(e.target.value)}
+                      onChange={(e) => {
+                        locations[index].street = e.target.value;
+                        setLocations(locations);
+                      }}
                     />
                   </Col>
                   <Col>
                     <label class="form-label">City</label>
                     <input
                       id={"loc_city" + index}
-                      value={location.city}
+                      defaultValue={location.city}
                       placeholder={"City"}
                       class="form-control"
                       type="text"
-                      // onChange={(e) => setSearchLastName(e.target.value)}
+                      onChange={(e) => {
+                        locations[index].city = e.target.value;
+                        setLocations(locations);
+                      }}
                     />
                   </Col>
                   <Col>
                     <label class="form-label">State</label>
-                    {/* <input
-                      id={"loc_state" + index}
-                      value={location.physState}
-                      placeholder={"State"}
-                      class="form-control"
-                      type="text"
-                      // onChange={(e) => setSearchLastName(e.target.value)}
-                    /> */}
                     <Select
                       id={"loc_state"}
-                      value={location.state}
+                      defaultValue={location.state}
                       options={states}
                       placeholder={"State..."}
                       // onChange={(text) => setSearchState(text)}
@@ -388,11 +394,14 @@ function Customer() {
                     <label class="form-label">Zip</label>
                     <input
                       id={"loc_zip" + index}
-                      value={location.zip}
+                      defaultValue={location.zip}
                       placeholder={"Zip"}
                       class="form-control"
                       type="text"
-                      // onChange={(e) => setSearchLastName(e.target.value)}
+                      onChange={(e) => {
+                        locations[index].zip = e.target.value;
+                        setLocations(locations);
+                      }}
                     />
                   </Col>
                 </Row>
@@ -401,33 +410,42 @@ function Customer() {
                     <label class="form-label">Latitude</label>
                     <input
                       id={"loc_lat" + index}
-                      value={location.lat}
+                      defaultValue={location.lat}
                       placeholder={"Latitude"}
                       class="form-control"
                       type="text"
-                      // onChange={(e) => setSearchLastName(e.target.value)}
+                      onChange={(e) => {
+                        locations[index].lat = e.target.value;
+                        setLocations(locations);
+                      }}
                     />
                   </Col>
                   <Col>
                     <label class="form-label">Longitude</label>
                     <input
                       id={"loc_lng" + index}
-                      value={location.lng}
+                      defaultValue={location.lng}
                       placeholder={"Longitude"}
                       class="form-control"
                       type="text"
-                      // onChange={(e) => setSearchLastName(e.target.value)}
+                      onChange={(e) => {
+                        locations[index].lng = e.target.value;
+                        setLocations(locations);
+                      }}
                     />
                   </Col>
                   <Col>
                     <label class="form-label">Map Code</label>
                     <input
                       id={"loc_map_code" + index}
-                      value={location.mapCode}
+                      defaultValue={location.mapCode}
                       placeholder={"Map Code"}
                       class="form-control"
                       type="text"
-                      // onChange={(e) => setSearchLastName(e.target.value)}
+                      onChange={(e) => {
+                        locations[index].mapCode = e.target.value;
+                        setLocations(locations);
+                      }}
                     />
                   </Col>
                 </Row>
@@ -436,33 +454,42 @@ function Customer() {
                     <label class="form-label">Property Sq Ft.</label>
                     <input
                       id={"loc_property_sq_ft" + index}
-                      value={location.propertySqFt}
+                      defaultValue={location.propertySqFt}
                       placeholder={"Property Square Footage"}
                       class="form-control"
                       type="text"
-                      // onChange={(e) => setSearchLastName(e.target.value)}
+                      onChange={(e) => {
+                        locations[index].propertySqFt = e.target.value;
+                        setLocations(locations);
+                      }}
                     />
                   </Col>
                   <Col>
                     <label class="form-label">Property Sq Ft.</label>
                     <input
                       id={"loc_structure_sq_ft" + index}
-                      value={location.structureSqFt}
+                      defaultValue={location.structureSqFt}
                       placeholder={"Structure Square Footage"}
                       class="form-control"
                       type="text"
-                      // onChange={(e) => setSearchLastName(e.target.value)}
+                      onChange={(e) => {
+                        locations[index].structureSqFt = e.target.value;
+                        setLocations(locations);
+                      }}
                     />
                   </Col>
                   <Col>
                     <label class="form-label">Linear Sq Ft.</label>
                     <input
                       id={"loc_linear_sq_ft" + index}
-                      value={location.linearSqFt}
+                      defaultValue={location.linearSqFt}
                       placeholder={"Linear Square Footage"}
                       class="form-control"
                       type="text"
-                      // onChange={(e) => setSearchLastName(e.target.value)}
+                      onChange={(e) => {
+                        locations[index].linearSqFt = e.target.value;
+                        setLocations(locations);
+                      }}
                     />
                   </Col>
                 </Row>
@@ -471,18 +498,21 @@ function Customer() {
                     <label class="form-label">Note</label>
                     <textarea
                       id={"loc_notes" + index}
-                      value={location.note}
+                      defaultValue={location.notes}
                       style={{ height: 100 }}
                       placeholder={"Note"}
                       class="form-control"
                       type="textarea"
-                      // onChange={(e) => setSearchLastName(e.target.value)}
+                      onChange={(e) => {
+                        locations[index].notes = e.target.value;
+                        setLocations(locations);
+                      }}
                     />
                   </Col>
                 </Row>
                 <button
                   style={{ margin: 15, marginLeft: 20 }}
-                  onClick={() => alert("Save Location[" + index + "]")}
+                  onClick={() => updateLocation(location)}
                   class={"btn btn-pill btn-primary btn-air-primary btn-sm"}
                   type="button"
                 >

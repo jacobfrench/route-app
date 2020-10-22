@@ -1,6 +1,5 @@
 package com.project.resourceserver.controller;
 
-import com.project.resourceserver.model.Schedule;
 import com.project.resourceserver.model.Technician;
 import com.project.resourceserver.repository.TechnicianRepository;
 import com.project.resourceserver.service.TechnicianService;
@@ -12,7 +11,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
