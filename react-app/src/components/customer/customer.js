@@ -322,13 +322,44 @@ function Customer() {
     }
   }
 
-  function updateLocation(loc) {
-    console.log(loc);
+  function updateLocations(e) {
+    let updatedLocations = locations.map(item => {
+      let id = e.target.id;
+      console.log(e.target.id);
 
+      if(id.includes("street"))
+        return {...item, street: e.target.value};
+      else if(id.includes("city"))
+        return {...item, city: e.target.value};
+      else if(id.includes("state"))
+        return {...item, state: e.target.value};
+      else if(id.includes("zip"))
+        return {...item, zip: e.target.value};
+      else if(id.includes("lat"))
+        return {...item, lat: e.target.value};
+      else if(id.includes("lng"))
+        return {...item, lng: e.target.value};
+      else if(id.includes("map_code"))
+        return {...item, mapCode: e.target.value};
+      else if(id.includes("property_sq_ft"))
+        return {...item, propertySqFt: e.target.value};
+      else if(id.includes("structure_sq_ft"))
+        return {...item, structureSqFt: e.target.value};
+      else if(id.includes("linear_sq_ft"))
+        return {...item, linearSqFt: e.target.value};
+      else if(id.includes("notes"))
+        return {...item, notes: e.target.value};
+      else
+        return item;
+
+    });
+    
+    setLocations(updatedLocations);
   }
 
   function renderLocationsAccordian() {
-    if (typeof locations === "undefined") return <div></div>;
+    if (isEmpty(locations)) return <div></div>;
+    let ls = locations;
     return (
       <div className="card" style={{ margin: 5 }}>
         {locations.map((location, index) => (
@@ -355,14 +386,12 @@ function Customer() {
                     <label class="form-label">Street</label>
                     <input
                       id={"loc_street" + index}
-                      defaultValue={location.street}
+                      field={"street"}
+                      value={location.street}
                       placeholder={"Street"}
                       class="form-control"
                       type="text"
-                      onChange={(e) => {
-                        locations[index].street = e.target.value;
-                        setLocations(locations);
-                      }}
+                      onChange={(e) => updateLocations(e)}
                     />
                   </Col>
                   <Col>
@@ -373,10 +402,7 @@ function Customer() {
                       placeholder={"City"}
                       class="form-control"
                       type="text"
-                      onChange={(e) => {
-                        locations[index].city = e.target.value;
-                        setLocations(locations);
-                      }}
+                      onChange={(e) => updateLocations(e)}
                     />
                   </Col>
                   <Col>
@@ -386,8 +412,7 @@ function Customer() {
                       defaultValue={location.state}
                       options={states}
                       placeholder={"State..."}
-                      // onChange={(text) => setSearchState(text)}
-                      // onKeyPress={(e) => handleKeyPress(e)}
+                      // onChange={(e) => updateLocations(e)}
                     />
                   </Col>
                   <Col>
@@ -398,10 +423,7 @@ function Customer() {
                       placeholder={"Zip"}
                       class="form-control"
                       type="text"
-                      onChange={(e) => {
-                        locations[index].zip = e.target.value;
-                        setLocations(locations);
-                      }}
+                      onChange={(e) => updateLocations(e)}
                     />
                   </Col>
                 </Row>
@@ -414,10 +436,7 @@ function Customer() {
                       placeholder={"Latitude"}
                       class="form-control"
                       type="text"
-                      onChange={(e) => {
-                        locations[index].lat = e.target.value;
-                        setLocations(locations);
-                      }}
+                      onChange={(e) => updateLocations(e)}
                     />
                   </Col>
                   <Col>
@@ -428,10 +447,7 @@ function Customer() {
                       placeholder={"Longitude"}
                       class="form-control"
                       type="text"
-                      onChange={(e) => {
-                        locations[index].lng = e.target.value;
-                        setLocations(locations);
-                      }}
+                      onChange={(e) => updateLocations(e)}
                     />
                   </Col>
                   <Col>
@@ -442,10 +458,7 @@ function Customer() {
                       placeholder={"Map Code"}
                       class="form-control"
                       type="text"
-                      onChange={(e) => {
-                        locations[index].mapCode = e.target.value;
-                        setLocations(locations);
-                      }}
+                      onChange={(e) => updateLocations(e)}
                     />
                   </Col>
                 </Row>
@@ -458,10 +471,7 @@ function Customer() {
                       placeholder={"Property Square Footage"}
                       class="form-control"
                       type="text"
-                      onChange={(e) => {
-                        locations[index].propertySqFt = e.target.value;
-                        setLocations(locations);
-                      }}
+                      onChange={(e) => updateLocations(e)}
                     />
                   </Col>
                   <Col>
@@ -472,10 +482,7 @@ function Customer() {
                       placeholder={"Structure Square Footage"}
                       class="form-control"
                       type="text"
-                      onChange={(e) => {
-                        locations[index].structureSqFt = e.target.value;
-                        setLocations(locations);
-                      }}
+                      onChange={(e) => updateLocations(e)}
                     />
                   </Col>
                   <Col>
@@ -486,10 +493,7 @@ function Customer() {
                       placeholder={"Linear Square Footage"}
                       class="form-control"
                       type="text"
-                      onChange={(e) => {
-                        locations[index].linearSqFt = e.target.value;
-                        setLocations(locations);
-                      }}
+                      onChange={(e) => updateLocations(e)}
                     />
                   </Col>
                 </Row>
@@ -503,16 +507,13 @@ function Customer() {
                       placeholder={"Note"}
                       class="form-control"
                       type="textarea"
-                      onChange={(e) => {
-                        locations[index].notes = e.target.value;
-                        setLocations(locations);
-                      }}
+                      onChange={(e) => updateLocations(e)}
                     />
                   </Col>
                 </Row>
                 <button
                   style={{ margin: 15, marginLeft: 20 }}
-                  onClick={() => updateLocation(location)}
+                  // onClick={() => updateLocation(location)}
                   class={"btn btn-pill btn-primary btn-air-primary btn-sm"}
                   type="button"
                 >
